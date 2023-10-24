@@ -67,7 +67,7 @@ public class LoginPage extends javax.swing.JPanel {
         forgotPassword.setForeground(new java.awt.Color(51, 102, 153));
         forgotPassword.setText("Forgot Password?");
 
-        logo.setIcon(new javax.swing.ImageIcon("C:\\Users\\user\\OneDrive\\Documents\\OJT-Project\\Sale&Inventory\\src\\sale&inventory\\image\\inventory-system-logo.png")); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/inventory-system-logo.png"))); // NOI18N
 
         javax.swing.GroupLayout loginFormLayout = new javax.swing.GroupLayout(loginForm);
         loginForm.setLayout(loginFormLayout);
