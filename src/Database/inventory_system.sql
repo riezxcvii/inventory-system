@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 23, 2023 at 02:34 PM
+-- Generation Time: Oct 24, 2023 at 02:58 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.3.33
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `logistics`
+-- Table structure for table `logistic`
 --
 
-CREATE TABLE `logistics` (
+CREATE TABLE `logistic` (
   `product_id` int(15) DEFAULT NULL,
   `product_name` varchar(50) NOT NULL,
   `product_type` varchar(30) NOT NULL,
@@ -49,10 +49,10 @@ CREATE TABLE `logistics` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sale_inquiry`
+-- Table structure for table `sale`
 --
 
-CREATE TABLE `sale_inquiry` (
+CREATE TABLE `sale` (
   `sale_id` int(15) NOT NULL,
   `date` date NOT NULL,
   `project_or_end_user` varchar(50) NOT NULL,
@@ -70,10 +70,10 @@ CREATE TABLE `sale_inquiry` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_account`
+-- Table structure for table `user`
 --
 
-CREATE TABLE `user_account` (
+CREATE TABLE `user` (
   `user_id` int(10) NOT NULL,
   `user_type` varchar(20) NOT NULL,
   `last_name` int(20) NOT NULL,
@@ -90,9 +90,9 @@ CREATE TABLE `user_account` (
 --
 
 --
--- Indexes for table `user_account`
+-- Indexes for table `user`
 --
-ALTER TABLE `user_account`
+ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`);
 
 --
@@ -100,9 +100,9 @@ ALTER TABLE `user_account`
 --
 
 --
--- AUTO_INCREMENT for table `user_account`
+-- AUTO_INCREMENT for table `user`
 --
-ALTER TABLE `user_account`
+ALTER TABLE `user`
   MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
