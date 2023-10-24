@@ -45,3 +45,11 @@
   > - Open the XAMPP Control Panel.
   > - Start Apache and MySQL.
   >   Navigate to the 'App.java' file inside the 'src' folder and run the code.
+
+## 👥 Credits
+
+- Rieza Marie Banquillo (Project Manager & GUI Designer)
+- Edvenson Jay Miguel (Front-end Developer)
+- Sunny Virgo (Back-end Developer)
+
+> Client: **Intellyx IT Solutions**
