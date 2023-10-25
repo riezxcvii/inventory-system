@@ -264,7 +264,10 @@ public class Dashboard extends javax.swing.JPanel {
     }//GEN-LAST:event_userManagementButtonActionPerformed
 
     private void salesInquiryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salesInquiryButtonActionPerformed
-
+        Frame frame = new Frame();
+        frame.viewFrame("Client.Admin.SalesInquiry", "Inventory System");
+        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        currentFrame.dispose();
     }//GEN-LAST:event_salesInquiryButtonActionPerformed
 
     private void logisticsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logisticsButtonActionPerformed
