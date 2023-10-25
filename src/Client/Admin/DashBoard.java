@@ -1,5 +1,8 @@
-
 package Client.Admin;
+
+import Server.Frame;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 public class Dashboard extends javax.swing.JPanel {
 
@@ -11,39 +14,51 @@ public class Dashboard extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        dashboardPanel = new javax.swing.JPanel();
         navigationBar = new javax.swing.JPanel();
         navigationBarTitle = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
+        userIcon = new javax.swing.JLabel();
         userManagement = new javax.swing.JPanel();
         userManagementIcon = new javax.swing.JPanel();
+        userManagementImage = new javax.swing.JLabel();
         userManagementButton = new javax.swing.JButton();
         salesInquiry = new javax.swing.JPanel();
         salesInquiryIcon = new javax.swing.JPanel();
+        salesInquiryImage = new javax.swing.JLabel();
         salesInquiryButton = new javax.swing.JButton();
         logistics = new javax.swing.JPanel();
         logisticsIcon = new javax.swing.JPanel();
+        logisticsImage = new javax.swing.JLabel();
         logisticsButton = new javax.swing.JButton();
-
-        dashboardPanel.setBackground(new java.awt.Color(236, 242, 255));
 
         navigationBar.setBackground(new java.awt.Color(51, 102, 153));
 
         navigationBarTitle.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         navigationBarTitle.setForeground(new java.awt.Color(255, 255, 255));
-        navigationBarTitle.setText("Inventory System - Dashboard");
+        navigationBarTitle.setText("Dashboard");
+
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/inventory-system-logo.png"))); // NOI18N
+
+        userIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/user.png"))); // NOI18N
 
         javax.swing.GroupLayout navigationBarLayout = new javax.swing.GroupLayout(navigationBar);
         navigationBar.setLayout(navigationBarLayout);
         navigationBarLayout.setHorizontalGroup(
             navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(navigationBarLayout.createSequentialGroup()
-                .addGap(107, 107, 107)
+                .addGap(28, 28, 28)
+                .addComponent(logo)
+                .addGap(18, 18, 18)
                 .addComponent(navigationBarTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(userIcon)
+                .addGap(28, 28, 28))
         );
         navigationBarLayout.setVerticalGroup(
             navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(navigationBarTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+            .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+            .addComponent(navigationBarTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(userIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         userManagement.setBackground(new java.awt.Color(255, 255, 255));
@@ -51,21 +66,30 @@ public class Dashboard extends javax.swing.JPanel {
 
         userManagementIcon.setBackground(new java.awt.Color(51, 102, 153));
 
+        userManagementImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Dashboard/add-user.png"))); // NOI18N
+
         javax.swing.GroupLayout userManagementIconLayout = new javax.swing.GroupLayout(userManagementIcon);
         userManagementIcon.setLayout(userManagementIconLayout);
         userManagementIconLayout.setHorizontalGroup(
             userManagementIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(userManagementIconLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(userManagementImage)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         userManagementIconLayout.setVerticalGroup(
             userManagementIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 114, Short.MAX_VALUE)
+            .addGroup(userManagementIconLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(userManagementImage)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         userManagementButton.setBackground(new java.awt.Color(51, 102, 153));
         userManagementButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         userManagementButton.setForeground(new java.awt.Color(255, 255, 255));
         userManagementButton.setText("User Management");
+        userManagementButton.setFocusPainted(false);
         userManagementButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userManagementButtonActionPerformed(evt);
@@ -88,7 +112,7 @@ public class Dashboard extends javax.swing.JPanel {
             .addGroup(userManagementLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(userManagementIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(userManagementButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38))
         );
@@ -98,21 +122,30 @@ public class Dashboard extends javax.swing.JPanel {
 
         salesInquiryIcon.setBackground(new java.awt.Color(51, 102, 153));
 
+        salesInquiryImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Dashboard/sales-inquiry.png"))); // NOI18N
+
         javax.swing.GroupLayout salesInquiryIconLayout = new javax.swing.GroupLayout(salesInquiryIcon);
         salesInquiryIcon.setLayout(salesInquiryIconLayout);
         salesInquiryIconLayout.setHorizontalGroup(
             salesInquiryIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(salesInquiryIconLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(salesInquiryImage)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         salesInquiryIconLayout.setVerticalGroup(
             salesInquiryIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 114, Short.MAX_VALUE)
+            .addGroup(salesInquiryIconLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(salesInquiryImage)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         salesInquiryButton.setBackground(new java.awt.Color(51, 102, 153));
         salesInquiryButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         salesInquiryButton.setForeground(new java.awt.Color(255, 255, 255));
         salesInquiryButton.setText("Sales Inquiry");
+        salesInquiryButton.setFocusable(false);
         salesInquiryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salesInquiryButtonActionPerformed(evt);
@@ -135,7 +168,7 @@ public class Dashboard extends javax.swing.JPanel {
             .addGroup(salesInquiryLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(salesInquiryIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(salesInquiryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38))
         );
@@ -145,21 +178,30 @@ public class Dashboard extends javax.swing.JPanel {
 
         logisticsIcon.setBackground(new java.awt.Color(51, 102, 153));
 
+        logisticsImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Dashboard/logistics.png"))); // NOI18N
+
         javax.swing.GroupLayout logisticsIconLayout = new javax.swing.GroupLayout(logisticsIcon);
         logisticsIcon.setLayout(logisticsIconLayout);
         logisticsIconLayout.setHorizontalGroup(
             logisticsIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(logisticsIconLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(logisticsImage)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         logisticsIconLayout.setVerticalGroup(
             logisticsIconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 114, Short.MAX_VALUE)
+            .addGroup(logisticsIconLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(logisticsImage)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         logisticsButton.setBackground(new java.awt.Color(51, 102, 153));
         logisticsButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         logisticsButton.setForeground(new java.awt.Color(255, 255, 255));
         logisticsButton.setText("Logistics");
+        logisticsButton.setFocusable(false);
         logisticsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logisticsButtonActionPerformed(evt);
@@ -182,16 +224,16 @@ public class Dashboard extends javax.swing.JPanel {
             .addGroup(logisticsLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(logisticsIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(logisticsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38))
         );
 
-        javax.swing.GroupLayout dashboardPanelLayout = new javax.swing.GroupLayout(dashboardPanel);
-        dashboardPanel.setLayout(dashboardPanelLayout);
-        dashboardPanelLayout.setHorizontalGroup(
-            dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dashboardPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addComponent(userManagement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
@@ -201,54 +243,50 @@ public class Dashboard extends javax.swing.JPanel {
                 .addContainerGap(60, Short.MAX_VALUE))
             .addComponent(navigationBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        dashboardPanelLayout.setVerticalGroup(
-            dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dashboardPanelLayout.createSequentialGroup()
-                .addComponent(navigationBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(133, 133, 133)
-                .addGroup(dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(userManagement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(salesInquiry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(logistics, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(133, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dashboardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dashboardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(navigationBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(131, 131, 131)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(salesInquiry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(logistics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(userManagement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 133, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void userManagementButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userManagementButtonActionPerformed
-        
+        Frame frame = new Frame();
+        frame.viewFrame("Client.Admin.UserManagement", "Inventory System");
+        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        currentFrame.dispose();
     }//GEN-LAST:event_userManagementButtonActionPerformed
 
     private void salesInquiryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salesInquiryButtonActionPerformed
-        
+
     }//GEN-LAST:event_salesInquiryButtonActionPerformed
 
     private void logisticsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logisticsButtonActionPerformed
-        
+
     }//GEN-LAST:event_logisticsButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel dashboardPanel;
     private javax.swing.JPanel logistics;
     private javax.swing.JButton logisticsButton;
     private javax.swing.JPanel logisticsIcon;
+    private javax.swing.JLabel logisticsImage;
+    private javax.swing.JLabel logo;
     private javax.swing.JPanel navigationBar;
     private javax.swing.JLabel navigationBarTitle;
     private javax.swing.JPanel salesInquiry;
     private javax.swing.JButton salesInquiryButton;
     private javax.swing.JPanel salesInquiryIcon;
+    private javax.swing.JLabel salesInquiryImage;
+    private javax.swing.JLabel userIcon;
     private javax.swing.JPanel userManagement;
     private javax.swing.JButton userManagementButton;
     private javax.swing.JPanel userManagementIcon;
+    private javax.swing.JLabel userManagementImage;
     // End of variables declaration//GEN-END:variables
 }

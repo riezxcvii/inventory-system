@@ -1,6 +1,6 @@
 
 import Server.Frame;
-import Database.DatabaseConnect;
+import Server.Database.DatabaseConnect;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 

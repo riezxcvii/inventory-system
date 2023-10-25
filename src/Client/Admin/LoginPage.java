@@ -10,7 +10,6 @@ public class LoginPage extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        loginPanel = new javax.swing.JPanel();
         loginForm = new javax.swing.JPanel();
         greetings = new javax.swing.JLabel();
         userName = new javax.swing.JTextField();
@@ -19,9 +18,8 @@ public class LoginPage extends javax.swing.JPanel {
         forgotPassword = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(236, 242, 255));
         setMinimumSize(new java.awt.Dimension(1000, 600));
-
-        loginPanel.setBackground(new java.awt.Color(236, 242, 255));
 
         loginForm.setBackground(new java.awt.Color(255, 255, 255));
         loginForm.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 0, 0, 0, new java.awt.Color(51, 102, 153)));
@@ -51,7 +49,7 @@ public class LoginPage extends javax.swing.JPanel {
         forgotPassword.setForeground(new java.awt.Color(51, 102, 153));
         forgotPassword.setText("Forgot password?");
 
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/inventory-system-logo.png"))); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Login Page/inventory-system-logo.png"))); // NOI18N
 
         javax.swing.GroupLayout loginFormLayout = new javax.swing.GroupLayout(loginForm);
         loginForm.setLayout(loginFormLayout);
@@ -91,37 +89,26 @@ public class LoginPage extends javax.swing.JPanel {
                 .addGap(35, 35, 35))
         );
 
-        javax.swing.GroupLayout loginPanelLayout = new javax.swing.GroupLayout(loginPanel);
-        loginPanel.setLayout(loginPanelLayout);
-        loginPanelLayout.setHorizontalGroup(
-            loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(loginPanelLayout.createSequentialGroup()
-                .addGap(291, 291, 291)
-                .addComponent(loginForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(271, Short.MAX_VALUE))
-        );
-        loginPanelLayout.setVerticalGroup(
-            loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(loginPanelLayout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addComponent(loginForm, 476, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(62, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(loginPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(291, 291, 291)
+                .addComponent(loginForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(291, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(loginPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addComponent(loginForm, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(63, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        
+
     }//GEN-LAST:event_loginButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -129,7 +116,6 @@ public class LoginPage extends javax.swing.JPanel {
     private javax.swing.JLabel greetings;
     private javax.swing.JButton loginButton;
     private javax.swing.JPanel loginForm;
-    private javax.swing.JPanel loginPanel;
     private javax.swing.JLabel logo;
     private javax.swing.JPasswordField password;
     private javax.swing.JTextField userName;
