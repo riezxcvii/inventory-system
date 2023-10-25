@@ -194,7 +194,7 @@ public class Dashboard extends javax.swing.JPanel {
             .addGroup(logisticsIconLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(logisticsImage)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         logisticsButton.setBackground(new java.awt.Color(51, 102, 153));
