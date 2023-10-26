@@ -208,7 +208,6 @@ public class UserManagement extends javax.swing.JPanel {
         );
 
         userTable.setBackground(new java.awt.Color(238, 238, 238));
-        userTable.setBorder(null);
         userTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -259,6 +258,11 @@ public class UserManagement extends javax.swing.JPanel {
                 clearButtonMouseClicked(evt);
             }
         });
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearButtonActionPerformed(evt);
+            }
+        });
 
         updateButton.setBackground(new java.awt.Color(51, 102, 153));
         updateButton.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
@@ -270,6 +274,11 @@ public class UserManagement extends javax.swing.JPanel {
         updateButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 updateButtonMouseClicked(evt);
+            }
+        });
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButtonActionPerformed(evt);
             }
         });
 
@@ -285,6 +294,11 @@ public class UserManagement extends javax.swing.JPanel {
                 addButoonMouseClicked(evt);
             }
         });
+        addButoon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButoonActionPerformed(evt);
+            }
+        });
 
         deleteButton.setBackground(new java.awt.Color(51, 102, 153));
         deleteButton.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
@@ -296,6 +310,11 @@ public class UserManagement extends javax.swing.JPanel {
         deleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 deleteButtonMouseClicked(evt);
+            }
+        });
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
             }
         });
 
@@ -353,22 +372,11 @@ public class UserManagement extends javax.swing.JPanel {
     }//GEN-LAST:event_homeIconMouseClicked
 
     private void addButoonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addButoonMouseClicked
-        String selectedItem = userType.getSelectedItem().toString();
-        if (selectedItem.equals("User Type")) {
-            JOptionPane.showMessageDialog(null, "Please select User Type.", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (address.getText().equals("") || emailAddress.getText().equals("") || lastName.getText().equals("") || firstName.getText().equals("") || mobileNumber.getText().equals("") || username.getText().equals("") || password.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Please fill out all field.", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-
-            query.addUser(username.getText(), password.getText(), selectedItem, address.getText(), emailAddress.getText(), mobileNumber.getText(), firstName.getText(), lastName.getText());
-            JOptionPane.showMessageDialog(new JFrame(), "User Added", "Success", JOptionPane.INFORMATION_MESSAGE);
-            getData();
-            clear();
-        }
+      
     }//GEN-LAST:event_addButoonMouseClicked
 
     private void clearButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearButtonMouseClicked
-        clear();
+     
     }//GEN-LAST:event_clearButtonMouseClicked
 
     private void userTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTypeActionPerformed
@@ -376,14 +384,7 @@ public class UserManagement extends javax.swing.JPanel {
     }//GEN-LAST:event_userTypeActionPerformed
 
     private void deleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteButtonMouseClicked
-        int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to delete?", "Confirmation", JOptionPane.YES_NO_OPTION);
-        if (decision == JOptionPane.YES_OPTION) {
-            int id = Integer.parseInt(userId.getText());
-            query.deleteUser(id);
-            JOptionPane.showMessageDialog(new JFrame(), "User Deleted", "Success", JOptionPane.INFORMATION_MESSAGE);
-            getData();
-            clear();
-        }
+       
     }//GEN-LAST:event_deleteButtonMouseClicked
 
     private void userTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTableMouseClicked
@@ -421,7 +422,37 @@ public class UserManagement extends javax.swing.JPanel {
     }//GEN-LAST:event_userTableMouseClicked
 
     private void updateButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateButtonMouseClicked
+       
+    }//GEN-LAST:event_updateButtonMouseClicked
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+       int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to delete?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (decision == JOptionPane.YES_OPTION) {
+            int id = Integer.parseInt(userId.getText());
+            query.deleteUser(id);
+            JOptionPane.showMessageDialog(new JFrame(), "User Deleted", "Success", JOptionPane.INFORMATION_MESSAGE);
+            getData();
+            clear();
+        }
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void addButoonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButoonActionPerformed
         String selectedItem = userType.getSelectedItem().toString();
+        if (selectedItem.equals("User Type")) {
+            JOptionPane.showMessageDialog(null, "Please select User Type.", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (address.getText().equals("") || emailAddress.getText().equals("") || lastName.getText().equals("") || firstName.getText().equals("") || mobileNumber.getText().equals("") || username.getText().equals("") || password.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please fill out all field.", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+
+            query.addUser(username.getText(), password.getText(), selectedItem, address.getText(), emailAddress.getText(), mobileNumber.getText(), firstName.getText(), lastName.getText());
+            JOptionPane.showMessageDialog(new JFrame(), "User Added", "Success", JOptionPane.INFORMATION_MESSAGE);
+            getData();
+            clear();
+        }
+    }//GEN-LAST:event_addButoonActionPerformed
+
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+     String selectedItem = userType.getSelectedItem().toString();
         if (selectedItem.equals("User Type")) {
             JOptionPane.showMessageDialog(null, "Please select User Type.", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (address.getText().equals("") || emailAddress.getText().equals("") || lastName.getText().equals("") || firstName.getText().equals("") || mobileNumber.getText().equals("") || username.getText().equals("") || password.getText().equals("")) {
@@ -433,7 +464,11 @@ public class UserManagement extends javax.swing.JPanel {
             getData();
             clear();
         }
-    }//GEN-LAST:event_updateButtonMouseClicked
+    }//GEN-LAST:event_updateButtonActionPerformed
+
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
+         clear();
+    }//GEN-LAST:event_clearButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane UserTableScrollPanel;

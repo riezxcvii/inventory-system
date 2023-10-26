@@ -353,6 +353,11 @@ public class SalesInquiry extends javax.swing.JPanel {
                 clearButtonMouseClicked(evt);
             }
         });
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearButtonActionPerformed(evt);
+            }
+        });
 
         updateButton.setBackground(new java.awt.Color(51, 102, 153));
         updateButton.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
@@ -364,6 +369,11 @@ public class SalesInquiry extends javax.swing.JPanel {
         updateButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 updateButtonMouseClicked(evt);
+            }
+        });
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButtonActionPerformed(evt);
             }
         });
 
@@ -379,6 +389,11 @@ public class SalesInquiry extends javax.swing.JPanel {
                 addButoonMouseClicked(evt);
             }
         });
+        addButoon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButoonActionPerformed(evt);
+            }
+        });
 
         deleteButton.setBackground(new java.awt.Color(51, 102, 153));
         deleteButton.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
@@ -390,6 +405,11 @@ public class SalesInquiry extends javax.swing.JPanel {
         deleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 deleteButtonMouseClicked(evt);
+            }
+        });
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
             }
         });
 
@@ -453,57 +473,11 @@ public class SalesInquiry extends javax.swing.JPanel {
     }//GEN-LAST:event_homeIconMouseClicked
 
     private void addButoonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addButoonMouseClicked
-        if(session.getUserType().equals("Admin")){
-            JOptionPane.showMessageDialog(null, "You can't add Sales Inquiry", "Error", JOptionPane.ERROR_MESSAGE);
-        }else{
-            if(date.getDate()==null || dateAccomplished.getDate()==null||deadline.getDate()==null||lastUpdate.getDate()==null||
-                Quantity.getText().equals("")||description.getText().equals("")||project.getText().equals("")||
-                remarks.getText().equals("")||srp.getText().equals("")||supplier.getText().equals("")||supplierPrice.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Please fill out all field.", "Error", JOptionPane.ERROR_MESSAGE);
-            }else{
-
-                try{
-                    int quantityValue = Integer.parseInt(Quantity.getText());
-                    try{
-                        double srpValue = Double.parseDouble(srp.getText());
-                        double supplierpriceValue = Double.parseDouble(supplierPrice.getText());
-
-                        String fdate = sdf.format(date.getDate());
-                        String fdateAccom = sdf.format(dateAccomplished.getDate());
-                        String fdeadline = sdf.format(deadline.getDate());
-                        String flastUpdate = sdf.format(lastUpdate.getDate());
-
-                        qry.addInquiry(fdate,
-                            project.getText(),
-                            quantityValue,
-                            description.getText(),
-                            supplier.getText(),
-                            supplierpriceValue,
-                            srpValue,
-                            remarks.getText(),
-                            fdateAccom,
-                            flastUpdate,
-                            fdeadline,
-                            userID);
-
-                        JOptionPane.showMessageDialog(new JFrame(), "Inquiry Added", "Success", JOptionPane.INFORMATION_MESSAGE);
-                        getInquiry(userID);
-                        clear();
-
-                    }catch(Exception error){
-                        JOptionPane.showMessageDialog(null, "Prices must be a decimal or integer.", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-
-                }catch(Exception error){
-                    JOptionPane.showMessageDialog(null, "Quantity must be an integer.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-
-            }
-        }
+     
     }//GEN-LAST:event_addButoonMouseClicked
 
     private void clearButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearButtonMouseClicked
-        clear();        // TODO add your handling code here:
+          // TODO add your handling code here:
     }//GEN-LAST:event_clearButtonMouseClicked
 
     private void salesUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salesUserActionPerformed
@@ -586,9 +560,8 @@ public class SalesInquiry extends javax.swing.JPanel {
                         clearButton.setEnabled(false);
                     }
                     else{
-                       updateButton.setEnabled(true);
+                       updateButton.setEnabled(false);
                        clearButton.setEnabled(false);
-                       updateButton.setEnabled(true);
                         dateAccomplished.setEnabled(false);
                         deadline.setEnabled(false);
                         srp.setEnabled(false);
@@ -611,6 +584,14 @@ public class SalesInquiry extends javax.swing.JPanel {
     }//GEN-LAST:event_salesInquiryTableMouseClicked
 
     private void deleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteButtonMouseClicked
+
+    }//GEN-LAST:event_deleteButtonMouseClicked
+
+    private void updateButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateButtonMouseClicked
+    
+    }//GEN-LAST:event_updateButtonMouseClicked
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to delete?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (decision == JOptionPane.YES_OPTION) {
             int id = Integer.parseInt(salesId.getText());
@@ -619,9 +600,59 @@ public class SalesInquiry extends javax.swing.JPanel {
             getInquiry(userID);
             clear();
         }
-    }//GEN-LAST:event_deleteButtonMouseClicked
+    }//GEN-LAST:event_deleteButtonActionPerformed
 
-    private void updateButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateButtonMouseClicked
+    private void addButoonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButoonActionPerformed
+       if(session.getUserType().equals("Admin")){
+            JOptionPane.showMessageDialog(null, "You can't add Sales Inquiry", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+            if(date.getDate()==null || dateAccomplished.getDate()==null||deadline.getDate()==null||lastUpdate.getDate()==null||
+                Quantity.getText().equals("")||description.getText().equals("")||project.getText().equals("")||
+                remarks.getText().equals("")||srp.getText().equals("")||supplier.getText().equals("")||supplierPrice.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Please fill out all field.", "Error", JOptionPane.ERROR_MESSAGE);
+            }else{
+
+                try{
+                    int quantityValue = Integer.parseInt(Quantity.getText());
+                    try{
+                        double srpValue = Double.parseDouble(srp.getText());
+                        double supplierpriceValue = Double.parseDouble(supplierPrice.getText());
+
+                        String fdate = sdf.format(date.getDate());
+                        String fdateAccom = sdf.format(dateAccomplished.getDate());
+                        String fdeadline = sdf.format(deadline.getDate());
+                        String flastUpdate = sdf.format(lastUpdate.getDate());
+
+                        qry.addInquiry(fdate,
+                            project.getText(),
+                            quantityValue,
+                            description.getText(),
+                            supplier.getText(),
+                            supplierpriceValue,
+                            srpValue,
+                            remarks.getText(),
+                            fdateAccom,
+                            flastUpdate,
+                            fdeadline,
+                            userID);
+
+                        JOptionPane.showMessageDialog(new JFrame(), "Inquiry Added", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        getInquiry(userID);
+                        clear();
+
+                    }catch(Exception error){
+                        JOptionPane.showMessageDialog(null, "Prices must be a decimal or integer.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                }catch(Exception error){
+                    JOptionPane.showMessageDialog(null, "Quantity must be an integer.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+            }
+        }
+    }//GEN-LAST:event_addButoonActionPerformed
+
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
       if(date.getDate()==null || dateAccomplished.getDate()==null||deadline.getDate()==null||lastUpdate.getDate()==null||
                 Quantity.getText().equals("")||description.getText().equals("")||project.getText().equals("")||
                 remarks.getText().equals("")||srp.getText().equals("")||supplier.getText().equals("")||supplierPrice.getText().equals("")){
@@ -668,7 +699,11 @@ public class SalesInquiry extends javax.swing.JPanel {
                 }
 
             }
-    }//GEN-LAST:event_updateButtonMouseClicked
+    }//GEN-LAST:event_updateButtonActionPerformed
+
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
+        clear();  
+    }//GEN-LAST:event_clearButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Quantity;
