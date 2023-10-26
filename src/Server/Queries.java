@@ -63,4 +63,89 @@ public class Queries {
             JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE); 
         }
     }
+    
+    public void addInquiry(String date, 
+            String project,
+            int quantity,
+            String description,
+            String supplier,
+            double supplier_price,
+            double srp,
+            String remarks,
+            String date_accomplished,
+            String last_update,
+            String deadline,
+            int user_id){
+        try{
+            String query = "Insert into sale(date,project_or_end_user,quantity,description,supplier,supplier_price,srp,remarks,date_accomplished,last_update,deadline,user_id)"+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1,date);
+            statement.setString(2,project);
+            statement.setInt(3, quantity);
+            statement.setString(4,description);
+            statement.setString(5, supplier);
+            statement.setDouble(6, supplier_price);
+            statement.setDouble(7,srp);
+            statement.setString(8,remarks);
+            statement.setString(9,date_accomplished);
+            statement.setString(10,last_update);
+            statement.setString(11,deadline);
+            statement.setInt(12,user_id);
+            
+            statement.executeUpdate();
+            statement.close();
+        }catch(Exception error){
+            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE); 
+        }
+    }
+    
+    public void deleteInquiry(int id){
+        try{
+            String query = "delete from sale where sale_id = ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+            statement.close();
+            
+        }catch(Exception error){
+            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);   
+        }
+    }
+    
+    public void updateInquiry(
+            int sales_id,
+            String date, 
+            String project,
+            int quantity,
+            String description,
+            String supplier,
+            double supplier_price,
+            double srp,
+            String remarks,
+            String date_accomplished,
+            String last_update,
+            String deadline){
+        
+        try{
+            String query = "Update sale set date = ?,project_or_end_user=?,quantity=?,description=?,supplier=?,supplier_price=?,srp=?,remarks=?,date_accomplished=?,last_update=?,deadline=? where sale_id =?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1,date);
+            statement.setString(2,project);
+            statement.setInt(3, quantity);
+            statement.setString(4,description);
+            statement.setString(5, supplier);
+            statement.setDouble(6, supplier_price);
+            statement.setDouble(7,srp);
+            statement.setString(8,remarks);
+            statement.setString(9,date_accomplished);
+            statement.setString(10,last_update);
+            statement.setString(11,deadline);
+            statement.setInt(12,sales_id);
+            
+            statement.executeUpdate();
+            statement.close();
+        }catch(Exception error){
+            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);   
+        }
+    }
 }
