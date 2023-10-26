@@ -30,18 +30,21 @@
           <Component id="navigationBar" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="salesInquiryTableScrollPanel" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Component id="salesInquiryForm" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="clearButton" alignment="1" min="-2" pref="95" max="-2" attributes="0"/>
-                          <Component id="updateButton" alignment="1" min="-2" pref="95" max="-2" attributes="0"/>
-                          <Component id="addButoon" alignment="1" min="-2" pref="95" max="-2" attributes="0"/>
-                          <Component id="deleteButton" alignment="1" min="-2" pref="95" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="salesInquiryTableScrollPanel" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="salesInquiryForm" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="clearButton" alignment="1" min="-2" pref="95" max="-2" attributes="0"/>
+                              <Component id="updateButton" alignment="1" min="-2" pref="95" max="-2" attributes="0"/>
+                              <Component id="addButoon" alignment="1" min="-2" pref="95" max="-2" attributes="0"/>
+                              <Component id="deleteButton" alignment="1" min="-2" pref="95" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
+                  <Component id="salesUser" min="-2" pref="240" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="29" max="32767" attributes="0"/>
           </Group>
@@ -51,17 +54,19 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="navigationBar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Component id="salesInquiryTableScrollPanel" min="-2" pref="224" max="-2" attributes="0"/>
-              <EmptySpace pref="24" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+              <Component id="salesUser" min="-2" pref="32" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+              <Component id="salesInquiryTableScrollPanel" pref="206" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="deleteButton" min="-2" pref="45" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="addButoon" min="-2" pref="45" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                       <Component id="updateButton" min="-2" pref="45" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Component id="clearButton" min="-2" pref="45" max="-2" attributes="0"/>
                   </Group>
                   <Component id="salesInquiryForm" min="-2" max="-2" attributes="0"/>
@@ -209,14 +214,14 @@
                           <Component id="description" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="supplier" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                       <Component id="supplierPrice" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                       <Component id="srp" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                       <Component id="remarks" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="dateAccomplished" alignment="3" pref="51" max="32767" attributes="0"/>
                       <Component id="lastUpdate" alignment="3" pref="51" max="32767" attributes="0"/>
@@ -416,18 +421,11 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="salesInquiryTable">
           <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
-                <BevelBorder>
-                  <Color PropertyName="highlightOuter" blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
-                  <Color PropertyName="highlightInner" blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
-                  <Color PropertyName="shadowOuter" blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
-                  <Color PropertyName="shadowInner" blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
-                </BevelBorder>
-              </Border>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ee" green="ee" red="ee" type="rgb"/>
             </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="sansserif" size="12" style="1"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="12" rowCount="0">
@@ -599,6 +597,26 @@
         </Property>
         <Property name="focusable" type="boolean" value="false"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="salesUser">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="3">
+            <StringItem index="0" value="Select Sales User"/>
+            <StringItem index="1" value="Sales 1"/>
+            <StringItem index="2" value="Sales 2"/>
+          </StringArray>
+        </Property>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="null"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
