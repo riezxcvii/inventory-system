@@ -3,11 +3,22 @@ package Client.Admin;
 import Server.Frame;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import Server.UserSession;
 
 public class Dashboard extends javax.swing.JPanel {
 
     public Dashboard() {
         initComponents();
+        UserSession session = UserSession.getInstance();
+        System.out.println(session.getUserType());
+        if(session.getUserType().equals("Sales")){
+           userManagementButton.setEnabled(false);
+           logisticsButton.setEnabled(false);
+        }
+        if(session.getUserType().equals("Logistics")){
+           userManagementButton.setEnabled(false);
+           salesInquiryButton.setEnabled(false);
+        }
     }
 
     @SuppressWarnings("unchecked")

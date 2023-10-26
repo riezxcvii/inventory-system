@@ -3,11 +3,66 @@ package Client.Admin;
 import Server.Frame;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import Server.Queries;
 
 public class UserManagement extends javax.swing.JPanel {
-
+    Queries query = new Queries();
+    Server.Database.DatabaseConnect dbConn = new Server.Database.DatabaseConnect();
+    Connection con = dbConn.checkConnection();
+    
+    public void getData(){
+        
+        try{
+            String query = "SELECT * FROM user";
+            PreparedStatement statement = con.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            DefaultTableModel model = (DefaultTableModel)userTable.getModel();
+            
+            model.setRowCount(0);
+            while(result.next()){
+                int id = result.getInt(1);
+                String type = result.getString(2);
+                String username = result.getString(8);
+                String last = result.getString(3);
+                String first = result.getString(4);
+                String address = result.getString(5);
+                String mobile = result.getString(6);
+                String email = result.getString(7);
+                
+                model.addRow(new Object[]{id, type, username, last, first, address, mobile, email});
+            }
+        }
+        catch(Exception error){
+            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    public void clear(){
+        userType.setSelectedItem("User Type");
+        address.setText("");
+        emailAddress.setText("");
+        firstName.setText("");
+        lastName.setText("");
+        mobileNumber.setText("");
+        username.setText("");
+        password.setText("");
+        
+        userTable.getSelectionModel().clearSelection();
+        updateButton.setEnabled(false);
+        deleteButton.setEnabled(false);
+        addButoon.setEnabled(true);
+    }
+    
     public UserManagement() {
         initComponents();
+        getData();
+        userId.setVisible(false);
+        updateButton.setEnabled(false);
+        deleteButton.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -29,6 +84,7 @@ public class UserManagement extends javax.swing.JPanel {
         emailAddress = new javax.swing.JTextField();
         username = new javax.swing.JTextField();
         password = new javax.swing.JPasswordField();
+        userId = new javax.swing.JLabel();
         UserTableScrollPanel = new javax.swing.JScrollPane();
         userTable = new javax.swing.JTable();
         clearButton = new javax.swing.JButton();
@@ -86,22 +142,29 @@ public class UserManagement extends javax.swing.JPanel {
         formTitle.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         formTitle.setText("USER FORM");
 
-        firstName.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "First Name", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("sansserif", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        firstName.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "First Name", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
         userType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User Type", "Admin", "Sales", "Logistics" }));
         userType.setBorder(null);
+        userType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userTypeActionPerformed(evt);
+            }
+        });
 
         lastName.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Last Name", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
         mobileNumber.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Mobile Number", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
-        address.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Address", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("sansserif", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        address.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Address", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
         emailAddress.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Email Address", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
-        username.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Username", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("sansserif", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        username.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Username", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
         password.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Password", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
+
+        userId.setText("jLabel1");
 
         javax.swing.GroupLayout userFormLayout = new javax.swing.GroupLayout(userForm);
         userForm.setLayout(userFormLayout);
@@ -128,6 +191,10 @@ public class UserManagement extends javax.swing.JPanel {
                         .addGap(14, 14, 14)
                         .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(userFormLayout.createSequentialGroup()
+                .addGap(92, 92, 92)
+                .addComponent(userId)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         userFormLayout.setVerticalGroup(
             userFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,7 +217,9 @@ public class UserManagement extends javax.swing.JPanel {
                 .addGroup(userFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(userId)
+                .addContainerGap())
         );
 
         userTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray));
@@ -171,6 +240,11 @@ public class UserManagement extends javax.swing.JPanel {
             }
         });
         userTable.getTableHeader().setReorderingAllowed(false);
+        userTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                userTableMouseClicked(evt);
+            }
+        });
         UserTableScrollPanel.setViewportView(userTable);
         if (userTable.getColumnModel().getColumnCount() > 0) {
             userTable.getColumnModel().getColumn(0).setResizable(false);
@@ -198,6 +272,11 @@ public class UserManagement extends javax.swing.JPanel {
         clearButton.setText("CLEAR");
         clearButton.setBorder(null);
         clearButton.setFocusable(false);
+        clearButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clearButtonMouseClicked(evt);
+            }
+        });
 
         updateButton.setBackground(new java.awt.Color(51, 102, 153));
         updateButton.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
@@ -206,6 +285,11 @@ public class UserManagement extends javax.swing.JPanel {
         updateButton.setText("UPDATE");
         updateButton.setBorder(null);
         updateButton.setFocusable(false);
+        updateButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                updateButtonMouseClicked(evt);
+            }
+        });
 
         addButoon.setBackground(new java.awt.Color(51, 102, 153));
         addButoon.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
@@ -214,6 +298,11 @@ public class UserManagement extends javax.swing.JPanel {
         addButoon.setText("ADD");
         addButoon.setBorder(null);
         addButoon.setFocusable(false);
+        addButoon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addButoonMouseClicked(evt);
+            }
+        });
 
         deleteButton.setBackground(new java.awt.Color(51, 102, 153));
         deleteButton.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
@@ -222,6 +311,11 @@ public class UserManagement extends javax.swing.JPanel {
         deleteButton.setText("DELETE");
         deleteButton.setBorder(null);
         deleteButton.setFocusable(false);
+        deleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteButtonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -270,6 +364,91 @@ public class UserManagement extends javax.swing.JPanel {
         currentFrame.dispose();
     }//GEN-LAST:event_homeIconMouseClicked
 
+    private void addButoonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addButoonMouseClicked
+        String selectedItem = userType.getSelectedItem().toString();
+        if(selectedItem.equals("User Type")){
+        JOptionPane.showMessageDialog(null, "Please select User Type.", "Error", JOptionPane.ERROR_MESSAGE); 
+        }
+        else if(address.getText().equals("") || emailAddress.getText().equals("") || lastName.getText().equals("")||firstName.getText().equals("")|| mobileNumber.getText().equals("")|| username.getText().equals("")||password.getText().equals("")){
+        JOptionPane.showMessageDialog(null, "Please fill out all field.", "Error", JOptionPane.ERROR_MESSAGE); 
+       }else{
+
+        query.addUser(username.getText(), password.getText(),selectedItem,address.getText(), emailAddress.getText(), mobileNumber.getText(), firstName.getText(), lastName.getText());
+        JOptionPane.showMessageDialog(new JFrame(), "User Added", "Success", JOptionPane.INFORMATION_MESSAGE);
+        getData();
+        clear();
+        }
+    }//GEN-LAST:event_addButoonMouseClicked
+
+    private void clearButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearButtonMouseClicked
+    clear();    
+    }//GEN-LAST:event_clearButtonMouseClicked
+
+    private void userTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTypeActionPerformed
+   
+    }//GEN-LAST:event_userTypeActionPerformed
+
+    private void deleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteButtonMouseClicked
+        int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to delete?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if(decision == JOptionPane.YES_OPTION){
+        int id = Integer.parseInt(userId.getText());
+        query.deleteUser(id);
+        JOptionPane.showMessageDialog(new JFrame(), "User Deleted", "Success", JOptionPane.INFORMATION_MESSAGE);
+        getData();
+        clear();
+        }
+    }//GEN-LAST:event_deleteButtonMouseClicked
+
+    private void userTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTableMouseClicked
+        deleteButton.setEnabled(true);
+        updateButton.setEnabled(true);
+        addButoon.setEnabled(false);
+        DefaultTableModel model = (DefaultTableModel)userTable.getModel();
+        int selectedRows = userTable.getSelectedRow();
+        
+        userId.setText(model.getValueAt(selectedRows,0).toString());
+        int id=Integer.parseInt(userId.getText());
+        
+        try{
+            String query = "SELECT * from user WHERE user_id =?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
+            
+            if(result.next()){
+                String selectedItem = result.getString("user_type");
+                userType.setSelectedItem(selectedItem);
+                username.setText(result.getString("username"));
+                lastName.setText(result.getString("last_name"));
+                firstName.setText(result.getString("first_name"));
+                address.setText(result.getString("address"));
+                mobileNumber.setText(result.getString("mobile_number"));
+                emailAddress.setText(result.getString("email_address"));
+                password.setText(result.getString("password"));
+                userId.setText(result.getString("user_id"));
+            }
+            statement.close();
+        }catch(Exception error){
+            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE); 
+        } 
+    }//GEN-LAST:event_userTableMouseClicked
+
+    private void updateButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateButtonMouseClicked
+        String selectedItem = userType.getSelectedItem().toString();
+        if(selectedItem.equals("User Type")){
+        JOptionPane.showMessageDialog(null, "Please select User Type.", "Error", JOptionPane.ERROR_MESSAGE); 
+        }
+        else if(address.getText().equals("") || emailAddress.getText().equals("") || lastName.getText().equals("")||firstName.getText().equals("")|| mobileNumber.getText().equals("")|| username.getText().equals("")||password.getText().equals("")){
+        JOptionPane.showMessageDialog(null, "Please fill out all field.", "Error", JOptionPane.ERROR_MESSAGE); 
+       }else{
+            int id = Integer.parseInt(userId.getText());
+            query.updateUser(id, username.getText(), password.getText(),selectedItem,address.getText(), emailAddress.getText(), mobileNumber.getText(), firstName.getText(), lastName.getText());
+            JOptionPane.showMessageDialog(new JFrame(), "User Updated", "Success", JOptionPane.INFORMATION_MESSAGE);
+            getData();
+            clear();
+        }
+    }//GEN-LAST:event_updateButtonMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane UserTableScrollPanel;
     private javax.swing.JButton addButoon;
@@ -289,6 +468,7 @@ public class UserManagement extends javax.swing.JPanel {
     private javax.swing.JButton updateButton;
     private javax.swing.JPanel userForm;
     private javax.swing.JLabel userIcon;
+    private javax.swing.JLabel userId;
     private javax.swing.JTable userTable;
     private javax.swing.JComboBox<String> userType;
     private javax.swing.JTextField username;
