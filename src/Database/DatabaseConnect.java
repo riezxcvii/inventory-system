@@ -1,4 +1,4 @@
-package Server.Database;
+package Database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,7 +17,7 @@ public class DatabaseConnect {
     public Connection checkConnection() {
 
         try {
-            con = DriverManager.getConnection(url+database, username, password);
+            con = DriverManager.getConnection(url + database, username, password);
             isConnected = true;
 
         } catch (SQLException e) {

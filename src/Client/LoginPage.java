@@ -1,4 +1,4 @@
-package Client.Admin;
+package Client;
 
 import Server.Frame;
 import Server.LoginResult;
@@ -7,7 +7,6 @@ import Server.UserSession;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-
 
 public class LoginPage extends javax.swing.JPanel {
 
@@ -117,21 +116,19 @@ public class LoginPage extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        
+
         String usernameText = userName.getText();
         String passwordText = password.getText();
 
-        if(usernameText.equals("")){
+        if (usernameText.equals("")) {
             JOptionPane.showMessageDialog(null, "Username is required.", "Error", JOptionPane.ERROR_MESSAGE);
 
-        }
-        else if(passwordText.equals("")){
+        } else if (passwordText.equals("")) {
             JOptionPane.showMessageDialog(null, "Password is required.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        else{
+        } else {
             LoginValidation loginValidation = new LoginValidation();
             LoginResult result = loginValidation.validateLogin(usernameText, passwordText);
-           
+
             boolean isValidUser = result.isValid();
             int userID = result.getUserID();
             String userType = result.getUserType();
@@ -140,15 +137,14 @@ public class LoginPage extends javax.swing.JPanel {
             userManager.setUserID(userID);
             userManager.setUserType(userType);
 
-                if (isValidUser) {
-                    Frame frame = new Frame();
-                    frame.viewFrame("Client.Admin.Dashboard", "Inventory System");
-                    JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-                    currentFrame.dispose();
-
-                } else {
-                    JOptionPane.showMessageDialog(null, "Invalid credentials. Check your username and password.", "Login Form", JOptionPane.ERROR_MESSAGE);
-                }
+            if (isValidUser) {
+                Frame frame = new Frame();
+                frame.viewFrame("Client.Dashboard", "Inventory System");
+                JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+                currentFrame.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid credentials. Check your username and password.", "Login Form", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 

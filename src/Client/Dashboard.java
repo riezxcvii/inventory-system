@@ -1,13 +1,24 @@
-package Client.Admin;
+package Client;
 
 import Server.Frame;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import Server.UserSession;
 
 public class Dashboard extends javax.swing.JPanel {
 
     public Dashboard() {
         initComponents();
+        UserSession session = UserSession.getInstance();
+        System.out.println(session.getUserType());
+        if (session.getUserType().equals("Sales")) {
+            userManagementButton.setEnabled(false);
+            logisticsButton.setEnabled(false);
+        }
+        if (session.getUserType().equals("Logistics")) {
+            userManagementButton.setEnabled(false);
+            salesInquiryButton.setEnabled(false);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -258,13 +269,16 @@ public class Dashboard extends javax.swing.JPanel {
 
     private void userManagementButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userManagementButtonActionPerformed
         Frame frame = new Frame();
-        frame.viewFrame("Client.Admin.UserManagement", "Inventory System");
+        frame.viewFrame("Client.UserManagement", "Inventory System");
         JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
         currentFrame.dispose();
     }//GEN-LAST:event_userManagementButtonActionPerformed
 
     private void salesInquiryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salesInquiryButtonActionPerformed
-
+        Frame frame = new Frame();
+        frame.viewFrame("Client.SalesInquiry", "Inventory System");
+        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        currentFrame.dispose();
     }//GEN-LAST:event_salesInquiryButtonActionPerformed
 
     private void logisticsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logisticsButtonActionPerformed

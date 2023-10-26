@@ -16,7 +16,7 @@ public class LoginValidation {
 
         try {
             // establish connection to MySQL database
-            Server.Database.DatabaseConnect dbConn = new Server.Database.DatabaseConnect();
+            Database.DatabaseConnect dbConn = new Database.DatabaseConnect();
             Connection con = dbConn.checkConnection();
 
             String sql = "SELECT user_id, user_type FROM user WHERE username = ? AND password = ?";

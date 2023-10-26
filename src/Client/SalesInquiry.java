@@ -1,4 +1,4 @@
-package Client.Admin;
+package Client;
 
 import Server.Frame;
 import javax.swing.JFrame;
@@ -26,12 +26,12 @@ public class SalesInquiry extends javax.swing.JPanel {
         supplierPrice = new javax.swing.JTextField();
         supplier = new javax.swing.JTextField();
         remarks = new javax.swing.JTextField();
-        Date = new com.toedter.calendar.JDateChooser();
         description = new javax.swing.JTextField();
         srp = new javax.swing.JTextField();
+        date = new com.toedter.calendar.JDateChooser();
         dateAccomplished = new com.toedter.calendar.JDateChooser();
         lastUpdate = new com.toedter.calendar.JDateChooser();
-        deadLine = new com.toedter.calendar.JDateChooser();
+        deadline = new com.toedter.calendar.JDateChooser();
         salesInquiryTableScrollPanel = new javax.swing.JScrollPane();
         salesInquiryTable = new javax.swing.JTable();
         clearButton = new javax.swing.JButton();
@@ -87,7 +87,7 @@ public class SalesInquiry extends javax.swing.JPanel {
         salesInquiryForm.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray), null));
 
         formTitle.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
-        formTitle.setText("Sales Inquiry");
+        formTitle.setText("SALES INQUIRY");
 
         project.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Project", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
@@ -99,12 +99,12 @@ public class SalesInquiry extends javax.swing.JPanel {
 
         remarks.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Remarks", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
-        Date.setBackground(new java.awt.Color(255, 255, 255));
-        Date.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Date", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
-
         description.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Description", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
         srp.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "SRP", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
+
+        date.setBackground(new java.awt.Color(255, 255, 255));
+        date.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Date", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
         dateAccomplished.setBackground(new java.awt.Color(255, 255, 255));
         dateAccomplished.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "ETA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
@@ -112,8 +112,8 @@ public class SalesInquiry extends javax.swing.JPanel {
         lastUpdate.setBackground(new java.awt.Color(255, 255, 255));
         lastUpdate.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Last Update", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
-        deadLine.setBackground(new java.awt.Color(255, 255, 255));
-        deadLine.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Deadline", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
+        deadline.setBackground(new java.awt.Color(255, 255, 255));
+        deadline.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Deadline", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
         javax.swing.GroupLayout salesInquiryFormLayout = new javax.swing.GroupLayout(salesInquiryForm);
         salesInquiryForm.setLayout(salesInquiryFormLayout);
@@ -127,8 +127,8 @@ public class SalesInquiry extends javax.swing.JPanel {
                 .addGap(29, 29, 29)
                 .addGroup(salesInquiryFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(salesInquiryFormLayout.createSequentialGroup()
-                        .addComponent(Date, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
                         .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(salesInquiryFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, salesInquiryFormLayout.createSequentialGroup()
@@ -142,12 +142,11 @@ public class SalesInquiry extends javax.swing.JPanel {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(srp, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(salesInquiryFormLayout.createSequentialGroup()
-                        .addGap(2, 2, 2)
                         .addComponent(dateAccomplished, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lastUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9)
-                        .addComponent(deadLine, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(deadline, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         salesInquiryFormLayout.setVerticalGroup(
@@ -155,10 +154,10 @@ public class SalesInquiry extends javax.swing.JPanel {
             .addGroup(salesInquiryFormLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(formTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addGroup(salesInquiryFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Date, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
+                .addGroup(salesInquiryFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(description, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(salesInquiryFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(project, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -171,12 +170,12 @@ public class SalesInquiry extends javax.swing.JPanel {
                     .addComponent(srp, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(remarks, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addGroup(salesInquiryFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dateAccomplished, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lastUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(deadLine, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addComponent(dateAccomplished, javax.swing.GroupLayout.PREFERRED_SIZE, 51, Short.MAX_VALUE)
+                    .addComponent(lastUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 51, Short.MAX_VALUE)
+                    .addComponent(deadline, javax.swing.GroupLayout.PREFERRED_SIZE, 51, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
         );
 
         salesInquiryTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray));
@@ -295,18 +294,18 @@ public class SalesInquiry extends javax.swing.JPanel {
 
     private void homeIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeIconMouseClicked
         Frame frame = new Frame();
-        frame.viewFrame("Client.Admin.Dashboard", "Inventory System");
+        frame.viewFrame("Client.Dashboard", "Inventory System");
         JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
         currentFrame.dispose();
     }//GEN-LAST:event_homeIconMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser Date;
     private javax.swing.JTextField Quantity;
     private javax.swing.JButton addButoon;
     private javax.swing.JButton clearButton;
+    private com.toedter.calendar.JDateChooser date;
     private com.toedter.calendar.JDateChooser dateAccomplished;
-    private com.toedter.calendar.JDateChooser deadLine;
+    private com.toedter.calendar.JDateChooser deadline;
     private javax.swing.JButton deleteButton;
     private javax.swing.JTextField description;
     private javax.swing.JLabel formTitle;

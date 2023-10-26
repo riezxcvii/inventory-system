@@ -1,6 +1,6 @@
 
 import Server.Frame;
-import Server.Database.DatabaseConnect;
+import Database.DatabaseConnect;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
@@ -14,7 +14,7 @@ public class App {
 
                 if (db.isConnected == true) {
                     Frame frame = new Frame();
-                    frame.viewFrame("Client.Admin.LoginPage", "Inventory System");
+                    frame.viewFrame("Client.LoginPage", "Inventory System");
                 } else {
                     JOptionPane.showMessageDialog(null, "Error connecting to database.", "Database Connection", JOptionPane.ERROR_MESSAGE);
                 }

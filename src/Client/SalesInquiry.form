@@ -40,10 +40,10 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="clearButton" min="-2" pref="95" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="userForm" max="32767" attributes="0"/>
+                  <Component id="salesInquiryForm" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Component id="UserTableScrollPanel" min="-2" pref="500" max="-2" attributes="0"/>
+              <Component id="salesInquiryTableScrollPanel" min="-2" pref="500" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -54,9 +54,9 @@
               <Component id="navigationBar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="UserTableScrollPanel" min="-2" pref="481" max="-2" attributes="0"/>
+                  <Component id="salesInquiryTableScrollPanel" min="-2" pref="481" max="-2" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="userForm" min="-2" max="-2" attributes="0"/>
+                      <Component id="salesInquiryForm" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="clearButton" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
@@ -113,7 +113,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="User Management"/>
+            <Property name="text" type="java.lang.String" value="Sales Inquiry"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="logo">
@@ -142,7 +142,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="userForm">
+    <Container class="javax.swing.JPanel" name="salesInquiryForm">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -172,30 +172,35 @@
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="date" min="-2" pref="170" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                          <Component id="description" min="-2" pref="170" max="-2" attributes="0"/>
+                      </Group>
                       <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="userType" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="firstName" min="-2" pref="170" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                              <Component id="lastName" min="-2" pref="170" max="-2" attributes="0"/>
+                              <Component id="project" min="-2" pref="170" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="Quantity" min="-2" pref="170" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="address" alignment="0" max="32767" attributes="0"/>
-                          <Component id="mobileNumber" alignment="0" max="32767" attributes="0"/>
-                          <Component id="emailAddress" alignment="0" max="32767" attributes="0"/>
+                          <Component id="supplier" alignment="0" max="32767" attributes="0"/>
+                          <Component id="remarks" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="supplierPrice" min="-2" pref="170" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="srp" min="-2" pref="170" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="username" min="-2" pref="170" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                          <Component id="password" min="-2" pref="170" max="-2" attributes="0"/>
+                          <Component id="dateAccomplished" min="-2" pref="110" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="lastUpdate" min="-2" pref="110" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="deadline" min="-2" pref="110" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
-                  <Component id="userId" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -203,29 +208,34 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="formTitle" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                  <Component id="userType" min="-2" pref="35" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="firstName" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
-                      <Component id="lastName" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                  <Component id="formTitle" min="-2" pref="24" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="description" pref="45" max="32767" attributes="0"/>
+                      <Component id="date" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="address" min="-2" pref="45" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="project" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                      <Component id="Quantity" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="mobileNumber" min="-2" pref="45" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="emailAddress" min="-2" pref="45" max="-2" attributes="0"/>
+                  <Component id="supplier" min="-2" pref="45" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="username" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
-                      <Component id="password" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                      <Component id="supplierPrice" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                      <Component id="srp" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="userId" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="remarks" min="-2" pref="45" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="dateAccomplished" alignment="3" pref="51" max="32767" attributes="0"/>
+                      <Component id="lastUpdate" alignment="3" pref="51" max="32767" attributes="0"/>
+                      <Component id="deadline" alignment="3" pref="51" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -236,14 +246,14 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="sansserif" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="USER FORM"/>
+            <Property name="text" type="java.lang.String" value="SALES INQUIRY"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="firstName">
+        <Component class="javax.swing.JTextField" name="project">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder position="2" title="First Name">
+                <TitledBorder position="2" title="Project">
                   <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder roundedCorners="true" thickness="2">
                       <Color PropertyName="color" blue="99" green="66" red="33" type="rgb"/>
@@ -254,32 +264,11 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="userType">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="User Type"/>
-                <StringItem index="1" value="Admin"/>
-                <StringItem index="2" value="Sales"/>
-                <StringItem index="3" value="Logistics"/>
-              </StringArray>
-            </Property>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="null"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="userTypeActionPerformed"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JTextField" name="lastName">
+        <Component class="javax.swing.JTextField" name="Quantity">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder position="2" title="Last Name">
+                <TitledBorder position="2" title="Quantity">
                   <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder roundedCorners="true" thickness="2">
                       <Color PropertyName="color" blue="99" green="66" red="33" type="rgb"/>
@@ -290,11 +279,11 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="mobileNumber">
+        <Component class="javax.swing.JTextField" name="supplierPrice">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder position="2" title="Mobile Number">
+                <TitledBorder position="2" title="Supplier Price">
                   <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder roundedCorners="true" thickness="2">
                       <Color PropertyName="color" blue="99" green="66" red="33" type="rgb"/>
@@ -305,11 +294,11 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="address">
+        <Component class="javax.swing.JTextField" name="supplier">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder position="2" title="Address">
+                <TitledBorder position="2" title="Supplier">
                   <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder roundedCorners="true" thickness="2">
                       <Color PropertyName="color" blue="99" green="66" red="33" type="rgb"/>
@@ -320,11 +309,11 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="emailAddress">
+        <Component class="javax.swing.JTextField" name="remarks">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder position="2" title="Email Address">
+                <TitledBorder position="2" title="Remarks">
                   <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder roundedCorners="true" thickness="2">
                       <Color PropertyName="color" blue="99" green="66" red="33" type="rgb"/>
@@ -335,11 +324,11 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="username">
+        <Component class="javax.swing.JTextField" name="description">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder position="2" title="Username">
+                <TitledBorder position="2" title="Description">
                   <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder roundedCorners="true" thickness="2">
                       <Color PropertyName="color" blue="99" green="66" red="33" type="rgb"/>
@@ -350,11 +339,11 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="password">
+        <Component class="javax.swing.JTextField" name="srp">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder position="2" title="Password">
+                <TitledBorder position="2" title="SRP">
                   <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder roundedCorners="true" thickness="2">
                       <Color PropertyName="color" blue="99" green="66" red="33" type="rgb"/>
@@ -365,21 +354,88 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="userId">
+        <Component class="com.toedter.calendar.JDateChooser" name="date">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jLabel1"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder position="2" title="Date">
+                  <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder roundedCorners="true" thickness="2">
+                      <Color PropertyName="color" blue="99" green="66" red="33" type="rgb"/>
+                    </LineBorder>
+                  </Border>
+                </TitledBorder>
+              </Border>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="com.toedter.calendar.JDateChooser" name="dateAccomplished">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder position="2" title="ETA">
+                  <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder roundedCorners="true" thickness="2">
+                      <Color PropertyName="color" blue="99" green="66" red="33" type="rgb"/>
+                    </LineBorder>
+                  </Border>
+                </TitledBorder>
+              </Border>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="com.toedter.calendar.JDateChooser" name="lastUpdate">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder position="2" title="Last Update">
+                  <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder roundedCorners="true" thickness="2">
+                      <Color PropertyName="color" blue="99" green="66" red="33" type="rgb"/>
+                    </LineBorder>
+                  </Border>
+                </TitledBorder>
+              </Border>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="com.toedter.calendar.JDateChooser" name="deadline">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder position="2" title="Deadline">
+                  <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder roundedCorners="true" thickness="2">
+                      <Color PropertyName="color" blue="99" green="66" red="33" type="rgb"/>
+                    </LineBorder>
+                  </Border>
+                </TitledBorder>
+              </Border>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JScrollPane" name="UserTableScrollPanel">
+    <Container class="javax.swing.JScrollPane" name="salesInquiryTableScrollPanel">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="userTable">
+        <Component class="javax.swing.JTable" name="salesInquiryTable">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -392,15 +448,19 @@
               </Border>
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="8" rowCount="0">
+              <Table columnCount="12" rowCount="0">
                 <Column editable="false" title="ID" type="java.lang.Object"/>
-                <Column editable="false" title="TYPE" type="java.lang.Object"/>
-                <Column editable="false" title="USERNAME" type="java.lang.Object"/>
-                <Column editable="false" title="LAST NAME" type="java.lang.Object"/>
-                <Column editable="false" title="FIRST NAME" type="java.lang.Object"/>
-                <Column editable="false" title="ADDRESS" type="java.lang.Object"/>
-                <Column editable="false" title="MOBILE NUMBER" type="java.lang.Object"/>
-                <Column editable="false" title="EMAIL ADDRESS" type="java.lang.Object"/>
+                <Column editable="false" title="DATE" type="java.lang.Object"/>
+                <Column editable="false" title="PROJECT" type="java.lang.Object"/>
+                <Column editable="false" title="QUANTITY" type="java.lang.Object"/>
+                <Column editable="false" title="DESC." type="java.lang.Object"/>
+                <Column editable="false" title="SUPPLIER" type="java.lang.Object"/>
+                <Column editable="false" title="PRICE" type="java.lang.Object"/>
+                <Column editable="false" title="SRP" type="java.lang.Object"/>
+                <Column editable="false" title="REMARKS" type="java.lang.Object"/>
+                <Column editable="false" title="ETA" type="java.lang.Object"/>
+                <Column editable="false" title="LAST UPDATE" type="java.lang.Object"/>
+                <Column editable="false" title="DEADLINE" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -445,15 +505,32 @@
                   <Editor/>
                   <Renderer/>
                 </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
               </TableColumnModel>
             </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
               <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="userTableMouseClicked"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -477,9 +554,6 @@
         </Property>
         <Property name="focusable" type="boolean" value="false"/>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="clearButtonMouseClicked"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="updateButton">
       <Properties>
@@ -501,9 +575,6 @@
         </Property>
         <Property name="focusable" type="boolean" value="false"/>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="updateButtonMouseClicked"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="addButoon">
       <Properties>
@@ -525,9 +596,6 @@
         </Property>
         <Property name="focusable" type="boolean" value="false"/>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="addButoonMouseClicked"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="deleteButton">
       <Properties>
@@ -549,9 +617,6 @@
         </Property>
         <Property name="focusable" type="boolean" value="false"/>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="deleteButtonMouseClicked"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>

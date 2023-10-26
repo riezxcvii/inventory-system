@@ -1,6 +1,6 @@
 package Server;
 
-import Server.Database.DatabaseConnect;
+import Database.DatabaseConnect;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
