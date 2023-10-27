@@ -41,6 +41,7 @@ public class Dashboard extends javax.swing.JPanel {
         logisticsIcon = new javax.swing.JPanel();
         logisticsImage = new javax.swing.JLabel();
         logisticsButton = new javax.swing.JButton();
+        userDropdownIcon = new javax.swing.JComboBox<>();
 
         navigationBar.setBackground(new java.awt.Color(51, 102, 153));
 
@@ -240,6 +241,10 @@ public class Dashboard extends javax.swing.JPanel {
                 .addGap(38, 38, 38))
         );
 
+        userDropdownIcon.setBackground(new java.awt.Color(255, 255, 255));
+        userDropdownIcon.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        userDropdownIcon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User Full Name", "Log out" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -253,17 +258,23 @@ public class Dashboard extends javax.swing.JPanel {
                 .addComponent(logistics, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(60, Short.MAX_VALUE))
             .addComponent(navigationBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(userDropdownIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(navigationBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(131, 131, 131)
+                .addGap(0, 0, 0)
+                .addComponent(userDropdownIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(117, 117, 117)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(salesInquiry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(logistics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(userManagement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 133, Short.MAX_VALUE))
+                .addGap(0, 137, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -300,6 +311,7 @@ public class Dashboard extends javax.swing.JPanel {
     private javax.swing.JButton salesInquiryButton;
     private javax.swing.JPanel salesInquiryIcon;
     private javax.swing.JLabel salesInquiryImage;
+    private javax.swing.JComboBox<String> userDropdownIcon;
     private javax.swing.JLabel userIcon;
     private javax.swing.JPanel userManagement;
     private javax.swing.JButton userManagementButton;
