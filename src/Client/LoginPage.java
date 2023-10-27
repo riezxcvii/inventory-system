@@ -138,10 +138,25 @@ public class LoginPage extends javax.swing.JPanel {
             userManager.setUserType(userType);
 
             if (isValidUser) {
-                Frame frame = new Frame();
-                frame.viewFrame("Client.Dashboard", "Inventory System");
-                JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-                currentFrame.dispose();
+                if(userManager.getUserType().equals("Sales")){
+                    Frame frame = new Frame();
+                    frame.viewFrame("Client.SalesInquiry", "Inventory System");
+                    JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+                    currentFrame.dispose();
+                }else if(userManager.getUserType().equals("Logistics")){
+                    
+                    Frame frame = new Frame();
+                    frame.viewFrame("Client.Logistics", "Inventory System");
+                    JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+                    currentFrame.dispose();
+                }
+                else{
+                    Frame frame = new Frame();
+                    frame.viewFrame("Client.Dashboard", "Inventory System");
+                    JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+                    currentFrame.dispose();
+                }
+               
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid credentials. Check your username and password.", "Login Form", JOptionPane.ERROR_MESSAGE);
             }

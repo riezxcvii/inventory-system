@@ -254,11 +254,6 @@ public class UserManagement extends javax.swing.JPanel {
         clearButton.setText("CLEAR");
         clearButton.setBorder(null);
         clearButton.setFocusable(false);
-        clearButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                clearButtonMouseClicked(evt);
-            }
-        });
         clearButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clearButtonActionPerformed(evt);
@@ -272,11 +267,6 @@ public class UserManagement extends javax.swing.JPanel {
         updateButton.setText("UPDATE");
         updateButton.setBorder(null);
         updateButton.setFocusable(false);
-        updateButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                updateButtonMouseClicked(evt);
-            }
-        });
         updateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateButtonActionPerformed(evt);
@@ -290,11 +280,6 @@ public class UserManagement extends javax.swing.JPanel {
         addButoon.setText("ADD");
         addButoon.setBorder(null);
         addButoon.setFocusable(false);
-        addButoon.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                addButoonMouseClicked(evt);
-            }
-        });
         addButoon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addButoonActionPerformed(evt);
@@ -308,11 +293,6 @@ public class UserManagement extends javax.swing.JPanel {
         deleteButton.setText("DELETE");
         deleteButton.setBorder(null);
         deleteButton.setFocusable(false);
-        deleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                deleteButtonMouseClicked(evt);
-            }
-        });
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteButtonActionPerformed(evt);
@@ -383,21 +363,9 @@ public class UserManagement extends javax.swing.JPanel {
         currentFrame.dispose();
     }//GEN-LAST:event_homeIconMouseClicked
 
-    private void addButoonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addButoonMouseClicked
-      
-    }//GEN-LAST:event_addButoonMouseClicked
-
-    private void clearButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearButtonMouseClicked
-     
-    }//GEN-LAST:event_clearButtonMouseClicked
-
     private void userTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTypeActionPerformed
 
     }//GEN-LAST:event_userTypeActionPerformed
-
-    private void deleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteButtonMouseClicked
-       
-    }//GEN-LAST:event_deleteButtonMouseClicked
 
     private void userTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTableMouseClicked
         deleteButton.setEnabled(true);
@@ -432,10 +400,6 @@ public class UserManagement extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_userTableMouseClicked
-
-    private void updateButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateButtonMouseClicked
-       
-    }//GEN-LAST:event_updateButtonMouseClicked
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
        int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to delete?", "Confirmation", JOptionPane.YES_NO_OPTION);

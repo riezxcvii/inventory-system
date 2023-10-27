@@ -3,11 +3,18 @@ package Client;
 import Server.Frame;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import Server.UserSession;
 
 public class Logistics extends javax.swing.JPanel {
+    
+     UserSession session = UserSession.getInstance();
 
     public Logistics() {
         initComponents();
+        
+         if(!session.getUserType().equals("Admin")){
+            homeIcon.setVisible(false);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -269,7 +276,6 @@ public class Logistics extends javax.swing.JPanel {
             logisticsTable.getColumnModel().getColumn(15).setPreferredWidth(90);
         }
 
-        logisticUser.setBackground(new java.awt.Color(255, 255, 255));
         logisticUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Logistic User", "Logistics 1" }));
         logisticUser.setBorder(null);
 
