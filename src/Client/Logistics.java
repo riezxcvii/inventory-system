@@ -3,11 +3,18 @@ package Client;
 import Server.Frame;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import Server.UserSession;
 
 public class Logistics extends javax.swing.JPanel {
+    
+     UserSession session = UserSession.getInstance();
 
     public Logistics() {
         initComponents();
+        
+         if(!session.getUserType().equals("Admin")){
+            homeIcon.setVisible(false);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -175,9 +182,8 @@ public class Logistics extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logisticsFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(dateReceived, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(dateRelease, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(logisticsFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(warranty, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(customer, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(warranty, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(customer, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(logisticsFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(eu_po, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -269,7 +275,6 @@ public class Logistics extends javax.swing.JPanel {
             logisticsTable.getColumnModel().getColumn(15).setPreferredWidth(90);
         }
 
-        logisticUser.setBackground(new java.awt.Color(255, 255, 255));
         logisticUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Logistic User", "Logistics 1" }));
         logisticUser.setBorder(null);
 

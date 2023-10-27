@@ -95,7 +95,9 @@ public class SalesInquiry extends javax.swing.JPanel {
         salesId.setVisible(false);
         idOfUser.setVisible(false);
         
-      
+        if(!session.getUserType().equals("Admin")){
+            homeIcon.setVisible(false);
+        }
         try{
               if(session.getUserType().equals("Sales")){
          salesUser.addItem("My Inquiry");
