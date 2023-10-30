@@ -83,8 +83,22 @@ public class SalesInquiry extends javax.swing.JPanel {
         description.setText("");
         project.setText("");
         remarks.setText("");
+        salesInquiryTable.getSelectionModel().clearSelection();
+    }
+    public void textFieldStatus(boolean status){
+        dateAccomplished.setEnabled(status);
+            deadline.setEnabled(status);
+            srp.setEnabled(status);
+            supplier.setEnabled(status);
+            supplierPrice.setEnabled(status);
+            Quantity.setEnabled(status);
+            lastUpdate.setEnabled(status);
+            remarks.setEnabled(status);
+            clearButton.setEnabled(status);
+            date.setEnabled(status);
+            description.setEnabled(status);
+            project.setEnabled(status);
         
-         salesInquiryTable.getSelectionModel().clearSelection();
     }
     
     public SalesInquiry() {
@@ -470,6 +484,7 @@ public class SalesInquiry extends javax.swing.JPanel {
         String selectedItem = salesUser.getSelectedItem().toString();
         if(selectedItem.equals("My Inquiry")){
             getInquiry(userID); 
+            addButoon.setEnabled(true);
             clear();
             dateAccomplished.setEnabled(true);
             deadline.setEnabled(true);
@@ -548,18 +563,7 @@ public class SalesInquiry extends javax.swing.JPanel {
                     else{
                        updateButton.setEnabled(false);
                        clearButton.setEnabled(false);
-                        dateAccomplished.setEnabled(false);
-                        deadline.setEnabled(false);
-                        srp.setEnabled(false);
-                        supplier.setEnabled(false);
-                        supplierPrice.setEnabled(false);
-                        Quantity.setEnabled(false);
-                        lastUpdate.setEnabled(false);
-                        remarks.setEnabled(false);
-                        clearButton.setEnabled(false);
-                        date.setEnabled(false);
-                        description.setEnabled(false);
-                        project.setEnabled(false);
+                       textFieldStatus(false);
                     }
                     
                 }
@@ -575,7 +579,8 @@ public class SalesInquiry extends javax.swing.JPanel {
             int id = Integer.parseInt(salesId.getText());
             qry.deleteInquiry(id);
             JOptionPane.showMessageDialog(new JFrame(), "User Deleted", "Success", JOptionPane.INFORMATION_MESSAGE);
-            getInquiry(userID);
+            int id1 = Integer.parseInt(idOfUser.getText());
+            getInquiry(id1);       
             clear();
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
@@ -615,7 +620,7 @@ public class SalesInquiry extends javax.swing.JPanel {
                             userID);
 
                         JOptionPane.showMessageDialog(new JFrame(), "Inquiry Added", "Success", JOptionPane.INFORMATION_MESSAGE);
-                        getInquiry(userID);
+                            getInquiry(userID);
                         clear();
 
                     }catch(Exception error){
@@ -666,6 +671,7 @@ public class SalesInquiry extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(new JFrame(), "Inquiry updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
                         getInquiry(id1);
                         clear();
+                        textFieldStatus(true);
                         
 
                     }catch(Exception error){
