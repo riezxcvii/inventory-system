@@ -1,14 +1,43 @@
 package Client;
 
+import Database.DatabaseConnect;
 import Server.Frame;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import Server.UserSession;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class Dashboard extends javax.swing.JPanel {
-
+    UserSession session = UserSession.getInstance();
+    DatabaseConnect dbConnect = new DatabaseConnect();
+    Connection con = dbConnect.checkConnection();
+    
+    int userID = session.getUserID();
+    String lastName;
+    String firstName;
+     int clicked = 0;
+    
     public Dashboard() {
         initComponents();
+        userDropdownIcon.setVisible(false);
+       try{
+        PreparedStatement statement = con.prepareStatement("select * from user where user_id=?");
+        statement.setInt(1,userID);
+        ResultSet result = statement.executeQuery();
+        if(result.next()){
+            firstName = result.getString("first_name");
+            lastName = result.getString("last_name");
+        }
+        statement.close();
+       }catch(Exception error){
+        JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
+       }
+       userDropdownIcon.addItem(firstName + " " +lastName);
+       userDropdownIcon.addItem("Log out");
+       
     }
 
     @SuppressWarnings("unchecked")
@@ -42,6 +71,11 @@ public class Dashboard extends javax.swing.JPanel {
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/inventory-system-logo.png"))); // NOI18N
 
         userIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/user.png"))); // NOI18N
+        userIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                userIconMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout navigationBarLayout = new javax.swing.GroupLayout(navigationBar);
         navigationBar.setLayout(navigationBarLayout);
@@ -231,9 +265,12 @@ public class Dashboard extends javax.swing.JPanel {
                 .addGap(38, 38, 38))
         );
 
-        userDropdownIcon.setBackground(new java.awt.Color(255, 255, 255));
         userDropdownIcon.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        userDropdownIcon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User Full Name", "Log out" }));
+        userDropdownIcon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userDropdownIconActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -288,6 +325,28 @@ public class Dashboard extends javax.swing.JPanel {
         JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
         currentFrame.dispose();
     }//GEN-LAST:event_logisticsButtonActionPerformed
+
+    private void userIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userIconMouseClicked
+       if(clicked == 0){
+        userDropdownIcon.setVisible(true);
+        clicked = 1;
+       }else{
+         userDropdownIcon.setVisible(false);
+         clicked = 0;
+       }
+        
+    }//GEN-LAST:event_userIconMouseClicked
+
+    private void userDropdownIconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userDropdownIconActionPerformed
+        String selectedItem = userDropdownIcon.getSelectedItem().toString();
+        if(selectedItem.equals("Log out")){
+            int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to logout?", "Confirmation", JOptionPane.YES_NO_OPTION);
+            if (decision == JOptionPane.YES_OPTION) {
+                Frame frame = new Frame();
+                frame.viewFrame("Client.LoginPage", "Inventory System");
+            }
+        }
+    }//GEN-LAST:event_userDropdownIconActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel logistics;
