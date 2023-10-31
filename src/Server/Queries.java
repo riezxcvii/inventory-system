@@ -272,9 +272,10 @@ public class Queries {
             int quantity,
             String customer,
             String warranty,
-            String warrantyCustomer){
+            String warrantyCustomer,
+            int userId){
         try{
-            String query = "insert into logistic (product_name,product_type,product_price,date_received,date_release,eu_po_number,po_ref_number,brand,String product_description,model,supplier,quantity,customer,warranty,warranty_customer) " + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "insert into logistic (product_name,product_type,product_price,date_received,date_release,eu_po_number,po_ref_number,brand,String product_description,model,supplier,quantity,customer,warranty,warranty_customer,user_id) " + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1,productName);
             statement.setString(2,pType);
@@ -291,6 +292,7 @@ public class Queries {
             statement.setString(13,customer);
             statement.setString(14,warranty);
             statement.setString(15,warrantyCustomer);
+            statement.setInt(16,userId);
             
             statement.executeUpdate();
             statement.close(); 
@@ -301,9 +303,33 @@ public class Queries {
     
     public List<LogisticData> getLogisticData(int id, String userType){
         List<LogisticData> logisticData = new ArrayList<>();
-        
+        String query;
         try{
-            
+           query = "select from logistic where user_id = ?";
+           PreparedStatement statement = con.prepareStatement(query);
+           statement.setInt(1, id);
+           ResultSet result = statement.executeQuery();
+           
+           while(result.next()){
+                LogisticData data = new LogisticData();
+                    data.setProductId(result.getInt(1));
+                    data.setName(result.getString(2));
+                    data.setType(result.getString(3));
+                    data.setPrice(result.getDouble(4));
+                    data.setDateReceived(result.getDate(5));
+                    data.setDateRelease(result.getDate(6));
+                    data.setEuPoNumber(result.getString(7));
+                    data.setPoRefNumber(result.getString( 8));
+                    data.setBrand(result.getString(9));
+                    data.setPDesc(result.getString(9));
+                    data.setModel(result.getString(10));
+                    data.setSupplier(result.getString(11));
+                    data.setQuantity(result.getInt(12));
+                    data.setCustomer(result.getString(13));
+                    data.setWarranty(result.getString(14));
+                    data.setWarrantyCustomer(result.getString(15));
+                    data.setUserId(result.getInt(16));
+           }
         }catch(Exception error){
             JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
         }

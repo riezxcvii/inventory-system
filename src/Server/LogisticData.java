@@ -20,11 +20,18 @@ public class LogisticData {
     private String warranty;
     private String warrantyCustomer;
     private int productId;
+    private int userId;
     
     public int getProductId(){
         return productId;
     }
     public void setProductId(int id){
+        this.productId = id;
+    }
+    public int getUserId(){
+        return userId;
+    }
+    public void setUserId(int id){
         this.productId = id;
     }
     public String getName(){
@@ -54,7 +61,7 @@ public class LogisticData {
     public Date getDateRelease(){
         return dateRelease;
     }
-    public void setDaterelease(Date release){
+    public void setDateRelease(Date release){
         this.dateRelease = release;
     }public String getEuPoNumber(){
         return euPoNumber;
@@ -86,7 +93,7 @@ public class LogisticData {
     }public String getSupplier(){
         return supplier;
     }
-    public void setSuppler(String supplier){
+    public void setSupplier(String supplier){
         this.supplier = supplier;
     }public int getQuantity(){
         return quantity;
