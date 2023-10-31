@@ -4,6 +4,9 @@ import Database.DatabaseConnect;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Queries {
     DatabaseConnect dbConn = new DatabaseConnect();
@@ -30,6 +33,59 @@ public class Queries {
 
         }
     }  
+    
+    public List<UserData> getUserData(int ID, int salesLogisticsId, String userType) {
+    List<UserData> userDataList = new ArrayList<>();
+    String query;
+    ResultSet result;
+    
+    try {
+        if(ID == 0 && salesLogisticsId == 0 && userType.equals("")){
+            query = "SELECT * FROM user"; 
+            PreparedStatement statement = con.prepareStatement(query);
+            result = statement.executeQuery();
+        }
+        else if(ID != 0 && salesLogisticsId == 0 && userType.equals("")){
+            query = "SELECT * FROM user WHERE user_id = ?"; 
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1, ID);
+            result = statement.executeQuery();
+        }
+        else if(ID == 0 && salesLogisticsId != 0 && !userType.equals("")){
+            query = "SELECT * FROM user WHERE user_type = ? and user_id !=?"; 
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(2, salesLogisticsId);
+            statement.setString(1, userType);
+            result = statement.executeQuery();
+        }
+        else{
+            query = "SELECT * FROM user WHERE user_type = ? and user_id !=?"; 
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1, salesLogisticsId);
+            statement.setString(2, userType);
+            result = statement.executeQuery();
+        }
+        while (result.next()) {
+            UserData data = new UserData();
+            
+            data.setUserId(result.getInt(1));
+            data.setType(result.getString(2));
+            data.setUserName(result.getString(8));
+            data.setLast(result.getString(3));
+            data.setFirst(result.getString(4));
+            data.setAddress(result.getString(5));
+            data.setMobile(result.getString(6));
+            data.setEmail(result.getString(7));
+            data.setPass(result.getString(9));
+            
+            userDataList.add(data);
+        }
+    } catch (Exception error) {
+        JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);  
+    }
+    
+    return userDataList;
+}
     
     public void deleteUser(int id){
         try{
@@ -99,6 +155,46 @@ public class Queries {
         }
     }
     
+    public List<InquiryData> getInquiryData(int ID, String idType) {
+    List<InquiryData> inquiryDataList = new ArrayList<>();
+    String query;
+    
+    try {
+        if(idType.equals("user")){
+        query = "select * from sale where user_id = ?";
+        }else{
+        query = "select * from sale where sale_id = ?";  
+        }
+        PreparedStatement statement = con.prepareStatement(query);
+        statement.setInt(1, ID);
+        ResultSet result = statement.executeQuery();
+        
+        
+        while (result.next()) {
+            InquiryData data = new InquiryData();
+            
+            data.setSalesId(result.getInt(1));
+            data.setIDate(result.getDate(2));
+            data.setIProject(result.getString(3));
+            data.setIQuantity(result.getInt(4));
+            data.setIDescription(result.getString(5));
+            data.setISupplier(result.getString(6));
+            data.setISupplierPrice(result.getDouble(7));
+            data.setISrp(result.getDouble(8));
+            data.setIRemarks(result.getString(9));
+            data.setIDateAccomplished(result.getDate(10));
+            data.setILastUpdate(result.getDate(11));
+            data.setIDeadline(result.getDate(12));
+            data.setUserID(result.getInt(13));
+            
+            inquiryDataList.add(data);
+        }
+    } catch (Exception error) {
+        JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);  
+    }
+    
+    return inquiryDataList;
+}
     public void deleteInquiry(int id){
         try{
             String query = "delete from sale where sale_id = ?";

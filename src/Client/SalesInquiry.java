@@ -3,13 +3,12 @@ package Client;
 import Server.Frame;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
-import Database.DatabaseConnect;
+import Server.InquiryData;
+import Server.UserData;
 import Server.UserSession;
-import java.sql.Connection;
 import javax.swing.JOptionPane;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.table.DefaultTableModel;
@@ -17,9 +16,6 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 public class SalesInquiry extends javax.swing.JPanel {
-
-    DatabaseConnect dbConnect = new DatabaseConnect();
-    Connection con = dbConnect.checkConnection();
     
     Server.Queries qry = new Server.Queries();
     
@@ -29,46 +25,38 @@ public class SalesInquiry extends javax.swing.JPanel {
     
     int userID = session.getUserID();
     
-    public void getInquiry(int id){
-        try{
-            
-            TableColumnModel columnModel = salesInquiryTable.getColumnModel();
-            TableColumn columnToHide = columnModel.getColumn(12);
-            
-            columnToHide.setMinWidth(0);
-            columnToHide.setMaxWidth(0);
-            columnToHide.setPreferredWidth(0);
-            
-            String query = "select * from sale where user_id = ?";
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.setInt(1,id);
-            ResultSet result = statement.executeQuery();
-            DefaultTableModel model = (DefaultTableModel) salesInquiryTable.getModel();
+    public void getInquiry(int id) {
+    Server.Queries qry = new Server.Queries();
+    List<InquiryData> data = qry.getInquiryData(id,"user");
 
-            model.setRowCount(0);
-            
-            while(result.next()){
-                int salesId = result.getInt(1);
-                String iDate = result.getString(2);
-                String iproject = result.getString(3);
-                int iQuantity = result.getInt(4);
-                String iDescription = result.getString(5);
-                String iSupplier = result.getString(6);
-                double iSupplier_price = result.getDouble(7);
-                double iSrp = result.getDouble(8);
-                String iRemarks = result.getString(9);
-                String iDate_accomplished = result.getString(10);
-                String iLast_update = result.getString(11);
-                String iDeadline = result.getString(12);
-            
-                
-                model.addRow(new Object[]{salesId,iDate,iproject,iQuantity,iDescription,iSupplier,iSupplier_price,
-                iSrp,iRemarks,iDate_accomplished,iLast_update,iDeadline,userID});
-            }
-        }catch(Exception error){
-            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);  
-        }
+    TableColumnModel columnModel = salesInquiryTable.getColumnModel();
+    TableColumn columnToHide = columnModel.getColumn(12);
+
+    columnToHide.setMinWidth(0);
+    columnToHide.setMaxWidth(0);
+    columnToHide.setPreferredWidth(0);
+
+    DefaultTableModel model = (DefaultTableModel) salesInquiryTable.getModel();
+    model.setRowCount(0);
+    for (InquiryData item : data) {
+        model.addRow(new Object[] {
+            item.getSalesId(),
+            item.getIDate(),
+            item.getIProject(),
+            item.getIQuantity(),
+            item.getIDescription(),
+            item.getISupplier(),
+            item.getISupplierPrice(),
+            item.getISrp(),
+            item.getIRemarks(),
+            item.getIDateAccomplished(),
+            item.getILastUpdate(),
+            item.getIDeadline(),
+            item.getUserID()
+        });
     }
+}
+
     
     public void clear(){
         Quantity.setText("");
@@ -112,25 +100,19 @@ public class SalesInquiry extends javax.swing.JPanel {
         if(!session.getUserType().equals("Admin")){
             homeIcon.setVisible(false);
         }
-        try{
-              if(session.getUserType().equals("Sales")){
-         salesUser.addItem("My Inquiry");
+       
+            if(session.getUserType().equals("Sales")){
+            salesUser.addItem("My Inquiry");
         }
-            String query = "SELECT * FROM user WHERE user_type = ? and user_id !=?";
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1,"Sales");
-            statement.setInt(2,userID);
-            ResultSet result = statement.executeQuery();
-            while(result.next()){
-                int id = result.getInt("user_id");
-                String first = result.getString("first_name");
-                String last = result.getString("last_name");
+             Server.Queries qry = new Server.Queries();
+        List<UserData> data = qry.getUserData(0,userID,"Sales");
+            
+            for (UserData item : data) {
+               int id = item.getUserId();
+                String first = item.getFirst();
+                String last = item.getLast();
                 salesUser.addItem(id +" "+first + " " + last);  
             }
-            statement.close();
-        }catch(Exception error){
-            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
-        }
         
         getInquiry(userID);
     }
@@ -520,29 +502,29 @@ public class SalesInquiry extends javax.swing.JPanel {
 
         salesId.setText(model.getValueAt(selectedRows, 0).toString());
         int id = Integer.parseInt(salesId.getText());
+        
         addButoon.setEnabled(false);
-        try{
-           String query = "Select * from sale where sale_id = ?";
-           PreparedStatement statement = con.prepareStatement(query);
-           statement.setInt(1,id);
-           ResultSet result = statement.executeQuery();
-           if(result.next()){
-               int userid = result.getInt("user_id");
-               double dSrp = result.getDouble("srp");
-               int qnty = result.getInt("quantity");
-               double sprice = result.getDouble("supplier_price");
-                Quantity.setText(result.getString("quantity"));
-                date.setDate(result.getDate("date"));
-                dateAccomplished.setDate(result.getDate("date_accomplished"));
-                deadline.setDate(result.getDate("deadline"));
+        
+       
+            Server.Queries qry = new Server.Queries();
+            List<InquiryData> data = qry.getInquiryData(id,"sale");
+            
+            InquiryData item = data.get(0);
+               int userid = item.getUserID();
+               double dSrp = item.getISrp();
+               int qnty = item.getIQuantity();
+               double sprice = item.getISupplierPrice();
+                date.setDate(item.getIDate());
+                dateAccomplished.setDate(item.getIDateAccomplished());
+                deadline.setDate(item.getIDeadline());
                 srp.setText(String.valueOf(dSrp));
-                supplier.setText(result.getString("supplier"));
+                supplier.setText(item.getISupplier());
                 supplierPrice.setText(String.valueOf(sprice));
                 Quantity.setText(String.valueOf(qnty));
-                lastUpdate.setDate(result.getDate("last_update"));
-                description.setText(result.getString("description"));
-                project.setText(result.getString("project_or_end_user"));
-                remarks.setText(result.getString("remarks"));
+                lastUpdate.setDate(item.getILastUpdate());
+                description.setText(item.getIDescription());
+                project.setText(item.getIProject());
+                remarks.setText(item.getIRemarks());
                 idOfUser.setText(String.valueOf(userid));
                 
                 if(session.getUserType().equals("Admin")){
@@ -565,12 +547,7 @@ public class SalesInquiry extends javax.swing.JPanel {
                        clearButton.setEnabled(false);
                        textFieldStatus(false);
                     }
-                    
                 }
-           }
-        }catch(Exception error){
-            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);  
-        }
     }//GEN-LAST:event_salesInquiryTableMouseClicked
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed

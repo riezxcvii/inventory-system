@@ -3,43 +3,36 @@ package Client;
 import Server.Frame;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Server.Queries;
+import Server.UserData;
+import java.util.List;
 
 public class UserManagement extends javax.swing.JPanel {
 
     Queries query = new Queries();
-    Database.DatabaseConnect dbConn = new Database.DatabaseConnect();
-    Connection con = dbConn.checkConnection();
 
-    public void getData() {
-
-        try {
-            String query = "SELECT * FROM user";
-            PreparedStatement statement = con.prepareStatement(query);
-            ResultSet result = statement.executeQuery();
+    public void getData(int id) {
+        
+        Server.Queries qry = new Server.Queries();
+        List<UserData> data = qry.getUserData(id,0,"");
             DefaultTableModel model = (DefaultTableModel) userTable.getModel();
 
             model.setRowCount(0);
-            while (result.next()) {
-                int id = result.getInt(1);
-                String type = result.getString(2);
-                String username = result.getString(8);
-                String last = result.getString(3);
-                String first = result.getString(4);
-                String address = result.getString(5);
-                String mobile = result.getString(6);
-                String email = result.getString(7);
-
-                model.addRow(new Object[]{id, type, username, last, first, address, mobile, email});
-            }
-        } catch (Exception error) {
-            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
-        }
+            
+            for (UserData item : data) {
+                model.addRow(new Object[] {
+                item.getUserId(),
+                item.getType(),
+                item.getUserName(),
+                item.getLast(),
+                item.getFirst(),
+                item.getAddress(),
+                item.getMobile(),
+                item.getEmail()
+            });
+    }
     }
 
     public void clear() {
@@ -60,7 +53,7 @@ public class UserManagement extends javax.swing.JPanel {
 
     public UserManagement() {
         initComponents();
-        getData();
+        getData(0);
         userId.setVisible(false);
         updateButton.setEnabled(false);
         deleteButton.setEnabled(false);
@@ -377,28 +370,21 @@ public class UserManagement extends javax.swing.JPanel {
         userId.setText(model.getValueAt(selectedRows, 0).toString());
         int id = Integer.parseInt(userId.getText());
 
-        try {
-            String query = "SELECT * from user WHERE user_id =?";
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.setInt(1, id);
-            ResultSet result = statement.executeQuery();
-
-            if (result.next()) {
-                String selectedItem = result.getString("user_type");
+       
+            Server.Queries qry = new Server.Queries();
+            List<UserData> data = qry.getUserData(id,0,"");
+            
+            UserData item = data.get(0);
+                String selectedItem = item.getType();
                 userType.setSelectedItem(selectedItem);
-                username.setText(result.getString("username"));
-                lastName.setText(result.getString("last_name"));
-                firstName.setText(result.getString("first_name"));
-                address.setText(result.getString("address"));
-                mobileNumber.setText(result.getString("mobile_number"));
-                emailAddress.setText(result.getString("email_address"));
-                password.setText(result.getString("password"));
-                userId.setText(result.getString("user_id"));
-            }
-            statement.close();
-        } catch (Exception error) {
-            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
-        }
+                username.setText(item.getUserName());
+                lastName.setText(item.getLast());
+                firstName.setText(item.getFirst());
+                address.setText(item.getAddress());
+                mobileNumber.setText(item.getMobile());
+                emailAddress.setText(item.getEmail());
+                password.setText(item.getPass());
+                userId.setText(String.valueOf(item.getUserId()));
     }//GEN-LAST:event_userTableMouseClicked
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
@@ -407,7 +393,7 @@ public class UserManagement extends javax.swing.JPanel {
             int id = Integer.parseInt(userId.getText());
             query.deleteUser(id);
             JOptionPane.showMessageDialog(new JFrame(), "User Deleted", "Success", JOptionPane.INFORMATION_MESSAGE);
-            getData();
+            getData(0);
             clear();
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
@@ -422,7 +408,7 @@ public class UserManagement extends javax.swing.JPanel {
 
             query.addUser(username.getText(), password.getText(), selectedItem, address.getText(), emailAddress.getText(), mobileNumber.getText(), firstName.getText(), lastName.getText());
             JOptionPane.showMessageDialog(new JFrame(), "User Added", "Success", JOptionPane.INFORMATION_MESSAGE);
-            getData();
+            getData(0);
             clear();
         }
     }//GEN-LAST:event_addButoonActionPerformed
@@ -437,7 +423,7 @@ public class UserManagement extends javax.swing.JPanel {
             int id = Integer.parseInt(userId.getText());
             query.updateUser(id, username.getText(), password.getText(), selectedItem, address.getText(), emailAddress.getText(), mobileNumber.getText(), firstName.getText(), lastName.getText());
             JOptionPane.showMessageDialog(new JFrame(), "User Updated", "Success", JOptionPane.INFORMATION_MESSAGE);
-            getData();
+            getData(0);
             clear();
         }
     }//GEN-LAST:event_updateButtonActionPerformed
