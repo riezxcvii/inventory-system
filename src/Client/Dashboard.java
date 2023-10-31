@@ -1,43 +1,14 @@
 package Client;
 
-import Database.DatabaseConnect;
 import Server.Frame;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import Server.UserSession;
-import java.sql.Connection;
-import javax.swing.JOptionPane;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 public class Dashboard extends javax.swing.JPanel {
-    UserSession session = UserSession.getInstance();
-    DatabaseConnect dbConnect = new DatabaseConnect();
-    Connection con = dbConnect.checkConnection();
-    
-    int userID = session.getUserID();
-    String lastName;
-    String firstName;
-     int clicked = 0;
-    
+
     public Dashboard() {
         initComponents();
-        userDropdownIcon.setVisible(false);
-       try{
-        PreparedStatement statement = con.prepareStatement("select * from user where user_id=?");
-        statement.setInt(1,userID);
-        ResultSet result = statement.executeQuery();
-        if(result.next()){
-            firstName = result.getString("first_name");
-            lastName = result.getString("last_name");
-        }
-        statement.close();
-       }catch(Exception error){
-        JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
-       }
-       userDropdownIcon.addItem(firstName + " " +lastName);
-       userDropdownIcon.addItem("Log out");
-       
     }
 
     @SuppressWarnings("unchecked")
@@ -60,7 +31,9 @@ public class Dashboard extends javax.swing.JPanel {
         logisticsIcon = new javax.swing.JPanel();
         logisticsImage = new javax.swing.JLabel();
         logisticsButton = new javax.swing.JButton();
-        userDropdownIcon = new javax.swing.JComboBox<>();
+
+        setMaximumSize(new java.awt.Dimension(1365, 696));
+        setMinimumSize(new java.awt.Dimension(1365, 696));
 
         navigationBar.setBackground(new java.awt.Color(51, 102, 153));
 
@@ -71,11 +44,6 @@ public class Dashboard extends javax.swing.JPanel {
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/inventory-system-logo.png"))); // NOI18N
 
         userIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/user.png"))); // NOI18N
-        userIcon.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                userIconMouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout navigationBarLayout = new javax.swing.GroupLayout(navigationBar);
         navigationBar.setLayout(navigationBarLayout);
@@ -265,43 +233,30 @@ public class Dashboard extends javax.swing.JPanel {
                 .addGap(38, 38, 38))
         );
 
-        userDropdownIcon.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        userDropdownIcon.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userDropdownIconActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addGap(192, 192, 192)
                 .addComponent(userManagement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addGap(100, 100, 100)
                 .addComponent(salesInquiry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addGap(100, 100, 100)
                 .addComponent(logistics, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(193, Short.MAX_VALUE))
             .addComponent(navigationBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(userDropdownIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(navigationBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(userDropdownIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(117, 117, 117)
+                .addGap(180, 180, 180)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(salesInquiry, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(logistics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(userManagement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 137, Short.MAX_VALUE))
+                .addGap(0, 180, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -326,28 +281,6 @@ public class Dashboard extends javax.swing.JPanel {
         currentFrame.dispose();
     }//GEN-LAST:event_logisticsButtonActionPerformed
 
-    private void userIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userIconMouseClicked
-       if(clicked == 0){
-        userDropdownIcon.setVisible(true);
-        clicked = 1;
-       }else{
-         userDropdownIcon.setVisible(false);
-         clicked = 0;
-       }
-        
-    }//GEN-LAST:event_userIconMouseClicked
-
-    private void userDropdownIconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userDropdownIconActionPerformed
-        String selectedItem = userDropdownIcon.getSelectedItem().toString();
-        if(selectedItem.equals("Log out")){
-            int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to logout?", "Confirmation", JOptionPane.YES_NO_OPTION);
-            if (decision == JOptionPane.YES_OPTION) {
-                Frame frame = new Frame();
-                frame.viewFrame("Client.LoginPage", "Inventory System");
-            }
-        }
-    }//GEN-LAST:event_userDropdownIconActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel logistics;
     private javax.swing.JButton logisticsButton;
@@ -360,7 +293,6 @@ public class Dashboard extends javax.swing.JPanel {
     private javax.swing.JButton salesInquiryButton;
     private javax.swing.JPanel salesInquiryIcon;
     private javax.swing.JLabel salesInquiryImage;
-    private javax.swing.JComboBox<String> userDropdownIcon;
     private javax.swing.JLabel userIcon;
     private javax.swing.JPanel userManagement;
     private javax.swing.JButton userManagementButton;

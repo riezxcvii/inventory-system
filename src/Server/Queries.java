@@ -12,6 +12,10 @@ public class Queries {
     DatabaseConnect dbConn = new DatabaseConnect();
     Connection con = dbConn.checkConnection();
     
+   
+    //===================================================================================================
+    //CRUD of user
+    
     public void addUser(String username, String password, String userType, String address, String email, String mobile, String firstName, String lastName){
         try{
         String query = "Insert into user(user_type,last_name,first_name,address,mobile_number,email_address,username,password)"+"VALUES(?,?,?,?,?,?,?,?)";
@@ -120,6 +124,10 @@ public class Queries {
         }
     }
     
+    //============================================================================================================
+    //end of user
+    //=============================================================================================================
+    //CRUD of inquiry
     public void addInquiry(String date, 
             String project,
             int quantity,
@@ -243,5 +251,63 @@ public class Queries {
         }catch(Exception error){
             JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);   
         }
+    }
+    //=======================================================================================
+    //End of Inquiry
+    //=========================================================================================
+    //CRUD of Logistics
+    
+    public void addLogistic( 
+            String productName,
+            String pType,
+            double pPrice,
+            String dateReceived,
+            String dateRelease,
+            String euPoNumber,
+            String poRefNumber,
+            String brand,
+            String pDesc,
+            String model,
+            String supplier,
+            int quantity,
+            String customer,
+            String warranty,
+            String warrantyCustomer){
+        try{
+            String query = "insert into logistic (product_name,product_type,product_price,date_received,date_release,eu_po_number,po_ref_number,brand,String product_description,model,supplier,quantity,customer,warranty,warranty_customer) " + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1,productName);
+            statement.setString(2,pType);
+            statement.setDouble(3,pPrice);
+            statement.setString(4,dateReceived);
+            statement.setString(5,dateRelease);
+            statement.setString(6,euPoNumber);
+            statement.setString(7,poRefNumber);
+            statement.setString(8,brand);
+            statement.setString(9,pDesc);
+            statement.setString(10,model);
+            statement.setString(11,supplier);
+            statement.setInt(12,quantity);
+            statement.setString(13,customer);
+            statement.setString(14,warranty);
+            statement.setString(15,warrantyCustomer);
+            
+            statement.executeUpdate();
+            statement.close(); 
+        }catch(Exception error){
+            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public List<LogisticData> getLogisticData(int id, String userType){
+        List<LogisticData> logisticData = new ArrayList<>();
+        
+        try{
+            
+        }catch(Exception error){
+            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        return logisticData;
     }
 }

@@ -294,7 +294,6 @@ public class UserManagement extends javax.swing.JPanel {
 
         userId.setText("userId");
 
-        userDropdownIcon.setBackground(new java.awt.Color(255, 255, 255));
         userDropdownIcon.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         userDropdownIcon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User Full Name", "Log out" }));
 
