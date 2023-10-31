@@ -27,7 +27,8 @@ public class LoginPage extends javax.swing.JPanel {
         logo = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(236, 242, 255));
-        setMinimumSize(new java.awt.Dimension(1000, 600));
+        setMaximumSize(new java.awt.Dimension(1365, 696));
+        setMinimumSize(new java.awt.Dimension(1365, 696));
 
         loginForm.setBackground(new java.awt.Color(255, 255, 255));
         loginForm.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 0, 0, 0, new java.awt.Color(51, 102, 153)));
@@ -64,20 +65,20 @@ public class LoginPage extends javax.swing.JPanel {
         loginFormLayout.setHorizontalGroup(
             loginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginFormLayout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
+                .addGap(40, 40, 40)
                 .addGroup(loginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(forgotPassword)
                     .addGroup(loginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(userName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
-                        .addComponent(loginButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+                        .addComponent(userName, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(loginButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
                         .addComponent(password, javax.swing.GroupLayout.Alignment.TRAILING)))
-                .addGap(41, 41, 41))
+                .addGap(40, 40, 40))
             .addGroup(loginFormLayout.createSequentialGroup()
                 .addGap(127, 127, 127)
                 .addGroup(loginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(greetings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
         loginFormLayout.setVerticalGroup(
             loginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,16 +103,16 @@ public class LoginPage extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(291, 291, 291)
-                .addComponent(loginForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(291, Short.MAX_VALUE))
+                .addGap(474, 474, 474)
+                .addComponent(loginForm, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(474, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
+                .addGap(110, 110, 110)
                 .addComponent(loginForm, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

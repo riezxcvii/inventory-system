@@ -147,11 +147,11 @@ public class SalesInquiry extends javax.swing.JPanel {
         addButoon = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
         salesUser = new javax.swing.JComboBox<>();
-        userDropdownIcon = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(236, 242, 255));
-        setMaximumSize(new java.awt.Dimension(1000, 600));
-        setPreferredSize(new java.awt.Dimension(1000, 600));
+        setMaximumSize(new java.awt.Dimension(1365, 696));
+        setMinimumSize(new java.awt.Dimension(1365, 696));
+        setPreferredSize(new java.awt.Dimension(1365, 696));
 
         navigationBar.setBackground(new java.awt.Color(51, 102, 153));
 
@@ -179,7 +179,7 @@ public class SalesInquiry extends javax.swing.JPanel {
                 .addComponent(logo)
                 .addGap(18, 18, 18)
                 .addComponent(navigationBarTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 763, Short.MAX_VALUE)
                 .addComponent(homeIcon)
                 .addGap(18, 18, 18)
                 .addComponent(userIcon)
@@ -233,45 +233,42 @@ public class SalesInquiry extends javax.swing.JPanel {
         salesInquiryFormLayout.setHorizontalGroup(
             salesInquiryFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(salesInquiryFormLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(30, 30, 30)
                 .addGroup(salesInquiryFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(supplier, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                    .addComponent(date, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                    .addComponent(dateAccomplished, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                    .addComponent(supplier, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(date, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addComponent(dateAccomplished, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
                 .addGroup(salesInquiryFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(project, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                    .addComponent(supplierPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                    .addComponent(lastUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                    .addComponent(project)
+                    .addComponent(supplierPrice)
+                    .addComponent(lastUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
                 .addGroup(salesInquiryFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Quantity, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                    .addComponent(srp, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                    .addComponent(deadline, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
+                    .addComponent(Quantity)
+                    .addComponent(srp)
+                    .addComponent(deadline, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
                 .addGroup(salesInquiryFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(salesInquiryFormLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(salesInquiryFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(remarks, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(salesInquiryFormLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
                         .addComponent(salesId)
-                        .addGap(32, 32, 32)
-                        .addComponent(idOfUser)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(idOfUser))
+                    .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(remarks, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         salesInquiryFormLayout.setVerticalGroup(
             salesInquiryFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(salesInquiryFormLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(30, 30, 30)
                 .addGroup(salesInquiryFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(salesInquiryFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(project, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(Quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20)
+                .addGap(30, 30, 30)
                 .addGroup(salesInquiryFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(supplier, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(supplierPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -279,12 +276,12 @@ public class SalesInquiry extends javax.swing.JPanel {
                     .addComponent(remarks, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(salesInquiryFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(salesInquiryFormLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+                        .addGap(30, 30, 30)
                         .addGroup(salesInquiryFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(dateAccomplished, javax.swing.GroupLayout.PREFERRED_SIZE, 51, Short.MAX_VALUE)
                             .addComponent(lastUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 51, Short.MAX_VALUE)
                             .addComponent(deadline, javax.swing.GroupLayout.PREFERRED_SIZE, 51, Short.MAX_VALUE))
-                        .addGap(20, 20, 20))
+                        .addGap(30, 30, 30))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, salesInquiryFormLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(salesInquiryFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -299,7 +296,7 @@ public class SalesInquiry extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Sales ID", "Date", "Project", "Quantity", "Description", "Supplier", "Price", "SRP", "Remarks", "ETA", "Last Update", "Deadline", "User ID"
+                "Sales ID", "Date", "Project / End User", "Quantity", "Description", "Supplier", "Price", "SRP", "Remarks", "Date Accomplished", "Last Update", "Deadline", "User ID"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -336,6 +333,7 @@ public class SalesInquiry extends javax.swing.JPanel {
             salesInquiryTable.getColumnModel().getColumn(8).setResizable(false);
             salesInquiryTable.getColumnModel().getColumn(8).setPreferredWidth(100);
             salesInquiryTable.getColumnModel().getColumn(9).setResizable(false);
+            salesInquiryTable.getColumnModel().getColumn(9).setPreferredWidth(100);
             salesInquiryTable.getColumnModel().getColumn(10).setResizable(false);
             salesInquiryTable.getColumnModel().getColumn(11).setResizable(false);
         }
@@ -400,55 +398,44 @@ public class SalesInquiry extends javax.swing.JPanel {
             }
         });
 
-        userDropdownIcon.setBackground(new java.awt.Color(255, 255, 255));
-        userDropdownIcon.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        userDropdownIcon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User Full Name", "Log out" }));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(navigationBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(userDropdownIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(salesInquiryTableScrollPanel)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(salesInquiryForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(salesInquiryTableScrollPanel)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(salesInquiryForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGap(28, 28, 28)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(clearButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(updateButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(addButoon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(deleteButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(salesUser, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(29, 29, 29))
+                                .addComponent(clearButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(updateButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(addButoon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(deleteButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(salesUser, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(navigationBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(userDropdownIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
+                .addGap(20, 20, 20)
                 .addComponent(salesUser, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addComponent(salesInquiryTableScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
+                .addComponent(salesInquiryTableScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(29, 29, 29)
                         .addComponent(addButoon, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17)
+                        .addGap(29, 29, 29)
                         .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)
+                        .addGap(29, 29, 29)
                         .addComponent(clearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(salesInquiryForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
@@ -692,7 +679,6 @@ public class SalesInquiry extends javax.swing.JPanel {
     private javax.swing.JTextField supplier;
     private javax.swing.JTextField supplierPrice;
     private javax.swing.JButton updateButton;
-    private javax.swing.JComboBox<String> userDropdownIcon;
     private javax.swing.JLabel userIcon;
     // End of variables declaration//GEN-END:variables
 }
