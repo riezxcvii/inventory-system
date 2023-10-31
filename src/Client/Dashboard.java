@@ -18,7 +18,7 @@ public class Dashboard extends javax.swing.JPanel {
         navigationBar = new javax.swing.JPanel();
         navigationBarTitle = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
-        userIcon = new javax.swing.JLabel();
+        logoutButton = new javax.swing.JLabel();
         userManagement = new javax.swing.JPanel();
         userManagementIcon = new javax.swing.JPanel();
         userManagementImage = new javax.swing.JLabel();
@@ -43,7 +43,12 @@ public class Dashboard extends javax.swing.JPanel {
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/inventory-system-logo.png"))); // NOI18N
 
-        userIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/user.png"))); // NOI18N
+        logoutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/logout.png"))); // NOI18N
+        logoutButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutButtonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout navigationBarLayout = new javax.swing.GroupLayout(navigationBar);
         navigationBar.setLayout(navigationBarLayout);
@@ -55,14 +60,14 @@ public class Dashboard extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(navigationBarTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(userIcon)
+                .addComponent(logoutButton)
                 .addGap(28, 28, 28))
         );
         navigationBarLayout.setVerticalGroup(
             navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
             .addComponent(navigationBarTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(userIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         userManagement.setBackground(new java.awt.Color(255, 255, 255));
@@ -281,19 +286,26 @@ public class Dashboard extends javax.swing.JPanel {
         currentFrame.dispose();
     }//GEN-LAST:event_logisticsButtonActionPerformed
 
+    private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
+        Frame frame = new Frame();
+        frame.viewFrame("Client.LoginPage", "Inventory System");
+        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        currentFrame.dispose();
+    }//GEN-LAST:event_logoutButtonMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel logistics;
     private javax.swing.JButton logisticsButton;
     private javax.swing.JPanel logisticsIcon;
     private javax.swing.JLabel logisticsImage;
     private javax.swing.JLabel logo;
+    private javax.swing.JLabel logoutButton;
     private javax.swing.JPanel navigationBar;
     private javax.swing.JLabel navigationBarTitle;
     private javax.swing.JPanel salesInquiry;
     private javax.swing.JButton salesInquiryButton;
     private javax.swing.JPanel salesInquiryIcon;
     private javax.swing.JLabel salesInquiryImage;
-    private javax.swing.JLabel userIcon;
     private javax.swing.JPanel userManagement;
     private javax.swing.JButton userManagementButton;
     private javax.swing.JPanel userManagementIcon;

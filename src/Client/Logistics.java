@@ -90,7 +90,7 @@ public class Logistics extends javax.swing.JPanel {
 
         navigationBar = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
-        userIcon = new javax.swing.JLabel();
+        logoutButton = new javax.swing.JLabel();
         navigationBarTitle = new javax.swing.JLabel();
         homeIcon = new javax.swing.JLabel();
         logisticsForm = new javax.swing.JPanel();
@@ -124,7 +124,12 @@ public class Logistics extends javax.swing.JPanel {
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/inventory-system-logo.png"))); // NOI18N
 
-        userIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/user.png"))); // NOI18N
+        logoutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/logout.png"))); // NOI18N
+        logoutButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutButtonMouseClicked(evt);
+            }
+        });
 
         navigationBarTitle.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         navigationBarTitle.setForeground(new java.awt.Color(255, 255, 255));
@@ -149,13 +154,13 @@ public class Logistics extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(homeIcon)
                 .addGap(18, 18, 18)
-                .addComponent(userIcon)
+                .addComponent(logoutButton)
                 .addGap(28, 28, 28))
         );
         navigationBarLayout.setVerticalGroup(
             navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-            .addComponent(userIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(navigationBarTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, navigationBarLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -407,6 +412,7 @@ public class Logistics extends javax.swing.JPanel {
         currentFrame.dispose();
     }//GEN-LAST:event_homeIconMouseClicked
 
+<<<<<<< HEAD
     private void addButoonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButoonActionPerformed
         if(session.getUserType().equals("Admin")){
             JOptionPane.showMessageDialog(null, "You can't add Logistics", "Error", JOptionPane.ERROR_MESSAGE);
@@ -468,6 +474,14 @@ public class Logistics extends javax.swing.JPanel {
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
         clear();
     }//GEN-LAST:event_clearButtonActionPerformed
+=======
+    private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
+        Frame frame = new Frame();
+        frame.viewFrame("Client.LoginPage", "Inventory System");
+        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        currentFrame.dispose();
+    }//GEN-LAST:event_logoutButtonMouseClicked
+>>>>>>> dd0d4bf8a57a879ef419d60ead1000b382f927d8
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButoon;
@@ -484,6 +498,7 @@ public class Logistics extends javax.swing.JPanel {
     private javax.swing.JTable logisticsTable;
     private javax.swing.JScrollPane logisticsTableScrollPanel;
     private javax.swing.JLabel logo;
+    private javax.swing.JLabel logoutButton;
     private javax.swing.JTextField model;
     private javax.swing.JPanel navigationBar;
     private javax.swing.JLabel navigationBarTitle;
@@ -495,7 +510,6 @@ public class Logistics extends javax.swing.JPanel {
     private javax.swing.JTextField quantity;
     private javax.swing.JTextField supplier;
     private javax.swing.JButton updateButton;
-    private javax.swing.JLabel userIcon;
     private javax.swing.JTextField warranty;
     private javax.swing.JTextField warrantyCustomer;
     // End of variables declaration//GEN-END:variables

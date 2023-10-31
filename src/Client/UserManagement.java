@@ -14,15 +14,15 @@ public class UserManagement extends javax.swing.JPanel {
     Queries query = new Queries();
 
     public void getData(int id) {
-        
-        Server.Queries qry = new Server.Queries();
-        List<UserData> data = qry.getUserData(id,0,"");
-            DefaultTableModel model = (DefaultTableModel) userTable.getModel();
 
-            model.setRowCount(0);
-            
-            for (UserData item : data) {
-                model.addRow(new Object[] {
+        Server.Queries qry = new Server.Queries();
+        List<UserData> data = qry.getUserData(id, 0, "");
+        DefaultTableModel model = (DefaultTableModel) userTable.getModel();
+
+        model.setRowCount(0);
+
+        for (UserData item : data) {
+            model.addRow(new Object[]{
                 item.getUserId(),
                 item.getType(),
                 item.getUserName(),
@@ -32,7 +32,7 @@ public class UserManagement extends javax.swing.JPanel {
                 item.getMobile(),
                 item.getEmail()
             });
-    }
+        }
     }
 
     public void clear() {
@@ -66,7 +66,7 @@ public class UserManagement extends javax.swing.JPanel {
         navigationBar = new javax.swing.JPanel();
         navigationBarTitle = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
-        userIcon = new javax.swing.JLabel();
+        logoutButton = new javax.swing.JLabel();
         homeIcon = new javax.swing.JLabel();
         userForm = new javax.swing.JPanel();
         firstName = new javax.swing.JTextField();
@@ -98,7 +98,12 @@ public class UserManagement extends javax.swing.JPanel {
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/inventory-system-logo.png"))); // NOI18N
 
-        userIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/user.png"))); // NOI18N
+        logoutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/logout.png"))); // NOI18N
+        logoutButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutButtonMouseClicked(evt);
+            }
+        });
 
         homeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/home.png"))); // NOI18N
         homeIcon.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -119,14 +124,14 @@ public class UserManagement extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(homeIcon)
                 .addGap(18, 18, 18)
-                .addComponent(userIcon)
+                .addComponent(logoutButton)
                 .addGap(28, 28, 28))
         );
         navigationBarLayout.setVerticalGroup(
             navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(navigationBarTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(userIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, navigationBarLayout.createSequentialGroup()
                 .addGap(0, 3, Short.MAX_VALUE)
                 .addComponent(homeIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -359,25 +364,24 @@ public class UserManagement extends javax.swing.JPanel {
         userId.setText(model.getValueAt(selectedRows, 0).toString());
         int id = Integer.parseInt(userId.getText());
 
-       
-            Server.Queries qry = new Server.Queries();
-            List<UserData> data = qry.getUserData(id,0,"");
-            
-            UserData item = data.get(0);
-                String selectedItem = item.getType();
-                userType.setSelectedItem(selectedItem);
-                username.setText(item.getUserName());
-                lastName.setText(item.getLast());
-                firstName.setText(item.getFirst());
-                address.setText(item.getAddress());
-                mobileNumber.setText(item.getMobile());
-                emailAddress.setText(item.getEmail());
-                password.setText(item.getPass());
-                userId.setText(String.valueOf(item.getUserId()));
+        Server.Queries qry = new Server.Queries();
+        List<UserData> data = qry.getUserData(id, 0, "");
+
+        UserData item = data.get(0);
+        String selectedItem = item.getType();
+        userType.setSelectedItem(selectedItem);
+        username.setText(item.getUserName());
+        lastName.setText(item.getLast());
+        firstName.setText(item.getFirst());
+        address.setText(item.getAddress());
+        mobileNumber.setText(item.getMobile());
+        emailAddress.setText(item.getEmail());
+        password.setText(item.getPass());
+        userId.setText(String.valueOf(item.getUserId()));
     }//GEN-LAST:event_userTableMouseClicked
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-       int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to delete?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to delete?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (decision == JOptionPane.YES_OPTION) {
             int id = Integer.parseInt(userId.getText());
             query.deleteUser(id);
@@ -403,7 +407,7 @@ public class UserManagement extends javax.swing.JPanel {
     }//GEN-LAST:event_addButoonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-     String selectedItem = userType.getSelectedItem().toString();
+        String selectedItem = userType.getSelectedItem().toString();
         if (selectedItem.equals("User Type")) {
             JOptionPane.showMessageDialog(null, "Please select User Type.", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (address.getText().equals("") || emailAddress.getText().equals("") || lastName.getText().equals("") || firstName.getText().equals("") || mobileNumber.getText().equals("") || username.getText().equals("") || password.getText().equals("")) {
@@ -418,8 +422,15 @@ public class UserManagement extends javax.swing.JPanel {
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
-         clear();
+        clear();
     }//GEN-LAST:event_clearButtonActionPerformed
+
+    private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
+        Frame frame = new Frame();
+        frame.viewFrame("Client.LoginPage", "Inventory System");
+        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        currentFrame.dispose();
+    }//GEN-LAST:event_logoutButtonMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane UserTableScrollPanel;
@@ -432,13 +443,13 @@ public class UserManagement extends javax.swing.JPanel {
     private javax.swing.JLabel homeIcon;
     private javax.swing.JTextField lastName;
     private javax.swing.JLabel logo;
+    private javax.swing.JLabel logoutButton;
     private javax.swing.JTextField mobileNumber;
     private javax.swing.JPanel navigationBar;
     private javax.swing.JLabel navigationBarTitle;
     private javax.swing.JPasswordField password;
     private javax.swing.JButton updateButton;
     private javax.swing.JPanel userForm;
-    private javax.swing.JLabel userIcon;
     private javax.swing.JLabel userId;
     private javax.swing.JTable userTable;
     private javax.swing.JComboBox<String> userType;

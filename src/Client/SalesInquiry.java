@@ -16,49 +16,48 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 public class SalesInquiry extends javax.swing.JPanel {
-    
+
     Server.Queries qry = new Server.Queries();
-    
+
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    
+
     UserSession session = UserSession.getInstance();
-    
+
     int userID = session.getUserID();
-    
+
     public void getInquiry(int id) {
-    Server.Queries qry = new Server.Queries();
-    List<InquiryData> data = qry.getInquiryData(id,"user");
+        Server.Queries qry = new Server.Queries();
+        List<InquiryData> data = qry.getInquiryData(id, "user");
 
-    TableColumnModel columnModel = salesInquiryTable.getColumnModel();
-    TableColumn columnToHide = columnModel.getColumn(12);
+        TableColumnModel columnModel = salesInquiryTable.getColumnModel();
+        TableColumn columnToHide = columnModel.getColumn(12);
 
-    columnToHide.setMinWidth(0);
-    columnToHide.setMaxWidth(0);
-    columnToHide.setPreferredWidth(0);
+        columnToHide.setMinWidth(0);
+        columnToHide.setMaxWidth(0);
+        columnToHide.setPreferredWidth(0);
 
-    DefaultTableModel model = (DefaultTableModel) salesInquiryTable.getModel();
-    model.setRowCount(0);
-    for (InquiryData item : data) {
-        model.addRow(new Object[] {
-            item.getSalesId(),
-            item.getIDate(),
-            item.getIProject(),
-            item.getIQuantity(),
-            item.getIDescription(),
-            item.getISupplier(),
-            item.getISupplierPrice(),
-            item.getISrp(),
-            item.getIRemarks(),
-            item.getIDateAccomplished(),
-            item.getILastUpdate(),
-            item.getIDeadline(),
-            item.getUserID()
-        });
+        DefaultTableModel model = (DefaultTableModel) salesInquiryTable.getModel();
+        model.setRowCount(0);
+        for (InquiryData item : data) {
+            model.addRow(new Object[]{
+                item.getSalesId(),
+                item.getIDate(),
+                item.getIProject(),
+                item.getIQuantity(),
+                item.getIDescription(),
+                item.getISupplier(),
+                item.getISupplierPrice(),
+                item.getISrp(),
+                item.getIRemarks(),
+                item.getIDateAccomplished(),
+                item.getILastUpdate(),
+                item.getIDeadline(),
+                item.getUserID()
+            });
+        }
     }
-}
 
-    
-    public void clear(){
+    public void clear() {
         Quantity.setText("");
         date.setDate(null);
         dateAccomplished.setDate(null);
@@ -73,47 +72,48 @@ public class SalesInquiry extends javax.swing.JPanel {
         remarks.setText("");
         salesInquiryTable.getSelectionModel().clearSelection();
     }
-    public void textFieldStatus(boolean status){
+
+    public void textFieldStatus(boolean status) {
         dateAccomplished.setEnabled(status);
-            deadline.setEnabled(status);
-            srp.setEnabled(status);
-            supplier.setEnabled(status);
-            supplierPrice.setEnabled(status);
-            Quantity.setEnabled(status);
-            lastUpdate.setEnabled(status);
-            remarks.setEnabled(status);
-            clearButton.setEnabled(status);
-            date.setEnabled(status);
-            description.setEnabled(status);
-            project.setEnabled(status);
-        
+        deadline.setEnabled(status);
+        srp.setEnabled(status);
+        supplier.setEnabled(status);
+        supplierPrice.setEnabled(status);
+        Quantity.setEnabled(status);
+        lastUpdate.setEnabled(status);
+        remarks.setEnabled(status);
+        clearButton.setEnabled(status);
+        date.setEnabled(status);
+        description.setEnabled(status);
+        project.setEnabled(status);
+
     }
-    
+
     public SalesInquiry() {
         initComponents();
-        
+
         updateButton.setEnabled(false);
         deleteButton.setEnabled(false);
         salesId.setVisible(false);
         idOfUser.setVisible(false);
-        
-        if(!session.getUserType().equals("Admin")){
+
+        if (!session.getUserType().equals("Admin")) {
             homeIcon.setVisible(false);
         }
-       
-            if(session.getUserType().equals("Sales")){
+
+        if (session.getUserType().equals("Sales")) {
             salesUser.addItem("My Inquiry");
         }
-             Server.Queries qry = new Server.Queries();
-        List<UserData> data = qry.getUserData(0,userID,"Sales");
-            
-            for (UserData item : data) {
-               int id = item.getUserId();
-                String first = item.getFirst();
-                String last = item.getLast();
-                salesUser.addItem(id +" "+first + " " + last);  
-            }
-        
+        Server.Queries qry = new Server.Queries();
+        List<UserData> data = qry.getUserData(0, userID, "Sales");
+
+        for (UserData item : data) {
+            int id = item.getUserId();
+            String first = item.getFirst();
+            String last = item.getLast();
+            salesUser.addItem(id + " " + first + " " + last);
+        }
+
         getInquiry(userID);
     }
 
@@ -124,7 +124,7 @@ public class SalesInquiry extends javax.swing.JPanel {
         navigationBar = new javax.swing.JPanel();
         navigationBarTitle = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
-        userIcon = new javax.swing.JLabel();
+        logoutButton = new javax.swing.JLabel();
         homeIcon = new javax.swing.JLabel();
         salesInquiryForm = new javax.swing.JPanel();
         project = new javax.swing.JTextField();
@@ -161,7 +161,12 @@ public class SalesInquiry extends javax.swing.JPanel {
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/inventory-system-logo.png"))); // NOI18N
 
-        userIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/user.png"))); // NOI18N
+        logoutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/logout.png"))); // NOI18N
+        logoutButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutButtonMouseClicked(evt);
+            }
+        });
 
         homeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/home.png"))); // NOI18N
         homeIcon.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -182,14 +187,14 @@ public class SalesInquiry extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 763, Short.MAX_VALUE)
                 .addComponent(homeIcon)
                 .addGap(18, 18, 18)
-                .addComponent(userIcon)
+                .addComponent(logoutButton)
                 .addGap(28, 28, 28))
         );
         navigationBarLayout.setVerticalGroup(
             navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
             .addComponent(navigationBarTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(userIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, navigationBarLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(homeIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -451,8 +456,8 @@ public class SalesInquiry extends javax.swing.JPanel {
 
     private void salesUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salesUserActionPerformed
         String selectedItem = salesUser.getSelectedItem().toString();
-        if(selectedItem.equals("My Inquiry")){
-            getInquiry(userID); 
+        if (selectedItem.equals("My Inquiry")) {
+            getInquiry(userID);
             addButoon.setEnabled(true);
             clear();
             dateAccomplished.setEnabled(true);
@@ -467,74 +472,72 @@ public class SalesInquiry extends javax.swing.JPanel {
             date.setEnabled(true);
             description.setEnabled(true);
             project.setEnabled(true);
-        }else{
-               Pattern pattern = Pattern.compile("\\d+");
-        Matcher matcher = pattern.matcher(selectedItem);
-
-        if (matcher.find()) {
-            String integerString = matcher.group();
-            int intValue = Integer.parseInt(integerString);
-
-            getInquiry(intValue);
         } else {
-            // Handle the case where no integer was found in the selectedItem
+            Pattern pattern = Pattern.compile("\\d+");
+            Matcher matcher = pattern.matcher(selectedItem);
+
+            if (matcher.find()) {
+                String integerString = matcher.group();
+                int intValue = Integer.parseInt(integerString);
+
+                getInquiry(intValue);
+            } else {
+                // Handle the case where no integer was found in the selectedItem
+            }
         }
-        }
-     
+
     }//GEN-LAST:event_salesUserActionPerformed
 
     private void salesInquiryTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salesInquiryTableMouseClicked
-      DefaultTableModel model = (DefaultTableModel) salesInquiryTable.getModel();
+        DefaultTableModel model = (DefaultTableModel) salesInquiryTable.getModel();
         int selectedRows = salesInquiryTable.getSelectedRow();
 
         salesId.setText(model.getValueAt(selectedRows, 0).toString());
         int id = Integer.parseInt(salesId.getText());
-        
+
         addButoon.setEnabled(false);
-        
-       
-            Server.Queries qry = new Server.Queries();
-            List<InquiryData> data = qry.getInquiryData(id,"sale");
-            
-            InquiryData item = data.get(0);
-               int userid = item.getUserID();
-               double dSrp = item.getISrp();
-               int qnty = item.getIQuantity();
-               double sprice = item.getISupplierPrice();
-                date.setDate(item.getIDate());
-                dateAccomplished.setDate(item.getIDateAccomplished());
-                deadline.setDate(item.getIDeadline());
-                srp.setText(String.valueOf(dSrp));
-                supplier.setText(item.getISupplier());
-                supplierPrice.setText(String.valueOf(sprice));
-                Quantity.setText(String.valueOf(qnty));
-                lastUpdate.setDate(item.getILastUpdate());
-                description.setText(item.getIDescription());
-                project.setText(item.getIProject());
-                remarks.setText(item.getIRemarks());
-                idOfUser.setText(String.valueOf(userid));
-                
-                if(session.getUserType().equals("Admin")){
-                    updateButton.setEnabled(true);
-                    deleteButton.setEnabled(true);
-                }else{
-                    if(userID == userid){
-                        updateButton.setEnabled(true);
-                        dateAccomplished.setEnabled(false);
-                        deadline.setEnabled(false);
-                        srp.setEnabled(false);
-                        supplier.setEnabled(false);
-                        supplierPrice.setEnabled(false);
-                        lastUpdate.setEnabled(false);
-                        remarks.setEnabled(false);
-                        clearButton.setEnabled(false);
-                    }
-                    else{
-                       updateButton.setEnabled(false);
-                       clearButton.setEnabled(false);
-                       textFieldStatus(false);
-                    }
-                }
+
+        Server.Queries qry = new Server.Queries();
+        List<InquiryData> data = qry.getInquiryData(id, "sale");
+
+        InquiryData item = data.get(0);
+        int userid = item.getUserID();
+        double dSrp = item.getISrp();
+        int qnty = item.getIQuantity();
+        double sprice = item.getISupplierPrice();
+        date.setDate(item.getIDate());
+        dateAccomplished.setDate(item.getIDateAccomplished());
+        deadline.setDate(item.getIDeadline());
+        srp.setText(String.valueOf(dSrp));
+        supplier.setText(item.getISupplier());
+        supplierPrice.setText(String.valueOf(sprice));
+        Quantity.setText(String.valueOf(qnty));
+        lastUpdate.setDate(item.getILastUpdate());
+        description.setText(item.getIDescription());
+        project.setText(item.getIProject());
+        remarks.setText(item.getIRemarks());
+        idOfUser.setText(String.valueOf(userid));
+
+        if (session.getUserType().equals("Admin")) {
+            updateButton.setEnabled(true);
+            deleteButton.setEnabled(true);
+        } else {
+            if (userID == userid) {
+                updateButton.setEnabled(true);
+                dateAccomplished.setEnabled(false);
+                deadline.setEnabled(false);
+                srp.setEnabled(false);
+                supplier.setEnabled(false);
+                supplierPrice.setEnabled(false);
+                lastUpdate.setEnabled(false);
+                remarks.setEnabled(false);
+                clearButton.setEnabled(false);
+            } else {
+                updateButton.setEnabled(false);
+                clearButton.setEnabled(false);
+                textFieldStatus(false);
+            }
+        }
     }//GEN-LAST:event_salesInquiryTableMouseClicked
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
@@ -544,24 +547,24 @@ public class SalesInquiry extends javax.swing.JPanel {
             qry.deleteInquiry(id);
             JOptionPane.showMessageDialog(new JFrame(), "User Deleted", "Success", JOptionPane.INFORMATION_MESSAGE);
             int id1 = Integer.parseInt(idOfUser.getText());
-            getInquiry(id1);       
+            getInquiry(id1);
             clear();
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void addButoonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButoonActionPerformed
-       if(session.getUserType().equals("Admin")){
+        if (session.getUserType().equals("Admin")) {
             JOptionPane.showMessageDialog(null, "You can't add Sales Inquiry", "Error", JOptionPane.ERROR_MESSAGE);
-        }else{
-            if(date.getDate()==null || dateAccomplished.getDate()==null||deadline.getDate()==null||lastUpdate.getDate()==null||
-                Quantity.getText().equals("")||description.getText().equals("")||project.getText().equals("")||
-                remarks.getText().equals("")||srp.getText().equals("")||supplier.getText().equals("")||supplierPrice.getText().equals("")){
+        } else {
+            if (date.getDate() == null || dateAccomplished.getDate() == null || deadline.getDate() == null || lastUpdate.getDate() == null
+                    || Quantity.getText().equals("") || description.getText().equals("") || project.getText().equals("")
+                    || remarks.getText().equals("") || srp.getText().equals("") || supplier.getText().equals("") || supplierPrice.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Please fill out all field.", "Error", JOptionPane.ERROR_MESSAGE);
-            }else{
+            } else {
 
-                try{
+                try {
                     int quantityValue = Integer.parseInt(Quantity.getText());
-                    try{
+                    try {
                         double srpValue = Double.parseDouble(srp.getText());
                         double supplierpriceValue = Double.parseDouble(supplierPrice.getText());
 
@@ -571,27 +574,27 @@ public class SalesInquiry extends javax.swing.JPanel {
                         String flastUpdate = sdf.format(lastUpdate.getDate());
 
                         qry.addInquiry(fdate,
-                            project.getText(),
-                            quantityValue,
-                            description.getText(),
-                            supplier.getText(),
-                            supplierpriceValue,
-                            srpValue,
-                            remarks.getText(),
-                            fdateAccom,
-                            flastUpdate,
-                            fdeadline,
-                            userID);
+                                project.getText(),
+                                quantityValue,
+                                description.getText(),
+                                supplier.getText(),
+                                supplierpriceValue,
+                                srpValue,
+                                remarks.getText(),
+                                fdateAccom,
+                                flastUpdate,
+                                fdeadline,
+                                userID);
 
                         JOptionPane.showMessageDialog(new JFrame(), "Inquiry Added", "Success", JOptionPane.INFORMATION_MESSAGE);
-                            getInquiry(userID);
+                        getInquiry(userID);
                         clear();
 
-                    }catch(Exception error){
+                    } catch (Exception error) {
                         JOptionPane.showMessageDialog(null, "Prices must be a decimal or integer.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
 
-                }catch(Exception error){
+                } catch (Exception error) {
                     JOptionPane.showMessageDialog(null, "Quantity must be an integer.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
@@ -600,25 +603,25 @@ public class SalesInquiry extends javax.swing.JPanel {
     }//GEN-LAST:event_addButoonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-      if(date.getDate()==null || dateAccomplished.getDate()==null||deadline.getDate()==null||lastUpdate.getDate()==null||
-                Quantity.getText().equals("")||description.getText().equals("")||project.getText().equals("")||
-                remarks.getText().equals("")||srp.getText().equals("")||supplier.getText().equals("")||supplierPrice.getText().equals("")){
-                JOptionPane.showMessageDialog(null, "Please fill out all field.", "Error", JOptionPane.ERROR_MESSAGE);
-            }else{
+        if (date.getDate() == null || dateAccomplished.getDate() == null || deadline.getDate() == null || lastUpdate.getDate() == null
+                || Quantity.getText().equals("") || description.getText().equals("") || project.getText().equals("")
+                || remarks.getText().equals("") || srp.getText().equals("") || supplier.getText().equals("") || supplierPrice.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please fill out all field.", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
 
-                try{
-                    int quantityValue = Integer.parseInt(Quantity.getText());
-                    try{
-                        int id = Integer.parseInt(salesId.getText());
-                        double srpValue = Double.parseDouble(srp.getText());
-                        double supplierpriceValue = Double.parseDouble(supplierPrice.getText());
+            try {
+                int quantityValue = Integer.parseInt(Quantity.getText());
+                try {
+                    int id = Integer.parseInt(salesId.getText());
+                    double srpValue = Double.parseDouble(srp.getText());
+                    double supplierpriceValue = Double.parseDouble(supplierPrice.getText());
 
-                        String fdate = sdf.format(date.getDate());
-                        String fdateAccom = sdf.format(dateAccomplished.getDate());
-                        String fdeadline = sdf.format(deadline.getDate());
-                        String flastUpdate = sdf.format(lastUpdate.getDate());
+                    String fdate = sdf.format(date.getDate());
+                    String fdateAccom = sdf.format(dateAccomplished.getDate());
+                    String fdeadline = sdf.format(deadline.getDate());
+                    String flastUpdate = sdf.format(lastUpdate.getDate());
 
-                        qry.updateInquiry(
+                    qry.updateInquiry(
                             id,
                             fdate,
                             project.getText(),
@@ -631,27 +634,33 @@ public class SalesInquiry extends javax.swing.JPanel {
                             fdateAccom,
                             flastUpdate,
                             fdeadline);
-                        int id1 = Integer.parseInt(idOfUser.getText());
-                        JOptionPane.showMessageDialog(new JFrame(), "Inquiry updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
-                        getInquiry(id1);
-                        clear();
-                        textFieldStatus(true);
-                        
+                    int id1 = Integer.parseInt(idOfUser.getText());
+                    JOptionPane.showMessageDialog(new JFrame(), "Inquiry updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    getInquiry(id1);
+                    clear();
+                    textFieldStatus(true);
 
-                    }catch(Exception error){
-                        JOptionPane.showMessageDialog(null, "Prices must be a decimal or integer.", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-
-                }catch(Exception error){
-                    JOptionPane.showMessageDialog(null, "Quantity must be an integer.", "Error", JOptionPane.ERROR_MESSAGE);
+                } catch (Exception error) {
+                    JOptionPane.showMessageDialog(null, "Prices must be a decimal or integer.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
+            } catch (Exception error) {
+                JOptionPane.showMessageDialog(null, "Quantity must be an integer.", "Error", JOptionPane.ERROR_MESSAGE);
             }
+
+        }
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
-        clear();  
+        clear();
     }//GEN-LAST:event_clearButtonActionPerformed
+
+    private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
+        Frame frame = new Frame();
+        frame.viewFrame("Client.LoginPage", "Inventory System");
+        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        currentFrame.dispose();
+    }//GEN-LAST:event_logoutButtonMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Quantity;
@@ -666,6 +675,7 @@ public class SalesInquiry extends javax.swing.JPanel {
     private javax.swing.JLabel idOfUser;
     private com.toedter.calendar.JDateChooser lastUpdate;
     private javax.swing.JLabel logo;
+    private javax.swing.JLabel logoutButton;
     private javax.swing.JPanel navigationBar;
     private javax.swing.JLabel navigationBarTitle;
     private javax.swing.JTextField project;
@@ -679,6 +689,5 @@ public class SalesInquiry extends javax.swing.JPanel {
     private javax.swing.JTextField supplier;
     private javax.swing.JTextField supplierPrice;
     private javax.swing.JButton updateButton;
-    private javax.swing.JLabel userIcon;
     // End of variables declaration//GEN-END:variables
 }
