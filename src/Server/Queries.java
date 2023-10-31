@@ -275,7 +275,7 @@ public class Queries {
             String warrantyCustomer,
             int userId){
         try{
-            String query = "insert into logistic (product_name,product_type,product_price,date_received,date_release,eu_po_number,po_ref_number,brand,String product_description,model,supplier,quantity,customer,warranty,warranty_customer,user_id) " + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "insert into logistic (product_name,product_type,product_price,date_received,date_release,eu_po_number,po_ref_number,brand,product_description,model,supplier,quantity,customer,warranty,warranty_customer,user_id) " + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1,productName);
             statement.setString(2,pType);
@@ -321,19 +321,80 @@ public class Queries {
                     data.setEuPoNumber(result.getString(7));
                     data.setPoRefNumber(result.getString( 8));
                     data.setBrand(result.getString(9));
-                    data.setPDesc(result.getString(9));
-                    data.setModel(result.getString(10));
-                    data.setSupplier(result.getString(11));
-                    data.setQuantity(result.getInt(12));
-                    data.setCustomer(result.getString(13));
-                    data.setWarranty(result.getString(14));
-                    data.setWarrantyCustomer(result.getString(15));
-                    data.setUserId(result.getInt(16));
+                    data.setPDesc(result.getString(10));
+                    data.setModel(result.getString(11));
+                    data.setSupplier(result.getString(12));
+                    data.setQuantity(result.getInt(13));
+                    data.setCustomer(result.getString(14));
+                    data.setWarranty(result.getString(15));
+                    data.setWarrantyCustomer(result.getString(16));
+                    data.setUserId(result.getInt(17));
+                    
+                    logisticData.add(data);
            }
         }catch(Exception error){
             JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
         }
         
         return logisticData;
+    }
+    
+    public void updateLogistic(
+            int productId,
+            String productName,
+            String pType,
+            double pPrice,
+            String dateReceived,
+            String dateRelease,
+            String euPoNumber,
+            String poRefNumber,
+            String brand,
+            String pDesc,
+            String model,
+            String supplier,
+            int quantity,
+            String customer,
+            String warranty,
+            String warrantyCustomer
+    ){
+        try{
+            String query = "update logistic set product_name =?,product_type=?,product_price=?,date_received=?,date_release=?,eu_po_number=?,po_ref_number=?,brand=?,product_description=?,model=?,supplier=?,quantity=?,customer=?,warranty=?,warranty_customer=? where product_id = ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1,productName);
+            statement.setString(2,pType);
+            statement.setDouble(3,pPrice);
+            statement.setString(4,dateReceived);
+            statement.setString(5,dateRelease);
+            statement.setString(6,euPoNumber);
+            statement.setString(7,poRefNumber);
+            statement.setString(8,brand);
+            statement.setString(9,pDesc);
+            statement.setString(10,model);
+            statement.setString(11,supplier);
+            statement.setInt(12,quantity);
+            statement.setString(13,customer);
+            statement.setString(14,warranty);
+            statement.setString(15,warrantyCustomer);
+            statement.setInt(16,productId);
+            
+            statement.executeUpdate();
+            statement.close();
+            
+        }catch(Exception error){
+            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void deleteLogistic(int productId){
+        try{
+            String query = "delete from logistic where product_id = ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1, productId);
+            
+            statement.executeUpdate();
+            statement.close();
+        }catch(Exception error){
+            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE); 
+        }
     }
 }
