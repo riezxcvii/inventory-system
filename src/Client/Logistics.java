@@ -1,13 +1,75 @@
 package Client;
 
 import Server.Frame;
+import Server.LogisticData;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import Server.UserSession;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class Logistics extends javax.swing.JPanel {
     
-     UserSession session = UserSession.getInstance();
+    Server.Queries qry = new Server.Queries();
+    
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    
+    UserSession session = UserSession.getInstance();
+    int userID = session.getUserID();
+    String userType = session.getUserType();
+    
+    public void getLogistic(int id) {
+    Server.Queries qry = new Server.Queries();
+    List<LogisticData> data = qry.getLogisticData(id,"user");
+
+
+    DefaultTableModel model = (DefaultTableModel) logisticsTable.getModel();
+    model.setRowCount(0);
+    for (LogisticData item : data) {
+        model.addRow(new Object[] {
+           item.getProductId(),
+           item.getName(),
+           item.getType(),
+           item.getPrice(),
+           item.getDateReceived(),
+           item.getDateRelease(),
+           item.getEuPoNumber(),
+           item.getPoRefNumber(),
+           item.getBrand(),
+           item.getPDesc(),
+           item.getModel(),
+           item.getSupplier(),
+           item.getQuantity(),
+           item.getCustomer(),
+           item.getWarranty(),
+           item.getWarrantyCustomer()
+        });
+    }
+}
+    
+    public void clear(){
+    addButoon.setEnabled(true);
+    brand.setText("");
+    clearButton.setEnabled(true);
+    customer.setText("");
+    dateReceived.setDate(null);
+    dateRelease.setDate(null);
+    deleteButton.setEnabled(false);
+    eu_po.setText("");
+    model.setText("");
+    po_ref.setText("");
+    productDescription.setText("");
+    productName.setText("");
+    productPrice.setText("");
+    productType.setText("");
+    quantity.setText("");
+    supplier.setText("");
+    updateButton.setEnabled(false);
+    warranty.setText("");
+    warrantyCustomer.setText("");
+    }
 
     public Logistics() {
         initComponents();
@@ -15,6 +77,11 @@ public class Logistics extends javax.swing.JPanel {
          if(!session.getUserType().equals("Admin")){
             homeIcon.setVisible(false);
         }
+         
+         updateButton.setEnabled(false);
+         deleteButton.setEnabled(false);
+         
+         getLogistic(userID);
     }
 
     @SuppressWarnings("unchecked")
@@ -198,6 +265,11 @@ public class Logistics extends javax.swing.JPanel {
         addButoon.setText("ADD");
         addButoon.setBorder(null);
         addButoon.setFocusable(false);
+        addButoon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButoonActionPerformed(evt);
+            }
+        });
 
         deleteButton.setBackground(new java.awt.Color(51, 102, 153));
         deleteButton.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
@@ -222,6 +294,11 @@ public class Logistics extends javax.swing.JPanel {
         clearButton.setText("CLEAR");
         clearButton.setBorder(null);
         clearButton.setFocusable(false);
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearButtonActionPerformed(evt);
+            }
+        });
 
         logisticsTable.setBackground(new java.awt.Color(238, 238, 238));
         logisticsTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray));
@@ -329,6 +406,68 @@ public class Logistics extends javax.swing.JPanel {
         JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
         currentFrame.dispose();
     }//GEN-LAST:event_homeIconMouseClicked
+
+    private void addButoonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButoonActionPerformed
+        if(session.getUserType().equals("Admin")){
+            JOptionPane.showMessageDialog(null, "You can't add Logistics", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+            if(dateReceived.getDate()==null || dateRelease.getDate()==null||
+                brand.getText().equals("")||customer.getText().equals("")||
+                eu_po.getText().equals("")||
+                model.getText().equals("")||po_ref.getText().equals("")||
+                supplier.getText().equals("")||productDescription.getText().equals("")||
+                productName.getText().equals("")|| productPrice.getText().equals("") ||
+                productType.getText().equals("") ||  quantity.getText().equals("") ||
+                warranty.getText().equals("")||  warrantyCustomer.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Please fill out all field.", "Error", JOptionPane.ERROR_MESSAGE);
+            }else{
+
+                try{
+                    int quantityValue = Integer.parseInt(quantity.getText());
+                    try{
+                        double price= Double.parseDouble(productPrice.getText());
+
+                        String receive = sdf.format(dateReceived.getDate());
+                        String release = sdf.format(dateRelease.getDate());
+
+                        qry.addLogistic(
+                        productName.getText(),
+                        productType.getText(),
+                        price,
+                        receive,
+                        release,
+                        eu_po.getText(),
+                        po_ref.getText(),
+                        brand.getText(),
+                        productDescription.getText(),
+                        model.getText(),
+                        supplier.getText(),
+                        quantityValue,
+                        customer.getText(),
+                        warranty.getText(),
+                        warrantyCustomer.getText(),
+                        userID
+                        );
+
+                        JOptionPane.showMessageDialog(new JFrame(), "Logistic Added", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        getLogistic(userID);
+                        clear();
+
+                    }catch(Exception error){
+                        JOptionPane.showMessageDialog(null, "Prices must be a decimal or integer.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                }catch(Exception error){
+                    JOptionPane.showMessageDialog(null, "Quantity must be an integer.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+            }
+        }
+    }//GEN-LAST:event_addButoonActionPerformed
+
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
+        clear();
+    }//GEN-LAST:event_clearButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButoon;

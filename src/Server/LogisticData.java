@@ -32,7 +32,7 @@ public class LogisticData {
         return userId;
     }
     public void setUserId(int id){
-        this.productId = id;
+        this.userId = id;
     }
     public String getName(){
         return productName;

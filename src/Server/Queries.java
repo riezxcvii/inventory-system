@@ -275,7 +275,7 @@ public class Queries {
             String warrantyCustomer,
             int userId){
         try{
-            String query = "insert into logistic (product_name,product_type,product_price,date_received,date_release,eu_po_number,po_ref_number,brand,product_description,model,supplier,quantity,customer,warranty,warranty_customer,user_id) " + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "insert into logistic (product_name,product_type,product_price,date_received,date_release,eu_po_number,po_ref_number,brand,description,model,supplier,quantity,customer,warranty,warranty_customer,user_id) " + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1,productName);
             statement.setString(2,pType);
@@ -305,10 +305,14 @@ public class Queries {
         List<LogisticData> logisticData = new ArrayList<>();
         String query;
         try{
-           query = "select from logistic where user_id = ?";
+           if(userType.equals("user")){
+                query = "select * from logistic where user_id = ?";
+        }else{
+                query = "select * from logistic where product_id = ?";  
+        }
            PreparedStatement statement = con.prepareStatement(query);
            statement.setInt(1, id);
-           ResultSet result = statement.executeQuery();
+           ResultSet result = statement.executeQuery(); 
            
            while(result.next()){
                 LogisticData data = new LogisticData();
@@ -397,4 +401,6 @@ public class Queries {
             JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE); 
         }
     }
+    //end of logistics
+    //=====================================================================================================  
 }
