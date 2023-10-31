@@ -2,11 +2,14 @@ package Client;
 
 import Server.Frame;
 import Server.LogisticData;
+import Server.UserData;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import Server.UserSession;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -49,6 +52,25 @@ public class Logistics extends javax.swing.JPanel {
     }
 }
     
+    public void textFieldStatus(boolean status){
+                
+                dateReceived.setEnabled(status);
+                dateRelease.setEnabled(status);
+                brand.setEnabled(status);
+                customer.setEnabled(status);
+                eu_po.setEnabled(status);
+                po_ref.setEnabled(status);
+                productDescription.setEnabled(status);
+                productName.setEnabled(status);
+                productPrice.setEnabled(status);
+                productType.setEnabled(status);
+                quantity.setEnabled(status);
+                supplier.setEnabled(status);
+                warranty.setEnabled(status);
+                warrantyCustomer.setEnabled(status);
+                model1.setEnabled(status);
+    }
+    
     public void clear(){
     addButoon.setEnabled(true);
     brand.setText("");
@@ -58,7 +80,7 @@ public class Logistics extends javax.swing.JPanel {
     dateRelease.setDate(null);
     deleteButton.setEnabled(false);
     eu_po.setText("");
-    model.setText("");
+    model1.setText("");
     po_ref.setText("");
     productDescription.setText("");
     productName.setText("");
@@ -69,6 +91,7 @@ public class Logistics extends javax.swing.JPanel {
     updateButton.setEnabled(false);
     warranty.setText("");
     warrantyCustomer.setText("");
+    logisticsTable.getSelectionModel().clearSelection();
     }
 
     public Logistics() {
@@ -78,8 +101,23 @@ public class Logistics extends javax.swing.JPanel {
             homeIcon.setVisible(false);
         }
          
+         productId.setVisible(false);
+         idOfUser.setVisible(false);
          updateButton.setEnabled(false);
          deleteButton.setEnabled(false);
+         
+        if (session.getUserType().equals("Logistics")) {
+            logisticUser.addItem("My Data");
+        }
+        Server.Queries qry = new Server.Queries();
+        List<UserData> data = qry.getUserData(0, userID, "Logistics");
+
+        for (UserData item : data) {
+            int id = item.getUserId();
+            String first = item.getFirst();
+            String last = item.getLast();
+            logisticUser.addItem(id + " " + first + " " + last);
+        }
          
          getLogistic(userID);
     }
@@ -96,7 +134,7 @@ public class Logistics extends javax.swing.JPanel {
         logisticsForm = new javax.swing.JPanel();
         productName = new javax.swing.JTextField();
         productType = new javax.swing.JTextField();
-        model = new javax.swing.JTextField();
+        model1 = new javax.swing.JTextField();
         brand = new javax.swing.JTextField();
         productPrice = new javax.swing.JTextField();
         dateReceived = new com.toedter.calendar.JDateChooser();
@@ -109,6 +147,8 @@ public class Logistics extends javax.swing.JPanel {
         customer = new javax.swing.JTextField();
         warrantyCustomer = new javax.swing.JTextField();
         quantity = new javax.swing.JTextField();
+        productId = new javax.swing.JLabel();
+        idOfUser = new javax.swing.JLabel();
         addButoon = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
@@ -174,7 +214,7 @@ public class Logistics extends javax.swing.JPanel {
 
         productType.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Product Type", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
-        model.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Model", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
+        model1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Model", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
         brand.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Brand", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
@@ -201,6 +241,10 @@ public class Logistics extends javax.swing.JPanel {
         warrantyCustomer.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Warranty Customer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
         quantity.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Quantity", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
+
+        productId.setText("jLabel1");
+
+        idOfUser.setText("jLabel1");
 
         javax.swing.GroupLayout logisticsFormLayout = new javax.swing.GroupLayout(logisticsForm);
         logisticsForm.setLayout(logisticsFormLayout);
@@ -230,9 +274,15 @@ public class Logistics extends javax.swing.JPanel {
                 .addGap(27, 27, 27)
                 .addGroup(logisticsFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(dateRelease, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                    .addComponent(model, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(model1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(warrantyCustomer))
                 .addGap(30, 30, 30))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logisticsFormLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(productId)
+                .addGap(39, 39, 39)
+                .addComponent(idOfUser)
+                .addGap(161, 161, 161))
         );
         logisticsFormLayout.setVerticalGroup(
             logisticsFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,7 +302,7 @@ public class Logistics extends javax.swing.JPanel {
                     .addComponent(po_ref, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(brand, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(productDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(model, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(model1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(logisticsFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(supplier, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -260,7 +310,11 @@ public class Logistics extends javax.swing.JPanel {
                     .addComponent(customer, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(warranty, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(warrantyCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(logisticsFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(productId)
+                    .addComponent(idOfUser))
+                .addContainerGap())
         );
 
         addButoon.setBackground(new java.awt.Color(51, 102, 153));
@@ -283,6 +337,11 @@ public class Logistics extends javax.swing.JPanel {
         deleteButton.setText("DELETE");
         deleteButton.setBorder(null);
         deleteButton.setFocusable(false);
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
 
         updateButton.setBackground(new java.awt.Color(51, 102, 153));
         updateButton.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
@@ -291,6 +350,11 @@ public class Logistics extends javax.swing.JPanel {
         updateButton.setText("UPDATE");
         updateButton.setBorder(null);
         updateButton.setFocusable(false);
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButtonActionPerformed(evt);
+            }
+        });
 
         clearButton.setBackground(new java.awt.Color(51, 102, 153));
         clearButton.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
@@ -324,6 +388,11 @@ public class Logistics extends javax.swing.JPanel {
             }
         });
         logisticsTable.getTableHeader().setReorderingAllowed(false);
+        logisticsTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logisticsTableMouseClicked(evt);
+            }
+        });
         logisticsTableScrollPanel.setViewportView(logisticsTable);
         if (logisticsTable.getColumnModel().getColumnCount() > 0) {
             logisticsTable.getColumnModel().getColumn(0).setResizable(false);
@@ -355,8 +424,13 @@ public class Logistics extends javax.swing.JPanel {
             logisticsTable.getColumnModel().getColumn(15).setPreferredWidth(90);
         }
 
-        logisticUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Logistic User", "Logistics 1" }));
+        logisticUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Logistic User" }));
         logisticUser.setBorder(null);
+        logisticUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logisticUserActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -412,7 +486,7 @@ public class Logistics extends javax.swing.JPanel {
         currentFrame.dispose();
     }//GEN-LAST:event_homeIconMouseClicked
 
-<<<<<<< HEAD
+
     private void addButoonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButoonActionPerformed
         if(session.getUserType().equals("Admin")){
             JOptionPane.showMessageDialog(null, "You can't add Logistics", "Error", JOptionPane.ERROR_MESSAGE);
@@ -420,7 +494,7 @@ public class Logistics extends javax.swing.JPanel {
             if(dateReceived.getDate()==null || dateRelease.getDate()==null||
                 brand.getText().equals("")||customer.getText().equals("")||
                 eu_po.getText().equals("")||
-                model.getText().equals("")||po_ref.getText().equals("")||
+                model1.getText().equals("")||po_ref.getText().equals("")||
                 supplier.getText().equals("")||productDescription.getText().equals("")||
                 productName.getText().equals("")|| productPrice.getText().equals("") ||
                 productType.getText().equals("") ||  quantity.getText().equals("") ||
@@ -446,7 +520,7 @@ public class Logistics extends javax.swing.JPanel {
                         po_ref.getText(),
                         brand.getText(),
                         productDescription.getText(),
-                        model.getText(),
+                        model1.getText(),
                         supplier.getText(),
                         quantityValue,
                         customer.getText(),
@@ -474,14 +548,157 @@ public class Logistics extends javax.swing.JPanel {
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
         clear();
     }//GEN-LAST:event_clearButtonActionPerformed
-=======
+
     private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
         Frame frame = new Frame();
         frame.viewFrame("Client.LoginPage", "Inventory System");
         JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
         currentFrame.dispose();
     }//GEN-LAST:event_logoutButtonMouseClicked
->>>>>>> dd0d4bf8a57a879ef419d60ead1000b382f927d8
+
+    private void logisticUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logisticUserActionPerformed
+         String selectedItem = logisticUser.getSelectedItem().toString();
+        if (selectedItem.equals("My Data")) {
+            getLogistic(userID);
+            addButoon.setEnabled(true);
+            textFieldStatus(true);
+            clear();
+        } else {
+            Pattern pattern = Pattern.compile("\\d+");
+            Matcher matcher = pattern.matcher(selectedItem);
+
+            if (matcher.find()) {
+                String integerString = matcher.group();
+                int intValue = Integer.parseInt(integerString);
+
+                getLogistic(intValue);
+            } else {
+                // Handle the case where no integer was found in the selectedItem
+            }
+        }
+    }//GEN-LAST:event_logisticUserActionPerformed
+
+    private void logisticsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logisticsTableMouseClicked
+      DefaultTableModel model = (DefaultTableModel) logisticsTable.getModel();
+        int selectedRows = logisticsTable.getSelectedRow();
+
+        productId.setText(model.getValueAt(selectedRows, 0).toString());
+        int id = Integer.parseInt(productId.getText());
+
+        addButoon.setEnabled(false);
+
+        Server.Queries qry = new Server.Queries();
+        List<LogisticData> data = qry.getLogisticData(id, "logistic");
+
+        LogisticData item = data.get(0);
+        int userid = item.getUserId();
+        double price = item.getPrice();
+        int qnty = item.getQuantity();
+        dateReceived.setDate(item.getDateReceived());
+        dateRelease.setDate(item.getDateRelease());
+        brand.setText(item.getBrand());
+        customer.setText(item.getCustomer());
+        eu_po.setText(item.getEuPoNumber());
+        po_ref.setText(item.getPoRefNumber());
+        model1.setText(item.getModel());
+        productDescription.setText(item.getPDesc());
+        productName.setText(item.getName());
+        productPrice.setText(String.valueOf(price));
+        productType.setText(item.getType());
+        quantity.setText(String.valueOf(qnty));
+        supplier.setText(item.getSupplier());
+        warranty.setText(item.getWarranty());
+        warrantyCustomer.setText(item.getWarrantyCustomer());
+        idOfUser.setText(String.valueOf(userid));
+
+        if (session.getUserType().equals("Admin")) {
+            updateButton.setEnabled(true);
+            deleteButton.setEnabled(true);
+        } else {
+            if (userID == userid) {
+                updateButton.setEnabled(true);
+                clearButton.setEnabled(false);
+            } else {
+                updateButton.setEnabled(false);
+                clearButton.setEnabled(false);
+               textFieldStatus(false);
+            }
+        }
+    }//GEN-LAST:event_logisticsTableMouseClicked
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+      int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to delete?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (decision == JOptionPane.YES_OPTION) {
+            int id = Integer.parseInt(productId.getText());
+            qry.deleteLogistic(id);
+            JOptionPane.showMessageDialog(new JFrame(), "Logistic Deleted", "Success", JOptionPane.INFORMATION_MESSAGE);
+            int id1 = Integer.parseInt(idOfUser.getText());
+            getLogistic(id1);
+            clear();
+        }
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+     if(dateReceived.getDate()==null || dateRelease.getDate()==null||
+                brand.getText().equals("")||customer.getText().equals("")||
+                eu_po.getText().equals("")||
+                model1.getText().equals("")||po_ref.getText().equals("")||
+                supplier.getText().equals("")||productDescription.getText().equals("")||
+                productName.getText().equals("")|| productPrice.getText().equals("") ||
+                productType.getText().equals("") ||  quantity.getText().equals("") ||
+                warranty.getText().equals("")||  warrantyCustomer.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Please fill out all field.", "Error", JOptionPane.ERROR_MESSAGE);
+            }else{
+
+                try{
+                    int quantityValue = Integer.parseInt(quantity.getText());
+                    try{
+                        double price= Double.parseDouble(productPrice.getText());
+
+                        String receive = sdf.format(dateReceived.getDate());
+                        String release = sdf.format(dateRelease.getDate());
+                        int id = Integer.parseInt( productId.getText());
+
+                        qry.updateLogistic(
+                        id,
+                        productName.getText(),
+                        productType.getText(),
+                        price,
+                        receive,
+                        release,
+                        eu_po.getText(),
+                        po_ref.getText(),
+                        brand.getText(),
+                        productDescription.getText(),
+                        model1.getText(),
+                        supplier.getText(),
+                        quantityValue,
+                        customer.getText(),
+                        warranty.getText(),
+                        warrantyCustomer.getText()
+                        );
+
+                        JOptionPane.showMessageDialog(new JFrame(), "Logistic Updated", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        int id1 = Integer.parseInt(idOfUser.getText());
+                        if(userType.equals("Admin")){
+                             getLogistic(id1);
+                        }else{
+                             getLogistic(userID);
+                        }
+                       
+                        clear();
+
+                    }catch(Exception error){
+                        JOptionPane.showMessageDialog(null, "Prices must be a decimal or integer.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                }catch(Exception error){
+                    JOptionPane.showMessageDialog(null, "Quantity must be an integer.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+            }
+    }//GEN-LAST:event_updateButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButoon;
@@ -493,17 +710,19 @@ public class Logistics extends javax.swing.JPanel {
     private javax.swing.JButton deleteButton;
     private javax.swing.JTextField eu_po;
     private javax.swing.JLabel homeIcon;
+    private javax.swing.JLabel idOfUser;
     private javax.swing.JComboBox<String> logisticUser;
     private javax.swing.JPanel logisticsForm;
     private javax.swing.JTable logisticsTable;
     private javax.swing.JScrollPane logisticsTableScrollPanel;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel logoutButton;
-    private javax.swing.JTextField model;
+    private javax.swing.JTextField model1;
     private javax.swing.JPanel navigationBar;
     private javax.swing.JLabel navigationBarTitle;
     private javax.swing.JTextField po_ref;
     private javax.swing.JTextField productDescription;
+    private javax.swing.JLabel productId;
     private javax.swing.JTextField productName;
     private javax.swing.JTextField productPrice;
     private javax.swing.JTextField productType;

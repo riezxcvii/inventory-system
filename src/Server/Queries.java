@@ -362,7 +362,7 @@ public class Queries {
             String warrantyCustomer
     ){
         try{
-            String query = "update logistic set product_name =?,product_type=?,product_price=?,date_received=?,date_release=?,eu_po_number=?,po_ref_number=?,brand=?,product_description=?,model=?,supplier=?,quantity=?,customer=?,warranty=?,warranty_customer=? where product_id = ?";
+            String query = "update logistic set product_name =?,product_type=?,product_price=?,date_received=?,date_release=?,eu_po_number=?,po_ref_number=?,brand=?,description=?,model=?,supplier=?,quantity=?,customer=?,warranty=?,warranty_customer=? where product_id = ?";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1,productName);
             statement.setString(2,pType);
