@@ -22,7 +22,6 @@ public class SalesInquiry extends javax.swing.JPanel {
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     UserSession session = UserSession.getInstance();
-
     int userID = session.getUserID();
 
     public void getInquiry(int id) {
@@ -104,6 +103,7 @@ public class SalesInquiry extends javax.swing.JPanel {
         if (session.getUserType().equals("Sales")) {
             salesUser.addItem("My Inquiry");
         }
+        
         Server.Queries qry = new Server.Queries();
         List<UserData> data = qry.getUserData(0, userID, "Sales");
 
@@ -203,7 +203,7 @@ public class SalesInquiry extends javax.swing.JPanel {
         salesInquiryForm.setBackground(new java.awt.Color(255, 255, 255));
         salesInquiryForm.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray), null));
 
-        project.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Project", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
+        project.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Project / End User", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
         Quantity.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Quantity", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
@@ -254,13 +254,13 @@ public class SalesInquiry extends javax.swing.JPanel {
                     .addComponent(srp)
                     .addComponent(deadline, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
                 .addGap(28, 28, 28)
-                .addGroup(salesInquiryFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(salesInquiryFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(salesInquiryFormLayout.createSequentialGroup()
                         .addComponent(salesId)
                         .addGap(18, 18, 18)
                         .addComponent(idOfUser))
-                    .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(remarks, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(description, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addComponent(remarks))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         salesInquiryFormLayout.setVerticalGroup(
@@ -283,9 +283,9 @@ public class SalesInquiry extends javax.swing.JPanel {
                     .addGroup(salesInquiryFormLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(salesInquiryFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(dateAccomplished, javax.swing.GroupLayout.PREFERRED_SIZE, 51, Short.MAX_VALUE)
-                            .addComponent(lastUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 51, Short.MAX_VALUE)
-                            .addComponent(deadline, javax.swing.GroupLayout.PREFERRED_SIZE, 51, Short.MAX_VALUE))
+                            .addComponent(dateAccomplished, javax.swing.GroupLayout.PREFERRED_SIZE, 45, Short.MAX_VALUE)
+                            .addComponent(lastUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, Short.MAX_VALUE)
+                            .addComponent(deadline, javax.swing.GroupLayout.PREFERRED_SIZE, 45, Short.MAX_VALUE))
                         .addGap(30, 30, 30))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, salesInquiryFormLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -431,16 +431,16 @@ public class SalesInquiry extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(salesUser, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(salesInquiryTableScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(salesInquiryTableScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
+                        .addGap(27, 27, 27)
                         .addComponent(addButoon, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
+                        .addGap(27, 27, 27)
                         .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
+                        .addGap(27, 27, 27)
                         .addComponent(clearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(salesInquiryForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
@@ -456,6 +456,7 @@ public class SalesInquiry extends javax.swing.JPanel {
 
     private void salesUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salesUserActionPerformed
         String selectedItem = salesUser.getSelectedItem().toString();
+        
         if (selectedItem.equals("My Inquiry")) {
             getInquiry(userID);
             addButoon.setEnabled(true);
@@ -542,10 +543,11 @@ public class SalesInquiry extends javax.swing.JPanel {
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to delete?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        
         if (decision == JOptionPane.YES_OPTION) {
             int id = Integer.parseInt(salesId.getText());
             qry.deleteInquiry(id);
-            JOptionPane.showMessageDialog(new JFrame(), "User Deleted", "Success", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(new JFrame(), "Sales inquiry deleted.", "Success", JOptionPane.INFORMATION_MESSAGE);
             int id1 = Integer.parseInt(idOfUser.getText());
             getInquiry(id1);
             clear();
@@ -554,16 +556,17 @@ public class SalesInquiry extends javax.swing.JPanel {
 
     private void addButoonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButoonActionPerformed
         if (session.getUserType().equals("Admin")) {
-            JOptionPane.showMessageDialog(null, "You can't add Sales Inquiry", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "You can't add a sales inquiry.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             if (date.getDate() == null || dateAccomplished.getDate() == null || deadline.getDate() == null || lastUpdate.getDate() == null
                     || Quantity.getText().equals("") || description.getText().equals("") || project.getText().equals("")
                     || remarks.getText().equals("") || srp.getText().equals("") || supplier.getText().equals("") || supplierPrice.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Please fill out all field.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please fill out all the fields.", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
 
                 try {
                     int quantityValue = Integer.parseInt(Quantity.getText());
+                    
                     try {
                         double srpValue = Double.parseDouble(srp.getText());
                         double supplierpriceValue = Double.parseDouble(supplierPrice.getText());
@@ -586,16 +589,16 @@ public class SalesInquiry extends javax.swing.JPanel {
                                 fdeadline,
                                 userID);
 
-                        JOptionPane.showMessageDialog(new JFrame(), "Inquiry Added", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(new JFrame(), "Inquiry added.", "Success", JOptionPane.INFORMATION_MESSAGE);
                         getInquiry(userID);
                         clear();
 
                     } catch (Exception error) {
-                        JOptionPane.showMessageDialog(null, "Prices must be a decimal or integer.", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Prices must be a decimal or an integer.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
 
                 } catch (Exception error) {
-                    JOptionPane.showMessageDialog(null, "Quantity must be an integer.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "The quantity must be an integer.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
             }
@@ -606,7 +609,7 @@ public class SalesInquiry extends javax.swing.JPanel {
         if (date.getDate() == null || dateAccomplished.getDate() == null || deadline.getDate() == null || lastUpdate.getDate() == null
                 || Quantity.getText().equals("") || description.getText().equals("") || project.getText().equals("")
                 || remarks.getText().equals("") || srp.getText().equals("") || supplier.getText().equals("") || supplierPrice.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Please fill out all field.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please fill out all the fields.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
 
             try {
@@ -635,17 +638,17 @@ public class SalesInquiry extends javax.swing.JPanel {
                             flastUpdate,
                             fdeadline);
                     int id1 = Integer.parseInt(idOfUser.getText());
-                    JOptionPane.showMessageDialog(new JFrame(), "Inquiry updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(new JFrame(), "Sales inquiry updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
                     getInquiry(id1);
                     clear();
                     textFieldStatus(true);
 
                 } catch (Exception error) {
-                    JOptionPane.showMessageDialog(null, "Prices must be a decimal or integer.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Prices must be a decimal or an integer.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
             } catch (Exception error) {
-                JOptionPane.showMessageDialog(null, "Quantity must be an integer.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "The quantity must be an integer.", "Error", JOptionPane.ERROR_MESSAGE);
             }
 
         }
