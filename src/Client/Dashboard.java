@@ -76,7 +76,7 @@ public class Dashboard extends javax.swing.JPanel {
 
         userManagementIcon.setBackground(new java.awt.Color(51, 102, 153));
 
-        userManagementImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Dashboard/add-user.png"))); // NOI18N
+        userManagementImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Dashboard/user-management.png"))); // NOI18N
 
         javax.swing.GroupLayout userManagementIconLayout = new javax.swing.GroupLayout(userManagementIcon);
         userManagementIcon.setLayout(userManagementIconLayout);

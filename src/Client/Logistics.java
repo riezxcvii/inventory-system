@@ -98,6 +98,8 @@ public class Logistics extends javax.swing.JPanel {
         
         if(!session.getUserType().equals("Admin")){
            homeIcon.setVisible(false);
+           salesInquiryIcon.setVisible(false);
+           userManagementIcon.setVisible(false);
         }
          
         productId.setVisible(false);
@@ -131,6 +133,8 @@ public class Logistics extends javax.swing.JPanel {
         logoutButton = new javax.swing.JLabel();
         navigationBarTitle = new javax.swing.JLabel();
         homeIcon = new javax.swing.JLabel();
+        userManagementIcon = new javax.swing.JLabel();
+        salesInquiryIcon = new javax.swing.JLabel();
         logisticsForm = new javax.swing.JPanel();
         productName = new javax.swing.JTextField();
         productType = new javax.swing.JTextField();
@@ -183,6 +187,20 @@ public class Logistics extends javax.swing.JPanel {
             }
         });
 
+        userManagementIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/user-management.png"))); // NOI18N
+        userManagementIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                userManagementIconMouseClicked(evt);
+            }
+        });
+
+        salesInquiryIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/sales-inquiry.png"))); // NOI18N
+        salesInquiryIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                salesInquiryIconMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout navigationBarLayout = new javax.swing.GroupLayout(navigationBar);
         navigationBar.setLayout(navigationBarLayout);
         navigationBarLayout.setHorizontalGroup(
@@ -192,7 +210,11 @@ public class Logistics extends javax.swing.JPanel {
                 .addComponent(logo)
                 .addGap(20, 20, 20)
                 .addComponent(navigationBarTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 729, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 619, Short.MAX_VALUE)
+                .addComponent(userManagementIcon)
+                .addGap(20, 20, 20)
+                .addComponent(salesInquiryIcon)
+                .addGap(20, 20, 20)
                 .addComponent(homeIcon)
                 .addGap(20, 20, 20)
                 .addComponent(logoutButton)
@@ -205,7 +227,10 @@ public class Logistics extends javax.swing.JPanel {
             .addComponent(navigationBarTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, navigationBarLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(homeIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(salesInquiryIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(homeIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+                    .addComponent(userManagementIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         logisticsForm.setBackground(new java.awt.Color(255, 255, 255));
@@ -454,7 +479,7 @@ public class Logistics extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(logisticUser, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(30, 30, 30))
+                .addGap(31, 31, 31))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(navigationBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -704,6 +729,20 @@ public class Logistics extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_updateButtonActionPerformed
 
+    private void userManagementIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userManagementIconMouseClicked
+        Frame frame = new Frame();
+        frame.viewFrame("Client.UserManagement", "Inventory System");
+        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        currentFrame.dispose();
+    }//GEN-LAST:event_userManagementIconMouseClicked
+
+    private void salesInquiryIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salesInquiryIconMouseClicked
+        Frame frame = new Frame();
+        frame.viewFrame("Client.SalesInquiry", "Inventory System");
+        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        currentFrame.dispose();
+    }//GEN-LAST:event_salesInquiryIconMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButoon;
     private javax.swing.JTextField brand;
@@ -731,8 +770,10 @@ public class Logistics extends javax.swing.JPanel {
     private javax.swing.JTextField productPrice;
     private javax.swing.JTextField productType;
     private javax.swing.JTextField quantity;
+    private javax.swing.JLabel salesInquiryIcon;
     private javax.swing.JTextField supplier;
     private javax.swing.JButton updateButton;
+    private javax.swing.JLabel userManagementIcon;
     private javax.swing.JTextField warranty;
     private javax.swing.JTextField warrantyCustomer;
     // End of variables declaration//GEN-END:variables

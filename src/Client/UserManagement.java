@@ -68,6 +68,8 @@ public class UserManagement extends javax.swing.JPanel {
         logo = new javax.swing.JLabel();
         logoutButton = new javax.swing.JLabel();
         homeIcon = new javax.swing.JLabel();
+        logisticIcon = new javax.swing.JLabel();
+        salesInquiryIcon = new javax.swing.JLabel();
         userForm = new javax.swing.JPanel();
         firstName = new javax.swing.JTextField();
         userType = new javax.swing.JComboBox<>();
@@ -112,6 +114,20 @@ public class UserManagement extends javax.swing.JPanel {
             }
         });
 
+        logisticIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/logistics.png"))); // NOI18N
+        logisticIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logisticIconMouseClicked(evt);
+            }
+        });
+
+        salesInquiryIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/sales-inquiry.png"))); // NOI18N
+        salesInquiryIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                salesInquiryIconMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout navigationBarLayout = new javax.swing.GroupLayout(navigationBar);
         navigationBar.setLayout(navigationBarLayout);
         navigationBarLayout.setHorizontalGroup(
@@ -122,19 +138,26 @@ public class UserManagement extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(navigationBarTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(salesInquiryIcon)
+                .addGap(20, 20, 20)
+                .addComponent(logisticIcon)
+                .addGap(20, 20, 20)
                 .addComponent(homeIcon)
                 .addGap(20, 20, 20)
                 .addComponent(logoutButton)
-                .addGap(10, 10, 10))
+                .addGap(20, 20, 20))
         );
         navigationBarLayout.setVerticalGroup(
             navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(navigationBarTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, navigationBarLayout.createSequentialGroup()
                 .addGap(0, 3, Short.MAX_VALUE)
-                .addComponent(homeIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(salesInquiryIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(logisticIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(homeIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)))
+            .addComponent(navigationBarTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         userForm.setBackground(new java.awt.Color(255, 255, 255));
@@ -306,7 +329,7 @@ public class UserManagement extends javax.swing.JPanel {
                     .addComponent(userId)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(userForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(addButoon, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -337,13 +360,6 @@ public class UserManagement extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void homeIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeIconMouseClicked
-        Frame frame = new Frame();
-        frame.viewFrame("Client.Dashboard", "Inventory System");
-        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        currentFrame.dispose();
-    }//GEN-LAST:event_homeIconMouseClicked
-
     private void userTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTableMouseClicked
         deleteButton.setEnabled(true);
         updateButton.setEnabled(true);
@@ -372,7 +388,7 @@ public class UserManagement extends javax.swing.JPanel {
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to delete?", "Confirmation", JOptionPane.YES_NO_OPTION);
-        
+
         if (decision == JOptionPane.YES_OPTION) {
             int id = Integer.parseInt(userId.getText());
             query.deleteUser(id);
@@ -384,7 +400,7 @@ public class UserManagement extends javax.swing.JPanel {
 
     private void addButoonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButoonActionPerformed
         String selectedItem = userType.getSelectedItem().toString();
-        
+
         if (selectedItem.equals("User Type")) {
             JOptionPane.showMessageDialog(null, "Please select user type.", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (address.getText().equals("") || emailAddress.getText().equals("") || lastName.getText().equals("") || firstName.getText().equals("") || mobileNumber.getText().equals("") || username.getText().equals("") || password.getText().equals("")) {
@@ -399,7 +415,7 @@ public class UserManagement extends javax.swing.JPanel {
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
         String selectedItem = userType.getSelectedItem().toString();
-        
+
         if (selectedItem.equals("User Type")) {
             JOptionPane.showMessageDialog(null, "Please select user type.", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (address.getText().equals("") || emailAddress.getText().equals("") || lastName.getText().equals("") || firstName.getText().equals("") || mobileNumber.getText().equals("") || username.getText().equals("") || password.getText().equals("")) {
@@ -424,6 +440,27 @@ public class UserManagement extends javax.swing.JPanel {
         currentFrame.dispose();
     }//GEN-LAST:event_logoutButtonMouseClicked
 
+    private void salesInquiryIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salesInquiryIconMouseClicked
+        Frame frame = new Frame();
+        frame.viewFrame("Client.SalesInquiry", "Inventory System");
+        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        currentFrame.dispose();
+    }//GEN-LAST:event_salesInquiryIconMouseClicked
+
+    private void logisticIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logisticIconMouseClicked
+        Frame frame = new Frame();
+        frame.viewFrame("Client.Logistics", "Inventory System");
+        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        currentFrame.dispose();
+    }//GEN-LAST:event_logisticIconMouseClicked
+
+    private void homeIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeIconMouseClicked
+        Frame frame = new Frame();
+        frame.viewFrame("Client.Dashboard", "Inventory System");
+        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        currentFrame.dispose();
+    }//GEN-LAST:event_homeIconMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane UserTableScrollPanel;
     private javax.swing.JButton addButoon;
@@ -434,12 +471,14 @@ public class UserManagement extends javax.swing.JPanel {
     private javax.swing.JTextField firstName;
     private javax.swing.JLabel homeIcon;
     private javax.swing.JTextField lastName;
+    private javax.swing.JLabel logisticIcon;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel logoutButton;
     private javax.swing.JTextField mobileNumber;
     private javax.swing.JPanel navigationBar;
     private javax.swing.JLabel navigationBarTitle;
     private javax.swing.JPasswordField password;
+    private javax.swing.JLabel salesInquiryIcon;
     private javax.swing.JButton updateButton;
     private javax.swing.JPanel userForm;
     private javax.swing.JLabel userId;
