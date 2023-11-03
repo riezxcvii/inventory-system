@@ -33,20 +33,25 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="salesInquiryTableScrollPanel" max="32767" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="salesInquiryForm" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="20" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="clearButton" alignment="1" min="-2" pref="95" max="-2" attributes="0"/>
-                              <Component id="updateButton" alignment="1" min="-2" pref="95" max="-2" attributes="0"/>
-                              <Component id="addButoon" alignment="1" min="-2" pref="95" max="-2" attributes="0"/>
-                              <Component id="deleteButton" alignment="1" min="-2" pref="95" max="-2" attributes="0"/>
-                          </Group>
+                  <Component id="salesInquiryTableScrollPanel" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="salesInquiryForm" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="20" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="clearButton" alignment="1" min="-2" pref="95" max="-2" attributes="0"/>
+                          <Component id="updateButton" alignment="1" min="-2" pref="95" max="-2" attributes="0"/>
+                          <Component id="addButoon" alignment="1" min="-2" pref="95" max="-2" attributes="0"/>
+                          <Component id="deleteButton" alignment="1" min="-2" pref="95" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="salesUser" min="-2" pref="240" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="salesUser" min="-2" pref="200" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="searchBox" min="-2" pref="200" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                      <Component id="searchButton" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
@@ -58,7 +63,11 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="navigationBar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Component id="salesUser" min="-2" pref="32" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="salesUser" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="searchBox" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="searchButton" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Component id="salesInquiryTableScrollPanel" min="-2" pref="214" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
@@ -694,6 +703,24 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JTextField" name="searchBox">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder roundedCorners="true">
+              <Color PropertyName="color" blue="99" green="66" red="33" type="rgb"/>
+            </LineBorder>
+          </Border>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="searchButton">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Image/Search Bar/search.png"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

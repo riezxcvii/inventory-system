@@ -153,13 +153,15 @@ public class Logistics extends javax.swing.JPanel {
         quantity = new javax.swing.JTextField();
         productId = new javax.swing.JLabel();
         idOfUser = new javax.swing.JLabel();
+        logisticsTableScrollPanel = new javax.swing.JScrollPane();
+        logisticsTable = new javax.swing.JTable();
         addButoon = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
         clearButton = new javax.swing.JButton();
-        logisticsTableScrollPanel = new javax.swing.JScrollPane();
-        logisticsTable = new javax.swing.JTable();
         logisticUser = new javax.swing.JComboBox<>();
+        searchBox = new javax.swing.JTextField();
+        searchButton = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(0, 0));
         setMinimumSize(new java.awt.Dimension(0, 0));
@@ -340,60 +342,8 @@ public class Logistics extends javax.swing.JPanel {
                 .addGroup(logisticsFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(productId)
                     .addComponent(idOfUser))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGap(31, 31, 31))
         );
-
-        addButoon.setBackground(new java.awt.Color(51, 102, 153));
-        addButoon.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        addButoon.setForeground(new java.awt.Color(255, 255, 255));
-        addButoon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Buttons/add.png"))); // NOI18N
-        addButoon.setText("ADD");
-        addButoon.setBorder(null);
-        addButoon.setFocusable(false);
-        addButoon.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addButoonActionPerformed(evt);
-            }
-        });
-
-        deleteButton.setBackground(new java.awt.Color(51, 102, 153));
-        deleteButton.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        deleteButton.setForeground(new java.awt.Color(255, 255, 255));
-        deleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Buttons/delete.png"))); // NOI18N
-        deleteButton.setText("DELETE");
-        deleteButton.setBorder(null);
-        deleteButton.setFocusable(false);
-        deleteButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteButtonActionPerformed(evt);
-            }
-        });
-
-        updateButton.setBackground(new java.awt.Color(51, 102, 153));
-        updateButton.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        updateButton.setForeground(new java.awt.Color(255, 255, 255));
-        updateButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Buttons/edit.png"))); // NOI18N
-        updateButton.setText("UPDATE");
-        updateButton.setBorder(null);
-        updateButton.setFocusable(false);
-        updateButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateButtonActionPerformed(evt);
-            }
-        });
-
-        clearButton.setBackground(new java.awt.Color(51, 102, 153));
-        clearButton.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        clearButton.setForeground(new java.awt.Color(255, 255, 255));
-        clearButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Buttons/clear.png"))); // NOI18N
-        clearButton.setText("CLEAR");
-        clearButton.setBorder(null);
-        clearButton.setFocusable(false);
-        clearButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearButtonActionPerformed(evt);
-            }
-        });
 
         logisticsTable.setBackground(new java.awt.Color(238, 238, 238));
         logisticsTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray));
@@ -450,6 +400,58 @@ public class Logistics extends javax.swing.JPanel {
             logisticsTable.getColumnModel().getColumn(15).setPreferredWidth(90);
         }
 
+        addButoon.setBackground(new java.awt.Color(51, 102, 153));
+        addButoon.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        addButoon.setForeground(new java.awt.Color(255, 255, 255));
+        addButoon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Buttons/add.png"))); // NOI18N
+        addButoon.setText("ADD");
+        addButoon.setBorder(null);
+        addButoon.setFocusable(false);
+        addButoon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButoonActionPerformed(evt);
+            }
+        });
+
+        deleteButton.setBackground(new java.awt.Color(51, 102, 153));
+        deleteButton.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        deleteButton.setForeground(new java.awt.Color(255, 255, 255));
+        deleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Buttons/delete.png"))); // NOI18N
+        deleteButton.setText("DELETE");
+        deleteButton.setBorder(null);
+        deleteButton.setFocusable(false);
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
+
+        updateButton.setBackground(new java.awt.Color(51, 102, 153));
+        updateButton.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        updateButton.setForeground(new java.awt.Color(255, 255, 255));
+        updateButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Buttons/edit.png"))); // NOI18N
+        updateButton.setText("UPDATE");
+        updateButton.setBorder(null);
+        updateButton.setFocusable(false);
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButtonActionPerformed(evt);
+            }
+        });
+
+        clearButton.setBackground(new java.awt.Color(51, 102, 153));
+        clearButton.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        clearButton.setForeground(new java.awt.Color(255, 255, 255));
+        clearButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Buttons/clear.png"))); // NOI18N
+        clearButton.setText("CLEAR");
+        clearButton.setBorder(null);
+        clearButton.setFocusable(false);
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearButtonActionPerformed(evt);
+            }
+        });
+
         logisticUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Logistic User" }));
         logisticUser.setBorder(null);
         logisticUser.addActionListener(new java.awt.event.ActionListener() {
@@ -458,13 +460,25 @@ public class Logistics extends javax.swing.JPanel {
             }
         });
 
+        searchBox.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 1, true));
+
+        searchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Search Bar/search.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(navigationBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(logisticUser, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addComponent(searchButton))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(logisticsTableScrollPanel)
@@ -475,19 +489,19 @@ public class Logistics extends javax.swing.JPanel {
                                     .addComponent(clearButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(updateButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(addButoon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(deleteButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(logisticUser, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(deleteButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(20, 20, 20))
-            .addComponent(navigationBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(navigationBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(logisticUser, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(logisticUser, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20)
                 .addComponent(logisticsTableScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
@@ -787,6 +801,8 @@ public class Logistics extends javax.swing.JPanel {
     private javax.swing.JTextField productType;
     private javax.swing.JTextField quantity;
     private javax.swing.JLabel salesInquiryIcon;
+    private javax.swing.JTextField searchBox;
+    private javax.swing.JLabel searchButton;
     private javax.swing.JTextField supplier;
     private javax.swing.JButton updateButton;
     private javax.swing.JLabel userManagementIcon;
