@@ -16,7 +16,7 @@ public class Queries {
     //===================================================================================================
     //CRUD of user
     
-    public void addUser(String username, String password, String userType, String address, String email, String mobile, String firstName, String lastName){
+    public boolean addUser(String username, String password, String userType, String address, String email, String mobile, String firstName, String lastName){
         try{
         String query = "Insert into user(user_type,last_name,first_name,address,mobile_number,email_address,username,password)"+"VALUES(?,?,?,?,?,?,?,?)";
         PreparedStatement statement = con.prepareStatement(query);
@@ -31,9 +31,11 @@ public class Queries {
         
         statement.executeUpdate();
         statement.close();
+        return true;
         
         }catch(Exception error){
             JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE); 
+            return false;
 
         }
     }  
@@ -91,19 +93,21 @@ public class Queries {
     return userDataList;
 }
     
-    public void deleteUser(int id){
+    public boolean deleteUser(int id){
         try{
             String query = "DELETE FROM user WHERE user_id = ?";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setInt(1, id);
             statement.executeUpdate();
             statement.close();
+            return true;
         }catch(Exception error){
             JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE); 
+            return false;
         }
     }
     
-    public void updateUser(int id, String username, String password, String userType, String address, String email, String mobile, String firstName, String lastName){
+    public boolean updateUser(int id, String username, String password, String userType, String address, String email, String mobile, String firstName, String lastName){
         try{
             String query = "Update user set user_type=?,last_name=?,first_name=?,address=?,mobile_number=?,email_address=?,username=?,password=? WHERE user_id=?";
             PreparedStatement statement = con.prepareStatement(query);
@@ -119,8 +123,10 @@ public class Queries {
             
             statement.executeUpdate();
             statement.close();
+            return true;
         }catch(Exception error){
             JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE); 
+            return false;
         }
     }
     
@@ -128,7 +134,7 @@ public class Queries {
     //end of user
     //=============================================================================================================
     //CRUD of inquiry
-    public void addInquiry(String date, 
+    public boolean addInquiry(String date, 
             String project,
             int quantity,
             String description,
@@ -158,8 +164,10 @@ public class Queries {
             
             statement.executeUpdate();
             statement.close();
+            return true;
         }catch(Exception error){
             JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE); 
+            return false;
         }
     }
     
@@ -203,20 +211,22 @@ public class Queries {
     
     return inquiryDataList;
 }
-    public void deleteInquiry(int id){
+    public boolean deleteInquiry(int id){
         try{
             String query = "delete from sale where sale_id = ?";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setInt(1, id);
             statement.executeUpdate();
             statement.close();
+            return true;
             
         }catch(Exception error){
-            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);   
+            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
         }
     }
     
-    public void updateInquiry(
+    public boolean updateInquiry(
             int sales_id,
             String date, 
             String project,
@@ -248,8 +258,10 @@ public class Queries {
             
             statement.executeUpdate();
             statement.close();
+            return true;
         }catch(Exception error){
-            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);   
+            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
         }
     }
     //=======================================================================================
@@ -257,7 +269,7 @@ public class Queries {
     //=========================================================================================
     //CRUD of Logistics
     
-    public void addLogistic( 
+    public boolean addLogistic( 
             String productName,
             String pType,
             double pPrice,
@@ -296,8 +308,10 @@ public class Queries {
             
             statement.executeUpdate();
             statement.close(); 
+            return true;
         }catch(Exception error){
             JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
         }
     }
     
@@ -343,7 +357,7 @@ public class Queries {
         return logisticData;
     }
     
-    public void updateLogistic(
+    public boolean updateLogistic(
             int productId,
             String productName,
             String pType,
@@ -383,13 +397,15 @@ public class Queries {
             
             statement.executeUpdate();
             statement.close();
+            return true;
             
         }catch(Exception error){
             JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
         }
     }
     
-    public void deleteLogistic(int productId){
+    public boolean deleteLogistic(int productId){
         try{
             String query = "delete from logistic where product_id = ?";
             PreparedStatement statement = con.prepareStatement(query);
@@ -397,8 +413,10 @@ public class Queries {
             
             statement.executeUpdate();
             statement.close();
+            return true;
         }catch(Exception error){
             JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE); 
+            return false;
         }
     }
     //end of logistics

@@ -571,11 +571,16 @@ public class SalesInquiry extends javax.swing.JPanel {
         
         if (decision == JOptionPane.YES_OPTION) {
             int id = Integer.parseInt(salesId.getText());
-            qry.deleteInquiry(id);
-            JOptionPane.showMessageDialog(new JFrame(), "Sales inquiry deleted.", "Success", JOptionPane.INFORMATION_MESSAGE);
-            int id1 = Integer.parseInt(idOfUser.getText());
-            getInquiry(id1);
-            clear();
+            boolean isDeleted = qry.deleteInquiry(id);
+            if(isDeleted){
+               JOptionPane.showMessageDialog(new JFrame(), "Sales inquiry deleted.", "Success", JOptionPane.INFORMATION_MESSAGE);
+               int id1 = Integer.parseInt(idOfUser.getText());
+               getInquiry(id1);
+               clear();
+            }else{
+               JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+           
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
@@ -601,7 +606,7 @@ public class SalesInquiry extends javax.swing.JPanel {
                         String fdeadline = sdf.format(deadline.getDate());
                         String flastUpdate = sdf.format(lastUpdate.getDate());
 
-                        qry.addInquiry(fdate,
+                        boolean isAdded = qry.addInquiry(fdate,
                                 project.getText(),
                                 quantityValue,
                                 description.getText(),
@@ -613,10 +618,14 @@ public class SalesInquiry extends javax.swing.JPanel {
                                 flastUpdate,
                                 fdeadline,
                                 userID);
-
-                        JOptionPane.showMessageDialog(new JFrame(), "Inquiry added.", "Success", JOptionPane.INFORMATION_MESSAGE);
-                        getInquiry(userID);
-                        clear();
+                        if(isAdded){
+                            JOptionPane.showMessageDialog(new JFrame(), "Inquiry added.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                            getInquiry(userID);
+                            clear();
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                        
 
                     } catch (Exception error) {
                         JOptionPane.showMessageDialog(null, "Prices must be a decimal or an integer.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -649,7 +658,7 @@ public class SalesInquiry extends javax.swing.JPanel {
                     String fdeadline = sdf.format(deadline.getDate());
                     String flastUpdate = sdf.format(lastUpdate.getDate());
 
-                    qry.updateInquiry(
+                    boolean isUpdated = qry.updateInquiry(
                             id,
                             fdate,
                             project.getText(),
@@ -662,11 +671,15 @@ public class SalesInquiry extends javax.swing.JPanel {
                             fdateAccom,
                             flastUpdate,
                             fdeadline);
-                    int id1 = Integer.parseInt(idOfUser.getText());
-                    JOptionPane.showMessageDialog(new JFrame(), "Sales inquiry updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    getInquiry(id1);
-                    clear();
-                    textFieldStatus(true);
+                    if(isUpdated){
+                        int id1 = Integer.parseInt(idOfUser.getText());
+                        JOptionPane.showMessageDialog(new JFrame(), "Sales inquiry updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        getInquiry(id1);
+                        clear();
+                        textFieldStatus(true);
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
 
                 } catch (Exception error) {
                     JOptionPane.showMessageDialog(null, "Prices must be a decimal or an integer.", "Error", JOptionPane.ERROR_MESSAGE);

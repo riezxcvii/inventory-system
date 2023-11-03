@@ -536,7 +536,7 @@ public class Logistics extends javax.swing.JPanel {
                         String receive = sdf.format(dateReceived.getDate());
                         String release = sdf.format(dateRelease.getDate());
 
-                        qry.addLogistic(
+                        boolean isAdded = qry.addLogistic(
                         productName.getText(),
                         productType.getText(),
                         price,
@@ -554,10 +554,14 @@ public class Logistics extends javax.swing.JPanel {
                         warrantyCustomer.getText(),
                         userID
                         );
-
-                        JOptionPane.showMessageDialog(new JFrame(), "Logistic added.", "Success", JOptionPane.INFORMATION_MESSAGE);
-                        getLogistic(userID);
-                        clear();
+                        if(isAdded){
+                            JOptionPane.showMessageDialog(new JFrame(), "Logistic added.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                            getLogistic(userID);
+                            clear();
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                       
 
                     }catch(Exception error){
                         JOptionPane.showMessageDialog(null, "Prices must be a decimal or an integer.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -657,11 +661,16 @@ public class Logistics extends javax.swing.JPanel {
       
         if (decision == JOptionPane.YES_OPTION) {
             int id = Integer.parseInt(productId.getText());
-            qry.deleteLogistic(id);
-            JOptionPane.showMessageDialog(new JFrame(), "Logistic deleted.", "Success", JOptionPane.INFORMATION_MESSAGE);
-            int id1 = Integer.parseInt(idOfUser.getText());
-            getLogistic(id1);
-            clear();
+            boolean isDeleted = qry.deleteLogistic(id);
+            if(isDeleted){
+                JOptionPane.showMessageDialog(new JFrame(), "Logistic deleted.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                int id1 = Integer.parseInt(idOfUser.getText());
+                getLogistic(id1);
+                clear();
+            }else{
+                JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
@@ -687,7 +696,7 @@ public class Logistics extends javax.swing.JPanel {
                     String release = sdf.format(dateRelease.getDate());
                     int id = Integer.parseInt( productId.getText());
 
-                    qry.updateLogistic(
+                    boolean isUpdated = qry.updateLogistic(
                     id,
                     productName.getText(),
                     productType.getText(),
@@ -705,17 +714,21 @@ public class Logistics extends javax.swing.JPanel {
                     warranty.getText(),
                     warrantyCustomer.getText()
                     );
+                    if(isUpdated){
+                        JOptionPane.showMessageDialog(new JFrame(), "Logistic updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        int id1 = Integer.parseInt(idOfUser.getText());
 
-                    JOptionPane.showMessageDialog(new JFrame(), "Logistic updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    int id1 = Integer.parseInt(idOfUser.getText());
+                        if(userType.equals("Admin")){
+                             getLogistic(id1);
+                        }else{
+                             getLogistic(userID);
+                        }
 
-                    if(userType.equals("Admin")){
-                         getLogistic(id1);
+                        clear();
                     }else{
-                         getLogistic(userID);
-                    }
-
-                    clear();
+                        JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
+                    } 
+                    
 
                 } catch(Exception error){
                     JOptionPane.showMessageDialog(null, "Prices must be a decimal or an integer.", "Error", JOptionPane.ERROR_MESSAGE);

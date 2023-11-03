@@ -388,13 +388,18 @@ public class UserManagement extends javax.swing.JPanel {
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to delete?", "Confirmation", JOptionPane.YES_NO_OPTION);
-
         if (decision == JOptionPane.YES_OPTION) {
             int id = Integer.parseInt(userId.getText());
-            query.deleteUser(id);
-            JOptionPane.showMessageDialog(new JFrame(), "User account deleted.", "Success", JOptionPane.INFORMATION_MESSAGE);
-            getData(0);
-            clear();
+            boolean isDeleted = query.deleteUser(id);
+            
+            if(isDeleted){
+                JOptionPane.showMessageDialog(new JFrame(), "User account deleted.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                getData(0);
+                clear();
+            }else{
+                JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+           
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
@@ -406,10 +411,15 @@ public class UserManagement extends javax.swing.JPanel {
         } else if (address.getText().equals("") || emailAddress.getText().equals("") || lastName.getText().equals("") || firstName.getText().equals("") || mobileNumber.getText().equals("") || username.getText().equals("") || password.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please fill out all the fields.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            query.addUser(username.getText(), password.getText(), selectedItem, address.getText(), emailAddress.getText(), mobileNumber.getText(), firstName.getText(), lastName.getText());
-            JOptionPane.showMessageDialog(new JFrame(), "New user added.", "Success", JOptionPane.INFORMATION_MESSAGE);
-            getData(0);
-            clear();
+            
+            boolean isAdded = query.addUser(username.getText(), password.getText(), selectedItem, address.getText(), emailAddress.getText(), mobileNumber.getText(), firstName.getText(), lastName.getText());
+            if(isAdded){
+                JOptionPane.showMessageDialog(new JFrame(), "New user added.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                getData(0);
+                clear(); 
+            }else{
+                JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_addButoonActionPerformed
 
@@ -422,10 +432,15 @@ public class UserManagement extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please fill out all the fields.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             int id = Integer.parseInt(userId.getText());
-            query.updateUser(id, username.getText(), password.getText(), selectedItem, address.getText(), emailAddress.getText(), mobileNumber.getText(), firstName.getText(), lastName.getText());
-            JOptionPane.showMessageDialog(new JFrame(), "User account updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
-            getData(0);
-            clear();
+            boolean isUpdated = query.updateUser(id, username.getText(), password.getText(), selectedItem, address.getText(), emailAddress.getText(), mobileNumber.getText(), firstName.getText(), lastName.getText());
+            if(isUpdated){
+                JOptionPane.showMessageDialog(new JFrame(), "User account updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                getData(0);
+                clear();
+            }else{
+                JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            
         }
     }//GEN-LAST:event_updateButtonActionPerformed
 
