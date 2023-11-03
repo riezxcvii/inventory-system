@@ -109,6 +109,8 @@ public class Logistics extends javax.swing.JPanel {
          
         if (session.getUserType().equals("Logistics")) {
             logisticUser.addItem("My Data");
+        }else{
+            logisticUser.addItem("Select Logistic");
         }
         
         Server.Queries qry = new Server.Queries();
@@ -450,7 +452,6 @@ public class Logistics extends javax.swing.JPanel {
             logisticsTable.getColumnModel().getColumn(15).setPreferredWidth(90);
         }
 
-        logisticUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Logistic User" }));
         logisticUser.setBorder(null);
         logisticUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -593,12 +594,15 @@ public class Logistics extends javax.swing.JPanel {
 
     private void logisticUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logisticUserActionPerformed
          String selectedItem = logisticUser.getSelectedItem().toString();
-        if (selectedItem.equals("My Data")) {
+         clear();
+         updateButton.setEnabled(false);
+         deleteButton.setEnabled(false);
+        if (selectedItem.equals("My Data") || selectedItem.equals("Select Logistic")) {
             getLogistic(userID);
             addButoon.setEnabled(true);
+            clearButton.setEnabled(true);
             textFieldStatus(true);
-            clear();
-        } else {
+        }else {
             Pattern pattern = Pattern.compile("\\d+");
             Matcher matcher = pattern.matcher(selectedItem);
 
@@ -607,6 +611,9 @@ public class Logistics extends javax.swing.JPanel {
                 int intValue = Integer.parseInt(integerString);
 
                 getLogistic(intValue);
+                clearButton.setEnabled(false);
+                addButoon.setEnabled(false);
+                textFieldStatus(false);
             } else {
                 // Handle the case where no integer was found in the selectedItem
             }
@@ -649,10 +656,13 @@ public class Logistics extends javax.swing.JPanel {
         if (session.getUserType().equals("Admin")) {
             updateButton.setEnabled(true);
             deleteButton.setEnabled(true);
+            textFieldStatus(true);
         } else {
             if (userID == userid) {
+                addButoon.setEnabled(false);
                 updateButton.setEnabled(true);
                 clearButton.setEnabled(false);
+                textFieldStatus(true);
             } else {
                 updateButton.setEnabled(false);
                 clearButton.setEnabled(false);

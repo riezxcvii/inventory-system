@@ -104,6 +104,10 @@ public class SalesInquiry extends javax.swing.JPanel {
 
         if (session.getUserType().equals("Sales")) {
             salesUser.addItem("My Inquiry");
+        }else if(session.getUserType().equals("Admin")){
+            salesUser.addItem("Select Sales User");
+        }else{
+            
         }
         
         Server.Queries qry = new Server.Queries();
@@ -420,7 +424,6 @@ public class SalesInquiry extends javax.swing.JPanel {
             }
         });
 
-        salesUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Sales User" }));
         salesUser.setBorder(null);
         salesUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -481,24 +484,16 @@ public class SalesInquiry extends javax.swing.JPanel {
 
     private void salesUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salesUserActionPerformed
         String selectedItem = salesUser.getSelectedItem().toString();
+        clear();
+        updateButton.setEnabled(false);
+        deleteButton.setEnabled(false);
         
-        if (selectedItem.equals("My Inquiry")) {
+        if (selectedItem.equals("My Inquiry") || selectedItem.equals("Select Sales User")) {
             getInquiry(userID);
             addButoon.setEnabled(true);
-            clear();
-            dateAccomplished.setEnabled(true);
-            deadline.setEnabled(true);
-            srp.setEnabled(true);
-            supplier.setEnabled(true);
-            supplierPrice.setEnabled(true);
-            Quantity.setEnabled(true);
-            lastUpdate.setEnabled(true);
-            remarks.setEnabled(true);
+            textFieldStatus(true);
             clearButton.setEnabled(true);
-            date.setEnabled(true);
-            description.setEnabled(true);
-            project.setEnabled(true);
-        } else {
+        }else {
             Pattern pattern = Pattern.compile("\\d+");
             Matcher matcher = pattern.matcher(selectedItem);
 
@@ -507,6 +502,9 @@ public class SalesInquiry extends javax.swing.JPanel {
                 int intValue = Integer.parseInt(integerString);
 
                 getInquiry(intValue);
+                clearButton.setEnabled(false);
+                addButoon.setEnabled(false);
+                textFieldStatus(false);
             } else {
                 // Handle the case where no integer was found in the selectedItem
             }
@@ -547,8 +545,11 @@ public class SalesInquiry extends javax.swing.JPanel {
         if (session.getUserType().equals("Admin")) {
             updateButton.setEnabled(true);
             deleteButton.setEnabled(true);
+            textFieldStatus(true);
         } else {
             if (userID == userid) {
+                textFieldStatus(true);
+                addButoon.setEnabled(false);
                 updateButton.setEnabled(true);
                 dateAccomplished.setEnabled(false);
                 deadline.setEnabled(false);
