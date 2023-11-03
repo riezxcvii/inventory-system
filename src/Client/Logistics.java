@@ -580,10 +580,15 @@ public class Logistics extends javax.swing.JPanel {
     }//GEN-LAST:event_clearButtonActionPerformed
 
     private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
-        Frame frame = new Frame();
-        frame.viewFrame("Client.LoginPage", "Inventory System");
-        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        currentFrame.dispose();
+        int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to logout?", "Confirmation", JOptionPane.YES_NO_OPTION);
+      
+        if (decision == JOptionPane.YES_OPTION) {
+            Frame frame = new Frame();
+            frame.viewFrame("Client.LoginPage", "Inventory System");
+            JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            currentFrame.dispose();
+        }
+        
     }//GEN-LAST:event_logoutButtonMouseClicked
 
     private void logisticUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logisticUserActionPerformed

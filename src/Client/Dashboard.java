@@ -4,6 +4,7 @@ import Server.Frame;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import Server.UserSession;
+import javax.swing.JOptionPane;
 
 public class Dashboard extends javax.swing.JPanel {
 
@@ -288,10 +289,14 @@ public class Dashboard extends javax.swing.JPanel {
     }//GEN-LAST:event_logisticsButtonActionPerformed
 
     private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
-        Frame frame = new Frame();
-        frame.viewFrame("Client.LoginPage", "Inventory System");
-        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        currentFrame.dispose();
+        int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to logout?", "Confirmation", JOptionPane.YES_NO_OPTION);
+      
+        if (decision == JOptionPane.YES_OPTION) {
+            Frame frame = new Frame();
+            frame.viewFrame("Client.LoginPage", "Inventory System");
+            JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            currentFrame.dispose();
+        }
     }//GEN-LAST:event_logoutButtonMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
