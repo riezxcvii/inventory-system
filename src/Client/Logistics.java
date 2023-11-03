@@ -110,7 +110,7 @@ public class Logistics extends javax.swing.JPanel {
         if (session.getUserType().equals("Logistics")) {
             logisticUser.addItem("My Data");
         }else{
-            logisticUser.addItem("Select Logistic");
+            logisticUser.addItem("Select Logistic User");
         }
         
         Server.Queries qry = new Server.Queries();
@@ -402,8 +402,6 @@ public class Logistics extends javax.swing.JPanel {
             logisticsTable.getColumnModel().getColumn(15).setPreferredWidth(90);
         }
 
-<<<<<<< HEAD
-=======
         addButoon.setBackground(new java.awt.Color(51, 102, 153));
         addButoon.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         addButoon.setForeground(new java.awt.Color(255, 255, 255));
@@ -456,8 +454,6 @@ public class Logistics extends javax.swing.JPanel {
             }
         });
 
-        logisticUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Logistic User" }));
->>>>>>> ab70ddc27bec5813ea3ba818867dfa9b807c73e7
         logisticUser.setBorder(null);
         logisticUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -502,11 +498,11 @@ public class Logistics extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(navigationBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(logisticUser, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(logisticUser, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addComponent(logisticsTableScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
@@ -615,7 +611,7 @@ public class Logistics extends javax.swing.JPanel {
          clear();
          updateButton.setEnabled(false);
          deleteButton.setEnabled(false);
-        if (selectedItem.equals("My Data") || selectedItem.equals("Select Logistic")) {
+        if (selectedItem.equals("My Data") || selectedItem.equals("Select Logistic User")) {
             getLogistic(userID);
             addButoon.setEnabled(true);
             clearButton.setEnabled(true);
