@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 31, 2023 at 02:28 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Nov 02, 2023 at 07:30 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.3.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -45,14 +45,14 @@ CREATE TABLE `logistic` (
   `warranty` varchar(30) NOT NULL,
   `warranty_customer` varchar(50) NOT NULL,
   `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `logistic`
 --
 
 INSERT INTO `logistic` (`product_id`, `product_name`, `product_type`, `product_price`, `date_received`, `date_release`, `eu_po_number`, `po_ref_number`, `brand`, `description`, `model`, `supplier`, `quantity`, `customer`, `warranty`, `warranty_customer`, `user_id`) VALUES
-(2, 'pen', 'school supplies', 5434.00, '2023-10-06', '2023-10-20', 'kjgfjkhb', 'kjrdkfgd', 'kjrdjkfdgf', 'hahaha', 'ako ay isang model', 'kjvrdtjrftgfd', 232, 'mfjgf', 'knfgjg', 'hbvfhmddgcmf', 9);
+(3, 'Ball Point Pen', 'School Suppy', '15.00', '2023-11-02', '2023-11-03', '2363', '6754', 'Flex Office', 'Ballpen', 'B7589', 'Enterprise', 500, 'Sari-Sari Store', '3 Months', 'Sari-Sari Store', 11);
 
 -- --------------------------------------------------------
 
@@ -74,16 +74,16 @@ CREATE TABLE `sale` (
   `last_update` date NOT NULL,
   `deadline` date NOT NULL,
   `user_id` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `sale`
 --
 
 INSERT INTO `sale` (`sale_id`, `date`, `project_or_end_user`, `quantity`, `description`, `supplier`, `supplier_price`, `srp`, `remarks`, `date_accomplished`, `last_update`, `deadline`, `user_id`) VALUES
-(1, '2023-10-27', 'hehehe', 24, 'sha', 'ako', 23.00, 543.00, 'df,s', '2023-10-27', '2023-10-27', '2023-10-21', 6),
-(2, '2023-10-11', 'jhvdfx', 34, 'njdf', 'jkgrfdjkgf', 32.00, 342.00, 'mfdjkdf', '2023-10-21', '2023-10-21', '2023-10-12', 4),
-(7, '2023-10-12', 'fhgcdfh', 25, 'jhvdfdjk', 'jhdfs', 23.00, 23.00, 'kjbfdkxj', '2023-10-20', '2023-10-13', '2023-10-11', 4);
+(1, '2023-10-27', 'hehehe', 24, 'sha', 'ako', '23.00', '543.00', 'df,s', '2023-10-27', '2023-10-27', '2023-10-21', 6),
+(2, '2023-10-11', 'Employee Management System', 1, 'Web-based system.', 'Intellyx IT Solutions', '400000.00', '300000.00', 'Localhost', '2023-11-03', '2023-11-05', '2023-11-06', 4),
+(8, '2023-11-02', 'Student Information System', 1, 'Web-based system', 'Intellyx', '300000.00', '300000.00', 'Online', '2023-11-01', '2023-11-01', '2023-11-02', 10);
 
 -- --------------------------------------------------------
 
@@ -101,19 +101,16 @@ CREATE TABLE `user` (
   `email_address` varchar(50) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`user_id`, `user_type`, `last_name`, `first_name`, `address`, `mobile_number`, `email_address`, `username`, `password`) VALUES
-(1, 'Admin', 'admin', 'admin', 'luhdfgfkh', '0912345678', 'ndsjx@gffjd', 'admin', 'admin123'),
-(4, 'Sales', 'Virgo', 'Sunny', 'Tobias Fornier, Antique', '0963547343', 'gfd23@gmail.com', 'sunny', 'virgo'),
-(6, 'Sales', 'Zenin', 'Inumaki', 'jjk', '7564564654', 'hfdsgh@gjdfjgf.com', 'inu', 'maki'),
-(7, 'Logistics', 'jedf', 'djsdfd', 'ysulat', '4546578', 'bkjfdxd', 'kjfds', 'bvfd'),
-(8, 'Logistics', '1', 'Logistic', 'hgdffjdskj', '09647546564', 'jhrjdf@hgdshf.com', 'logis', 'tic'),
-(9, 'Logistics', '2', 'Logistic', 'hrtdfgjfdj', '0965675643', 'dfh@ghdfjgdf.com', 'logistic', 'two');
+(1, 'Admin', '1', 'Admin', 'Malabon City', '09123456781', 'admin1@gmail.com', 'admin', 'admin123'),
+(4, 'Sales', '1', 'Sales', 'Malabon City', '09635473435', 'sales1@gmail.com', 'sales', 'sales123'),
+(11, 'Logistics', '1', 'Logistic', 'Malabon City', '09674528862', 'logistic2@gmail.com', 'logistic', 'logistic123');
 
 --
 -- Indexes for dumped tables
@@ -145,19 +142,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `logistic`
 --
 ALTER TABLE `logistic`
-  MODIFY `product_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `product_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `sale`
 --
 ALTER TABLE `sale`
-  MODIFY `sale_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `sale_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

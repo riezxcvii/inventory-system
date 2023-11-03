@@ -22,7 +22,6 @@ public class SalesInquiry extends javax.swing.JPanel {
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     UserSession session = UserSession.getInstance();
-
     int userID = session.getUserID();
 
     public void getInquiry(int id) {
@@ -99,11 +98,14 @@ public class SalesInquiry extends javax.swing.JPanel {
 
         if (!session.getUserType().equals("Admin")) {
             homeIcon.setVisible(false);
+            logisticIcon.setVisible(false);
+            userManagementIcon.setVisible(false);
         }
 
         if (session.getUserType().equals("Sales")) {
             salesUser.addItem("My Inquiry");
         }
+        
         Server.Queries qry = new Server.Queries();
         List<UserData> data = qry.getUserData(0, userID, "Sales");
 
@@ -126,6 +128,8 @@ public class SalesInquiry extends javax.swing.JPanel {
         logo = new javax.swing.JLabel();
         logoutButton = new javax.swing.JLabel();
         homeIcon = new javax.swing.JLabel();
+        logisticIcon = new javax.swing.JLabel();
+        userManagementIcon = new javax.swing.JLabel();
         salesInquiryForm = new javax.swing.JPanel();
         project = new javax.swing.JTextField();
         Quantity = new javax.swing.JTextField();
@@ -149,9 +153,9 @@ public class SalesInquiry extends javax.swing.JPanel {
         salesUser = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(236, 242, 255));
-        setMaximumSize(new java.awt.Dimension(1365, 696));
-        setMinimumSize(new java.awt.Dimension(1365, 696));
-        setPreferredSize(new java.awt.Dimension(1365, 696));
+        setMaximumSize(new java.awt.Dimension(0, 0));
+        setMinimumSize(new java.awt.Dimension(0, 0));
+        setPreferredSize(new java.awt.Dimension(1320, 650));
 
         navigationBar.setBackground(new java.awt.Color(51, 102, 153));
 
@@ -175,20 +179,38 @@ public class SalesInquiry extends javax.swing.JPanel {
             }
         });
 
+        logisticIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/logistics.png"))); // NOI18N
+        logisticIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logisticIconMouseClicked(evt);
+            }
+        });
+
+        userManagementIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/user-management.png"))); // NOI18N
+        userManagementIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                userManagementIconMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout navigationBarLayout = new javax.swing.GroupLayout(navigationBar);
         navigationBar.setLayout(navigationBarLayout);
         navigationBarLayout.setHorizontalGroup(
             navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(navigationBarLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(20, 20, 20)
                 .addComponent(logo)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addComponent(navigationBarTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 763, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(userManagementIcon)
+                .addGap(20, 20, 20)
+                .addComponent(logisticIcon)
+                .addGap(20, 20, 20)
                 .addComponent(homeIcon)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addComponent(logoutButton)
-                .addGap(28, 28, 28))
+                .addGap(20, 20, 20))
         );
         navigationBarLayout.setVerticalGroup(
             navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,13 +219,16 @@ public class SalesInquiry extends javax.swing.JPanel {
             .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, navigationBarLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(homeIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(userManagementIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(logisticIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(homeIcon, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)))
         );
 
         salesInquiryForm.setBackground(new java.awt.Color(255, 255, 255));
         salesInquiryForm.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray), null));
 
-        project.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Project", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
+        project.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Project / End User", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
         Quantity.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Quantity", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
@@ -243,24 +268,24 @@ public class SalesInquiry extends javax.swing.JPanel {
                     .addComponent(supplier, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(date, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                     .addComponent(dateAccomplished, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(28, 28, 28)
+                .addGap(33, 33, 33)
                 .addGroup(salesInquiryFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(project)
                     .addComponent(supplierPrice)
                     .addComponent(lastUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
-                .addGap(28, 28, 28)
+                .addGap(33, 33, 33)
                 .addGroup(salesInquiryFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Quantity)
                     .addComponent(srp)
                     .addComponent(deadline, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
-                .addGap(28, 28, 28)
-                .addGroup(salesInquiryFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(33, 33, 33)
+                .addGroup(salesInquiryFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(salesInquiryFormLayout.createSequentialGroup()
                         .addComponent(salesId)
                         .addGap(18, 18, 18)
                         .addComponent(idOfUser))
-                    .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(remarks, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(description, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addComponent(remarks))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         salesInquiryFormLayout.setVerticalGroup(
@@ -283,9 +308,9 @@ public class SalesInquiry extends javax.swing.JPanel {
                     .addGroup(salesInquiryFormLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(salesInquiryFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(dateAccomplished, javax.swing.GroupLayout.PREFERRED_SIZE, 51, Short.MAX_VALUE)
-                            .addComponent(lastUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 51, Short.MAX_VALUE)
-                            .addComponent(deadline, javax.swing.GroupLayout.PREFERRED_SIZE, 51, Short.MAX_VALUE))
+                            .addComponent(dateAccomplished, javax.swing.GroupLayout.PREFERRED_SIZE, 45, Short.MAX_VALUE)
+                            .addComponent(lastUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, Short.MAX_VALUE)
+                            .addComponent(deadline, javax.swing.GroupLayout.PREFERRED_SIZE, 45, Short.MAX_VALUE))
                         .addGap(30, 30, 30))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, salesInquiryFormLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -407,22 +432,22 @@ public class SalesInquiry extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(navigationBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(salesInquiryTableScrollPanel)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(salesInquiryForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(clearButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(updateButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(addButoon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(deleteButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(salesUser, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40))
+                .addGap(20, 20, 20))
+            .addComponent(navigationBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -431,16 +456,16 @@ public class SalesInquiry extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(salesUser, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(salesInquiryTableScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addComponent(salesInquiryTableScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
+                        .addGap(27, 27, 27)
                         .addComponent(addButoon, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
+                        .addGap(27, 27, 27)
                         .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
+                        .addGap(27, 27, 27)
                         .addComponent(clearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(salesInquiryForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
@@ -456,6 +481,7 @@ public class SalesInquiry extends javax.swing.JPanel {
 
     private void salesUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salesUserActionPerformed
         String selectedItem = salesUser.getSelectedItem().toString();
+        
         if (selectedItem.equals("My Inquiry")) {
             getInquiry(userID);
             addButoon.setEnabled(true);
@@ -542,10 +568,11 @@ public class SalesInquiry extends javax.swing.JPanel {
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to delete?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        
         if (decision == JOptionPane.YES_OPTION) {
             int id = Integer.parseInt(salesId.getText());
             qry.deleteInquiry(id);
-            JOptionPane.showMessageDialog(new JFrame(), "User Deleted", "Success", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(new JFrame(), "Sales inquiry deleted.", "Success", JOptionPane.INFORMATION_MESSAGE);
             int id1 = Integer.parseInt(idOfUser.getText());
             getInquiry(id1);
             clear();
@@ -554,16 +581,17 @@ public class SalesInquiry extends javax.swing.JPanel {
 
     private void addButoonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButoonActionPerformed
         if (session.getUserType().equals("Admin")) {
-            JOptionPane.showMessageDialog(null, "You can't add Sales Inquiry", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "You can't add a sales inquiry.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             if (date.getDate() == null || dateAccomplished.getDate() == null || deadline.getDate() == null || lastUpdate.getDate() == null
                     || Quantity.getText().equals("") || description.getText().equals("") || project.getText().equals("")
                     || remarks.getText().equals("") || srp.getText().equals("") || supplier.getText().equals("") || supplierPrice.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Please fill out all field.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please fill out all the fields.", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
 
                 try {
                     int quantityValue = Integer.parseInt(Quantity.getText());
+                    
                     try {
                         double srpValue = Double.parseDouble(srp.getText());
                         double supplierpriceValue = Double.parseDouble(supplierPrice.getText());
@@ -586,16 +614,16 @@ public class SalesInquiry extends javax.swing.JPanel {
                                 fdeadline,
                                 userID);
 
-                        JOptionPane.showMessageDialog(new JFrame(), "Inquiry Added", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(new JFrame(), "Inquiry added.", "Success", JOptionPane.INFORMATION_MESSAGE);
                         getInquiry(userID);
                         clear();
 
                     } catch (Exception error) {
-                        JOptionPane.showMessageDialog(null, "Prices must be a decimal or integer.", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Prices must be a decimal or an integer.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
 
                 } catch (Exception error) {
-                    JOptionPane.showMessageDialog(null, "Quantity must be an integer.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "The quantity must be an integer.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
             }
@@ -606,7 +634,7 @@ public class SalesInquiry extends javax.swing.JPanel {
         if (date.getDate() == null || dateAccomplished.getDate() == null || deadline.getDate() == null || lastUpdate.getDate() == null
                 || Quantity.getText().equals("") || description.getText().equals("") || project.getText().equals("")
                 || remarks.getText().equals("") || srp.getText().equals("") || supplier.getText().equals("") || supplierPrice.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Please fill out all field.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please fill out all the fields.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
 
             try {
@@ -635,17 +663,17 @@ public class SalesInquiry extends javax.swing.JPanel {
                             flastUpdate,
                             fdeadline);
                     int id1 = Integer.parseInt(idOfUser.getText());
-                    JOptionPane.showMessageDialog(new JFrame(), "Inquiry updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(new JFrame(), "Sales inquiry updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
                     getInquiry(id1);
                     clear();
                     textFieldStatus(true);
 
                 } catch (Exception error) {
-                    JOptionPane.showMessageDialog(null, "Prices must be a decimal or integer.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Prices must be a decimal or an integer.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
             } catch (Exception error) {
-                JOptionPane.showMessageDialog(null, "Quantity must be an integer.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "The quantity must be an integer.", "Error", JOptionPane.ERROR_MESSAGE);
             }
 
         }
@@ -662,6 +690,20 @@ public class SalesInquiry extends javax.swing.JPanel {
         currentFrame.dispose();
     }//GEN-LAST:event_logoutButtonMouseClicked
 
+    private void logisticIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logisticIconMouseClicked
+        Frame frame = new Frame();
+        frame.viewFrame("Client.Logistics", "Inventory System");
+        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        currentFrame.dispose();
+    }//GEN-LAST:event_logisticIconMouseClicked
+
+    private void userManagementIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userManagementIconMouseClicked
+        Frame frame = new Frame();
+        frame.viewFrame("Client.UserManagement", "Inventory System");
+        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        currentFrame.dispose();
+    }//GEN-LAST:event_userManagementIconMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Quantity;
     private javax.swing.JButton addButoon;
@@ -674,6 +716,7 @@ public class SalesInquiry extends javax.swing.JPanel {
     private javax.swing.JLabel homeIcon;
     private javax.swing.JLabel idOfUser;
     private com.toedter.calendar.JDateChooser lastUpdate;
+    private javax.swing.JLabel logisticIcon;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel logoutButton;
     private javax.swing.JPanel navigationBar;
@@ -689,5 +732,6 @@ public class SalesInquiry extends javax.swing.JPanel {
     private javax.swing.JTextField supplier;
     private javax.swing.JTextField supplierPrice;
     private javax.swing.JButton updateButton;
+    private javax.swing.JLabel userManagementIcon;
     // End of variables declaration//GEN-END:variables
 }
