@@ -12,6 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import Server.SearchInTable;
 
 public class Logistics extends javax.swing.JPanel {
     
@@ -462,6 +463,11 @@ public class Logistics extends javax.swing.JPanel {
         });
 
         searchBox.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 1, true));
+        searchBox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchBoxKeyReleased(evt);
+            }
+        });
 
         searchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Search Bar/search.png"))); // NOI18N
 
@@ -782,6 +788,12 @@ public class Logistics extends javax.swing.JPanel {
         JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
         currentFrame.dispose();
     }//GEN-LAST:event_salesInquiryIconMouseClicked
+
+    private void searchBoxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchBoxKeyReleased
+        SearchInTable search = new SearchInTable();
+        String searchText = searchBox.getText();
+        search.search(searchText, logisticsTable);
+    }//GEN-LAST:event_searchBoxKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButoon;
