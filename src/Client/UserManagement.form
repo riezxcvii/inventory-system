@@ -32,18 +32,28 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="navigationBar" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="UserTableScrollPanel" max="32767" attributes="0"/>
-                  <Component id="userId" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="userForm" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="20" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="updateButton" min="-2" pref="95" max="-2" attributes="0"/>
-                          <Component id="addButoon" min="-2" pref="95" max="-2" attributes="0"/>
-                          <Component id="deleteButton" min="-2" pref="95" max="-2" attributes="0"/>
-                          <Component id="clearButton" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="searchBox" min="-2" pref="200" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                      <Component id="searchButton" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="UserTableScrollPanel" max="32767" attributes="0"/>
+                          <Component id="userId" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="userForm" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="20" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="updateButton" min="-2" pref="95" max="-2" attributes="0"/>
+                                  <Component id="addButoon" min="-2" pref="95" max="-2" attributes="0"/>
+                                  <Component id="deleteButton" min="-2" pref="95" max="-2" attributes="0"/>
+                                  <Component id="clearButton" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
@@ -56,7 +66,12 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="navigationBar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Component id="UserTableScrollPanel" min="-2" pref="341" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="searchBox" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="searchButton" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Component id="UserTableScrollPanel" min="-2" pref="289" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="userForm" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -561,6 +576,24 @@
     <Component class="javax.swing.JLabel" name="userId">
       <Properties>
         <Property name="text" type="java.lang.String" value="userId"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="searchBox">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder roundedCorners="true">
+              <Color PropertyName="color" blue="99" green="66" red="33" type="rgb"/>
+            </LineBorder>
+          </Border>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="searchButton">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Image/Search Bar/search.png"/>
+        </Property>
       </Properties>
     </Component>
   </SubComponents>
