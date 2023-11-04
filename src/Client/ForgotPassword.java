@@ -174,11 +174,7 @@ public class ForgotPassword extends javax.swing.JPanel {
         int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to update your password?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (decision == JOptionPane.YES_OPTION) {
             Server.Queries query = new Server.Queries();
-<<<<<<< HEAD
             UserData data = query.getUsername(userName.getText(), 0, "add");
-=======
-            UserData data = query.getUsername(userName.getText(), 0, "update"); // I'M GETTING AN ERROR IN THIS LINE AND LINE 77
->>>>>>> 82277b7a8f24871f31bfbf84d327375e047e2d03
             if(data.getPresent()){
                 boolean isTrue = query.updatePass(userName.getText(),newPassword.getText());
                 if(isTrue){
