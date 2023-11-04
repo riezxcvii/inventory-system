@@ -578,7 +578,6 @@ public class SalesInquiry extends javax.swing.JPanel {
                 supplierPrice.setEnabled(false);
                 lastUpdate.setEnabled(false);
                 remarks.setEnabled(false);
-                clearButton.setEnabled(false);
             } else {
                 updateButton.setEnabled(false);
                 clearButton.setEnabled(false);
