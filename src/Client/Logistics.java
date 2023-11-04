@@ -69,6 +69,7 @@ public class Logistics extends javax.swing.JPanel {
         warranty.setEnabled(status);
         warrantyCustomer.setEnabled(status);
         model1.setEnabled(status);
+        clearButton.setEnabled(status);
     }
     
     public void clear(){
