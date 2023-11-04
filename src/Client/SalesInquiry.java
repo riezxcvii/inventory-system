@@ -71,6 +71,9 @@ public class SalesInquiry extends javax.swing.JPanel {
         project.setText("");
         remarks.setText("");
         salesInquiryTable.getSelectionModel().clearSelection();
+        addButoon.setEnabled(true);
+        updateButton.setEnabled(false);
+        deleteButton.setEnabled(false);
     }
 
     public void textFieldStatus(boolean status) {
@@ -714,6 +717,7 @@ public class SalesInquiry extends javax.swing.JPanel {
 
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
         clear();
+        textFieldStatus(true);
     }//GEN-LAST:event_clearButtonActionPerformed
 
     private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
