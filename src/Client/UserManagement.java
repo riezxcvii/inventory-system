@@ -9,10 +9,14 @@ import Server.Queries;
 import Server.UserData;
 import java.util.List;
 import Server.SearchInTable;
+import Server.UserSession;
 
 public class UserManagement extends javax.swing.JPanel {
 
     Queries query = new Queries();
+    
+    UserSession session = UserSession.getInstance();
+    int userID = session.getUserID();
 
     public void getData(int id) {
 
@@ -442,14 +446,21 @@ public class UserManagement extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please fill out all the fields.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             
-            boolean isAdded = query.addUser(username.getText(), password.getText(), selectedItem, address.getText(), emailAddress.getText(), mobileNumber.getText(), firstName.getText(), lastName.getText());
-            if(isAdded){
-                JOptionPane.showMessageDialog(new JFrame(), "New user added.", "Success", JOptionPane.INFORMATION_MESSAGE);
-                getData(0);
-                clear(); 
-            }else{
-                JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
+           UserData data = query.getUsername(username.getText(), userID, "add");
+                if(data.getPresent()){
+                    System.out.println(data.getPresent());
+                    JOptionPane.showMessageDialog(null, "Username already exist. Try another username.", "Error", JOptionPane.ERROR_MESSAGE);
+                }else{
+                    System.out.println(data.getPresent());
+                    boolean isAdded = query.addUser(username.getText(), password.getText(), selectedItem, address.getText(), emailAddress.getText(), mobileNumber.getText(), firstName.getText(), lastName.getText());
+                    if(isAdded){
+                        JOptionPane.showMessageDialog(new JFrame(), "New user added.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        getData(0);
+                        clear(); 
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
         }
     }//GEN-LAST:event_addButoonActionPerformed
 
@@ -462,15 +473,20 @@ public class UserManagement extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please fill out all the fields.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             int id = Integer.parseInt(userId.getText());
-            boolean isUpdated = query.updateUser(id, username.getText(), password.getText(), selectedItem, address.getText(), emailAddress.getText(), mobileNumber.getText(), firstName.getText(), lastName.getText());
-            if(isUpdated){
-                JOptionPane.showMessageDialog(new JFrame(), "User account updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
-                getData(0);
-                clear();
-            }else{
-                JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            
+            UserData data = query.getUsername(username.getText(), id, "update");
+                if(data.getPresent()){
+                    System.out.println(data.getPresent());
+                    JOptionPane.showMessageDialog(null, "Username already exist. Try another username.", "Error", JOptionPane.ERROR_MESSAGE);
+                }else{
+                    boolean isUpdated = query.updateUser(id, username.getText(), password.getText(), selectedItem, address.getText(), emailAddress.getText(), mobileNumber.getText(), firstName.getText(), lastName.getText());
+                        if(isUpdated){
+                            JOptionPane.showMessageDialog(new JFrame(), "User account updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                            getData(0);
+                            clear();
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                }
         }
     }//GEN-LAST:event_updateButtonActionPerformed
 

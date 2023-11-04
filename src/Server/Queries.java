@@ -130,6 +130,39 @@ public class Queries {
         }
     }
     
+   public UserData getUsername(String username, int id, String method) {
+       PreparedStatement statement = null;
+       Server.UserData data = new Server.UserData();
+    try {
+         String query;
+        int count = 0;
+
+        if (method.equals("add")) {
+            query = "select COUNT(*) from user where username = ?";
+            statement = con.prepareStatement(query);
+            statement.setString(1, username);
+        } else {
+            query = "select COUNT(*) from user where username = ? and user_id != ?";
+            statement = con.prepareStatement(query);
+            statement.setString(1, username);
+            statement.setInt(2, id);
+        }
+
+        ResultSet result = statement.executeQuery();
+        if (result.next()) {
+            count = result.getInt(1);
+        }
+
+        data.setPresent(count > 0);
+
+        statement.close();
+    } catch(Exception error){
+            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE); 
+          
+        }
+    return data;
+}
+    
     //============================================================================================================
     //end of user
     //=============================================================================================================

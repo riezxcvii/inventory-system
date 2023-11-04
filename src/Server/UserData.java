@@ -11,6 +11,7 @@ public class UserData {
     private String address;
     private String mobile;
     private String email;
+    private boolean present;
     
     public int getUserId(){
         return id;
@@ -63,6 +64,13 @@ public class UserData {
     }
     public void setEmail(String email){
         this.email = email;
+    }
+    
+    public boolean getPresent(){
+        return present;
+    }
+    public void setPresent(boolean present){
+        this.present = present;
     }
     
     
