@@ -153,7 +153,7 @@ public class Queries {
             count = result.getInt(1);
         }
 
-        data.setPresent(count > 0);
+        data.setPresent(count > 0); // I'M GETTING AN ERROR IN THIS LINE
 
         statement.close();
     } catch(Exception error){
