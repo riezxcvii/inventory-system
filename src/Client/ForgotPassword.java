@@ -175,6 +175,7 @@ public class ForgotPassword extends javax.swing.JPanel {
         if (decision == JOptionPane.YES_OPTION) {
             Server.Queries query = new Server.Queries();
             UserData data = query.getUsername(userName.getText(), 0, "add");
+            System.out.println(data.getPresent());
             if(data.getPresent()){
                 boolean isTrue = query.updatePass(userName.getText(),newPassword.getText());
                 if(isTrue){

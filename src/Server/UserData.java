@@ -72,6 +72,4 @@ public class UserData {
     public void setPresent(boolean present){
         this.present = present;
     }
-    
-    
 }

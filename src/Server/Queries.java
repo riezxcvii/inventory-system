@@ -132,7 +132,7 @@ public class Queries {
     
    public UserData getUsername(String username, int id, String method) {
        PreparedStatement statement = null;
-       Server.UserData data = new Server.UserData();
+       UserData data = new UserData();
     try {
          String query;
         int count = 0;
@@ -152,7 +152,8 @@ public class Queries {
         if (result.next()) {
             count = result.getInt(1);
         }
-
+        System.out.println(count);
+        
         data.setPresent(count > 0); // I'M GETTING AN ERROR IN THIS LINE
 
         statement.close();
