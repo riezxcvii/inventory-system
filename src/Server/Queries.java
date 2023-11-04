@@ -162,6 +162,23 @@ public class Queries {
         }
     return data;
 }
+   
+   public boolean updatePass(String username, String password){
+       try{
+           String query = "update user set password = ? where username = ?";
+           PreparedStatement statement = con.prepareStatement(query);
+           statement.setString(1,password);
+           statement.setString(2,username);
+           
+           statement.executeUpdate();
+           statement.close();
+           return true;
+       } catch(Exception error){
+            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE); 
+            return false;
+        }
+       
+   }
     
     //============================================================================================================
     //end of user

@@ -1,7 +1,9 @@
 package Client;
 
 import Server.Frame;
+import Server.UserData;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 public class ForgotPassword extends javax.swing.JPanel {
@@ -50,6 +52,11 @@ public class ForgotPassword extends javax.swing.JPanel {
         changeButton.setForeground(new java.awt.Color(255, 255, 255));
         changeButton.setText("CHANGE");
         changeButton.setFocusable(false);
+        changeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeButtonActionPerformed(evt);
+            }
+        });
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Login Page/inventory-system-logo.png"))); // NOI18N
 
@@ -161,6 +168,30 @@ public class ForgotPassword extends javax.swing.JPanel {
             newPassword.setEchoChar('*');
         }
     }//GEN-LAST:event_showPasswordActionPerformed
+
+    private void changeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeButtonActionPerformed
+        
+        int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to update your password?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (decision == JOptionPane.YES_OPTION) {
+            Server.Queries query = new Server.Queries();
+            UserData data = query.getUsername(userName.getText(), 0, "update");
+            if(data.getPresent()){
+                boolean isTrue = query.updatePass(userName.getText(),newPassword.getText());
+                if(isTrue){
+                    JOptionPane.showMessageDialog(new JFrame(), "Password Updated.\nYour new password is: " + newPassword.getText(), "Success", JOptionPane.INFORMATION_MESSAGE);
+                    Frame frame = new Frame();
+                    frame.viewFrame("Client.LoginPage", "Inventory System");
+                    JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+                    currentFrame.dispose();
+
+                }else{
+                    JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Username does not exist. Try another username.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }   
+    }//GEN-LAST:event_changeButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
