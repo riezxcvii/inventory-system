@@ -25,6 +25,9 @@ public class LoginPage extends javax.swing.JPanel {
         loginButton = new javax.swing.JButton();
         forgotPassword = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
+        showPassword = new javax.swing.JCheckBox();
+        userNameLabel = new javax.swing.JLabel();
+        passwordLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(236, 242, 255));
         setMaximumSize(new java.awt.Dimension(0, 0));
@@ -58,45 +61,76 @@ public class LoginPage extends javax.swing.JPanel {
 
         forgotPassword.setForeground(new java.awt.Color(51, 102, 153));
         forgotPassword.setText("Forgot password?");
+        forgotPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                forgotPasswordMouseClicked(evt);
+            }
+        });
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Login Page/inventory-system-logo.png"))); // NOI18N
+
+        showPassword.setBackground(new java.awt.Color(255, 255, 255));
+        showPassword.setText("Show password");
+        showPassword.setFocusable(false);
+        showPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showPasswordActionPerformed(evt);
+            }
+        });
+
+        userNameLabel.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
+        userNameLabel.setText("Username");
+
+        passwordLabel.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
+        passwordLabel.setText("Password");
 
         javax.swing.GroupLayout loginFormLayout = new javax.swing.GroupLayout(loginForm);
         loginForm.setLayout(loginFormLayout);
         loginFormLayout.setHorizontalGroup(
             loginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginFormLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(loginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(forgotPassword)
-                    .addGroup(loginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(userName, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(loginButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
-                        .addComponent(password, javax.swing.GroupLayout.Alignment.TRAILING)))
-                .addGap(40, 40, 40))
             .addGroup(loginFormLayout.createSequentialGroup()
                 .addGap(127, 127, 127)
                 .addGroup(loginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(greetings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginFormLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(loginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(passwordLabel)
+                    .addComponent(userNameLabel)
+                    .addGroup(loginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(userName, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(loginButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
+                        .addComponent(password, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(loginFormLayout.createSequentialGroup()
+                            .addComponent(forgotPassword)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(showPassword))))
+                .addGap(40, 40, 40))
         );
         loginFormLayout.setVerticalGroup(
             loginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(loginFormLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(25, 25, 25)
                 .addComponent(logo)
-                .addGap(25, 25, 25)
+                .addGap(20, 20, 20)
                 .addComponent(greetings)
-                .addGap(25, 25, 25)
+                .addGap(20, 20, 20)
+                .addComponent(userNameLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(15, 15, 15)
+                .addComponent(passwordLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(loginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(forgotPassword)
+                    .addComponent(showPassword))
+                .addGap(12, 12, 12)
                 .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(forgotPassword)
-                .addGap(35, 35, 35))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -111,9 +145,9 @@ public class LoginPage extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(87, 87, 87)
-                .addComponent(loginForm, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addGap(74, 74, 74)
+                .addComponent(loginForm, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(74, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -140,30 +174,44 @@ public class LoginPage extends javax.swing.JPanel {
             userManager.setUserType(userType);
 
             if (isValidUser) {
-                if(userManager.getUserType().equals("Sales")){
+                if (userManager.getUserType().equals("Sales")) {
                     Frame frame = new Frame();
                     frame.viewFrame("Client.SalesInquiry", "Inventory System");
                     JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
                     currentFrame.dispose();
-                }else if(userManager.getUserType().equals("Logistics")){
-                    
+                } else if (userManager.getUserType().equals("Logistics")) {
+
                     Frame frame = new Frame();
                     frame.viewFrame("Client.Logistics", "Inventory System");
                     JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
                     currentFrame.dispose();
-                }
-                else{
+                } else {
                     Frame frame = new Frame();
                     frame.viewFrame("Client.Dashboard", "Inventory System");
                     JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
                     currentFrame.dispose();
                 }
-               
+
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid credentials. Check your username and password.", "Login Form", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void forgotPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forgotPasswordMouseClicked
+        Frame frame = new Frame();
+        frame.viewFrame("Client.ForgotPassword", "Inventory System");
+        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        currentFrame.dispose();
+    }//GEN-LAST:event_forgotPasswordMouseClicked
+
+    private void showPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPasswordActionPerformed
+        if (showPassword.isSelected()) {
+            password.setEchoChar((char) 0);
+        } else {
+            password.setEchoChar('*');
+        }
+    }//GEN-LAST:event_showPasswordActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel forgotPassword;
@@ -172,6 +220,9 @@ public class LoginPage extends javax.swing.JPanel {
     private javax.swing.JPanel loginForm;
     private javax.swing.JLabel logo;
     private javax.swing.JPasswordField password;
+    private javax.swing.JLabel passwordLabel;
+    private javax.swing.JCheckBox showPassword;
     private javax.swing.JTextField userName;
+    private javax.swing.JLabel userNameLabel;
     // End of variables declaration//GEN-END:variables
 }
