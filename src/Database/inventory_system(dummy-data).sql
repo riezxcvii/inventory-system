@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 02, 2023 at 07:30 AM
+-- Generation Time: Nov 04, 2023 at 04:43 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.3.33
 
@@ -52,7 +52,8 @@ CREATE TABLE `logistic` (
 --
 
 INSERT INTO `logistic` (`product_id`, `product_name`, `product_type`, `product_price`, `date_received`, `date_release`, `eu_po_number`, `po_ref_number`, `brand`, `description`, `model`, `supplier`, `quantity`, `customer`, `warranty`, `warranty_customer`, `user_id`) VALUES
-(3, 'Ball Point Pen', 'School Suppy', '15.00', '2023-11-02', '2023-11-03', '2363', '6754', 'Flex Office', 'Ballpen', 'B7589', 'Enterprise', 500, 'Sari-Sari Store', '3 Months', 'Sari-Sari Store', 11);
+(1, 'Printer', 'Office Equipment', '30000.00', '2023-10-17', '2023-10-20', 'EU175893', 'PO839429', 'Epson', 'Brand New', 'Epson EcoTankL14150', 'Lee\'s Computer Hardware', 20, 'Virtual Assistant Experts PH', '1 Year', 'Virtual Assistant Experts PH', 3),
+(2, 'Desktop Computer', 'Computer Hardware', '65000.00', '2023-10-31', '2023-11-04', 'EU198725', 'PO567499', 'Acer', 'Brand New', 'Aspire TC 1770 13th Gen', 'Tech Savy Inc.', 100, 'MJ Computer Hub', '1 Year', 'MJ Computer Hub', 3);
 
 -- --------------------------------------------------------
 
@@ -81,9 +82,8 @@ CREATE TABLE `sale` (
 --
 
 INSERT INTO `sale` (`sale_id`, `date`, `project_or_end_user`, `quantity`, `description`, `supplier`, `supplier_price`, `srp`, `remarks`, `date_accomplished`, `last_update`, `deadline`, `user_id`) VALUES
-(1, '2023-10-27', 'hehehe', 24, 'sha', 'ako', '23.00', '543.00', 'df,s', '2023-10-27', '2023-10-27', '2023-10-21', 6),
-(2, '2023-10-11', 'Employee Management System', 1, 'Web-based system.', 'Intellyx IT Solutions', '400000.00', '300000.00', 'Localhost', '2023-11-03', '2023-11-05', '2023-11-06', 4),
-(8, '2023-11-02', 'Student Information System', 1, 'Web-based system', 'Intellyx', '300000.00', '300000.00', 'Online', '2023-11-01', '2023-11-01', '2023-11-02', 10);
+(1, '2023-10-17', 'Printer', 20, 'Brand New', 'Lee\'s Computer Hardware', '30000.00', '27495.00', 'Check for defects', '2023-10-20', '2023-10-19', '2023-10-21', 2),
+(2, '2023-10-31', 'Desktop Computer', 100, 'Brand New', 'Tech Savy Inc.', '65000.00', '63649.00', 'Complete Set', '2023-11-03', '2023-11-04', '2023-11-06', 2);
 
 -- --------------------------------------------------------
 
@@ -108,9 +108,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `user_type`, `last_name`, `first_name`, `address`, `mobile_number`, `email_address`, `username`, `password`) VALUES
-(1, 'Admin', '1', 'Admin', 'Malabon City', '09123456781', 'admin1@gmail.com', 'admin', 'admin123'),
-(4, 'Sales', '1', 'Sales', 'Malabon City', '09635473435', 'sales1@gmail.com', 'sales', 'sales123'),
-(11, 'Logistics', '1', 'Logistic', 'Malabon City', '09674528862', 'logistic2@gmail.com', 'logistic', 'logistic123');
+(1, 'Admin', 'Banquillo', 'Rieza', 'San Jose, Antique', '09539858289', 'rieza.banquillo@gmail.com', 'rieza', 'banquillo'),
+(2, 'Sales', 'Virgo', 'Sunny', 'Tobias Fornier, Antique', '09759375104', 'sunny.virgo@gmail.com', 'sunny', 'virgo'),
+(3, 'Logistics', 'Miguel', 'Edvenson', 'San Jose, Antique', '09746588718', 'edvenson.miguel@gmail.com', 'edvenson', 'miguel');
 
 --
 -- Indexes for dumped tables
@@ -142,19 +142,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `logistic`
 --
 ALTER TABLE `logistic`
-  MODIFY `product_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `product_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `sale`
 --
 ALTER TABLE `sale`
-  MODIFY `sale_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `sale_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
