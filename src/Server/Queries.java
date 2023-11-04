@@ -169,7 +169,6 @@ public class Queries {
            PreparedStatement statement = con.prepareStatement(query);
            statement.setString(1,password);
            statement.setString(2,username);
-           
            statement.executeUpdate();
            statement.close();
            return true;

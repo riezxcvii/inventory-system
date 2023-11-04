@@ -174,7 +174,7 @@ public class ForgotPassword extends javax.swing.JPanel {
         int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to update your password?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (decision == JOptionPane.YES_OPTION) {
             Server.Queries query = new Server.Queries();
-            UserData data = query.getUsername(userName.getText(), 0, "update");
+            UserData data = query.getUsername(userName.getText(), 0, "add");
             if(data.getPresent()){
                 boolean isTrue = query.updatePass(userName.getText(),newPassword.getText());
                 if(isTrue){
@@ -183,7 +183,6 @@ public class ForgotPassword extends javax.swing.JPanel {
                     frame.viewFrame("Client.LoginPage", "Inventory System");
                     JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
                     currentFrame.dispose();
-
                 }else{
                     JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
