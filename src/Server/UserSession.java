@@ -16,15 +16,19 @@ public class UserSession {
         }
         return instance;
     }
+
     public void setUserID(int userID) {
         this.userID = userID;
     }
+
     public int getUserID() {
         return userID;
     }
+
     public void setUserType(String userType) {
         this.userType = userType;
     }
+
     public String getUserType() {
         return userType;
     }

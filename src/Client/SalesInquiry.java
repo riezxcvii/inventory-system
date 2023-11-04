@@ -108,12 +108,12 @@ public class SalesInquiry extends javax.swing.JPanel {
 
         if (session.getUserType().equals("Sales")) {
             salesUser.addItem("My Inquiry");
-        }else if(session.getUserType().equals("Admin")){
+        } else if (session.getUserType().equals("Admin")) {
             salesUser.addItem("Select Sales User");
-        }else{
-            
+        } else {
+
         }
-        
+
         Server.Queries qry = new Server.Queries();
         List<UserData> data = qry.getUserData(0, userID, "Sales");
 
@@ -510,13 +510,13 @@ public class SalesInquiry extends javax.swing.JPanel {
         clear();
         updateButton.setEnabled(false);
         deleteButton.setEnabled(false);
-        
+
         if (selectedItem.equals("My Inquiry") || selectedItem.equals("Select Sales User")) {
             getInquiry(userID);
             addButoon.setEnabled(true);
             textFieldStatus(true);
             clearButton.setEnabled(true);
-        }else {
+        } else {
             Pattern pattern = Pattern.compile("\\d+");
             Matcher matcher = pattern.matcher(selectedItem);
 
@@ -591,19 +591,19 @@ public class SalesInquiry extends javax.swing.JPanel {
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to delete?", "Confirmation", JOptionPane.YES_NO_OPTION);
-        
+
         if (decision == JOptionPane.YES_OPTION) {
             int id = Integer.parseInt(salesId.getText());
             boolean isDeleted = qry.deleteInquiry(id);
-            if(isDeleted){
-               JOptionPane.showMessageDialog(new JFrame(), "Sales inquiry deleted.", "Success", JOptionPane.INFORMATION_MESSAGE);
-               int id1 = Integer.parseInt(idOfUser.getText());
-               getInquiry(id1);
-               clear();
-            }else{
-               JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
+            if (isDeleted) {
+                JOptionPane.showMessageDialog(new JFrame(), "Sales inquiry deleted.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                int id1 = Integer.parseInt(idOfUser.getText());
+                getInquiry(id1);
+                clear();
+            } else {
+                JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-           
+
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
@@ -619,7 +619,7 @@ public class SalesInquiry extends javax.swing.JPanel {
 
                 try {
                     int quantityValue = Integer.parseInt(Quantity.getText());
-                    
+
                     try {
                         double srpValue = Double.parseDouble(srp.getText());
                         double supplierpriceValue = Double.parseDouble(supplierPrice.getText());
@@ -641,14 +641,14 @@ public class SalesInquiry extends javax.swing.JPanel {
                                 flastUpdate,
                                 fdeadline,
                                 userID);
-                        if(isAdded){
+                        
+                        if (isAdded) {
                             JOptionPane.showMessageDialog(new JFrame(), "Inquiry added.", "Success", JOptionPane.INFORMATION_MESSAGE);
                             getInquiry(userID);
                             clear();
-                        }else{
+                        } else {
                             JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
                         }
-                        
 
                     } catch (Exception error) {
                         JOptionPane.showMessageDialog(null, "Prices must be a decimal or an integer.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -671,6 +671,7 @@ public class SalesInquiry extends javax.swing.JPanel {
 
             try {
                 int quantityValue = Integer.parseInt(Quantity.getText());
+                
                 try {
                     int id = Integer.parseInt(salesId.getText());
                     double srpValue = Double.parseDouble(srp.getText());
@@ -694,13 +695,14 @@ public class SalesInquiry extends javax.swing.JPanel {
                             fdateAccom,
                             flastUpdate,
                             fdeadline);
-                    if(isUpdated){
+                    
+                    if (isUpdated) {
                         int id1 = Integer.parseInt(idOfUser.getText());
                         JOptionPane.showMessageDialog(new JFrame(), "Sales inquiry updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
                         getInquiry(id1);
                         clear();
                         textFieldStatus(true);
-                    }else{
+                    } else {
                         JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
 
@@ -722,7 +724,7 @@ public class SalesInquiry extends javax.swing.JPanel {
 
     private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
         int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to logout?", "Confirmation", JOptionPane.YES_NO_OPTION);
-      
+
         if (decision == JOptionPane.YES_OPTION) {
             Frame frame = new Frame();
             frame.viewFrame("Client.LoginPage", "Inventory System");

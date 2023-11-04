@@ -14,7 +14,7 @@ import Server.UserSession;
 public class UserManagement extends javax.swing.JPanel {
 
     Queries query = new Queries();
-    
+
     UserSession session = UserSession.getInstance();
     int userID = session.getUserID();
 
@@ -422,18 +422,19 @@ public class UserManagement extends javax.swing.JPanel {
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to delete?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        
         if (decision == JOptionPane.YES_OPTION) {
             int id = Integer.parseInt(userId.getText());
             boolean isDeleted = query.deleteUser(id);
-            
-            if(isDeleted){
+
+            if (isDeleted) {
                 JOptionPane.showMessageDialog(new JFrame(), "User account deleted.", "Success", JOptionPane.INFORMATION_MESSAGE);
                 getData(0);
                 clear();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-           
+
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
@@ -445,22 +446,21 @@ public class UserManagement extends javax.swing.JPanel {
         } else if (address.getText().equals("") || emailAddress.getText().equals("") || lastName.getText().equals("") || firstName.getText().equals("") || mobileNumber.getText().equals("") || username.getText().equals("") || password.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please fill out all the fields.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            
-           UserData data = query.getUsername(username.getText(), userID, "add");
-                if(data.getPresent()){
-                    System.out.println(data.getPresent());
-                    JOptionPane.showMessageDialog(null, "Username already exist. Try another username.", "Error", JOptionPane.ERROR_MESSAGE);
-                }else{
-                    System.out.println(data.getPresent());
-                    boolean isAdded = query.addUser(username.getText(), password.getText(), selectedItem, address.getText(), emailAddress.getText(), mobileNumber.getText(), firstName.getText(), lastName.getText());
-                    if(isAdded){
-                        JOptionPane.showMessageDialog(new JFrame(), "New user added.", "Success", JOptionPane.INFORMATION_MESSAGE);
-                        getData(0);
-                        clear(); 
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
+            UserData data = query.getUsername(username.getText(), userID, "add");
+            if (data.getPresent()) {
+                System.out.println(data.getPresent());
+                JOptionPane.showMessageDialog(null, "Username already exist. Try another username.", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                System.out.println(data.getPresent());
+                boolean isAdded = query.addUser(username.getText(), password.getText(), selectedItem, address.getText(), emailAddress.getText(), mobileNumber.getText(), firstName.getText(), lastName.getText());
+                if (isAdded) {
+                    JOptionPane.showMessageDialog(new JFrame(), "New user added.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    getData(0);
+                    clear();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
+            }
         }
     }//GEN-LAST:event_addButoonActionPerformed
 
@@ -474,19 +474,19 @@ public class UserManagement extends javax.swing.JPanel {
         } else {
             int id = Integer.parseInt(userId.getText());
             UserData data = query.getUsername(username.getText(), id, "update");
-                if(data.getPresent()){
-                    System.out.println(data.getPresent());
-                    JOptionPane.showMessageDialog(null, "Username already exist. Try another username.", "Error", JOptionPane.ERROR_MESSAGE);
-                }else{
-                    boolean isUpdated = query.updateUser(id, username.getText(), password.getText(), selectedItem, address.getText(), emailAddress.getText(), mobileNumber.getText(), firstName.getText(), lastName.getText());
-                        if(isUpdated){
-                            JOptionPane.showMessageDialog(new JFrame(), "User account updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
-                            getData(0);
-                            clear();
-                        }else{
-                            JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
-                        }
+            if (data.getPresent()) {
+                System.out.println(data.getPresent());
+                JOptionPane.showMessageDialog(null, "Username already exist. Try another username.", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                boolean isUpdated = query.updateUser(id, username.getText(), password.getText(), selectedItem, address.getText(), emailAddress.getText(), mobileNumber.getText(), firstName.getText(), lastName.getText());
+                if (isUpdated) {
+                    JOptionPane.showMessageDialog(new JFrame(), "User account updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    getData(0);
+                    clear();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
+            }
         }
     }//GEN-LAST:event_updateButtonActionPerformed
 
@@ -496,7 +496,7 @@ public class UserManagement extends javax.swing.JPanel {
 
     private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
         int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to logout?", "Confirmation", JOptionPane.YES_NO_OPTION);
-      
+
         if (decision == JOptionPane.YES_OPTION) {
             Frame frame = new Frame();
             frame.viewFrame("Client.LoginPage", "Inventory System");

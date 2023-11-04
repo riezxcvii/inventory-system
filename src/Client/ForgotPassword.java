@@ -170,27 +170,29 @@ public class ForgotPassword extends javax.swing.JPanel {
     }//GEN-LAST:event_showPasswordActionPerformed
 
     private void changeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeButtonActionPerformed
-        
         int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to update your password?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        
         if (decision == JOptionPane.YES_OPTION) {
             Server.Queries query = new Server.Queries();
             UserData data = query.getUsername(userName.getText(), 0, "add");
             System.out.println(data.getPresent());
-            if(data.getPresent()){
-                boolean isTrue = query.updatePass(userName.getText(),newPassword.getText());
-                if(isTrue){
+            
+            if (data.getPresent()) {
+                boolean isTrue = query.updatePass(userName.getText(), newPassword.getText());
+                
+                if (isTrue) {
                     JOptionPane.showMessageDialog(new JFrame(), "Password Updated.\nYour new password is: " + newPassword.getText(), "Success", JOptionPane.INFORMATION_MESSAGE);
                     Frame frame = new Frame();
                     frame.viewFrame("Client.LoginPage", "Inventory System");
                     JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
                     currentFrame.dispose();
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Username does not exist. Try another username.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-        }   
+        }
     }//GEN-LAST:event_changeButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -15,45 +15,44 @@ import javax.swing.table.DefaultTableModel;
 import Server.SearchInTable;
 
 public class Logistics extends javax.swing.JPanel {
-    
+
     Server.Queries qry = new Server.Queries();
-    
+
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    
+
     UserSession session = UserSession.getInstance();
     int userID = session.getUserID();
     String userType = session.getUserType();
-    
-    public void getLogistic(int id) {
-    Server.Queries qry = new Server.Queries();
-    List<LogisticData> data = qry.getLogisticData(id,"user");
 
-    DefaultTableModel model = (DefaultTableModel) logisticsTable.getModel();
-    model.setRowCount(0);
-    for (LogisticData item : data) {
-        model.addRow(new Object[] {
-           item.getProductId(),
-           item.getName(),
-           item.getType(),
-           item.getPrice(),
-           item.getDateReceived(),
-           item.getDateRelease(),
-           item.getEuPoNumber(),
-           item.getPoRefNumber(),
-           item.getBrand(),
-           item.getPDesc(),
-           item.getModel(),
-           item.getSupplier(),
-           item.getQuantity(),
-           item.getCustomer(),
-           item.getWarranty(),
-           item.getWarrantyCustomer()
-        });
+    public void getLogistic(int id) {
+        Server.Queries qry = new Server.Queries();
+        List<LogisticData> data = qry.getLogisticData(id, "user");
+
+        DefaultTableModel model = (DefaultTableModel) logisticsTable.getModel();
+        model.setRowCount(0);
+        for (LogisticData item : data) {
+            model.addRow(new Object[]{
+                item.getProductId(),
+                item.getName(),
+                item.getType(),
+                item.getPrice(),
+                item.getDateReceived(),
+                item.getDateRelease(),
+                item.getEuPoNumber(),
+                item.getPoRefNumber(),
+                item.getBrand(),
+                item.getPDesc(),
+                item.getModel(),
+                item.getSupplier(),
+                item.getQuantity(),
+                item.getCustomer(),
+                item.getWarranty(),
+                item.getWarrantyCustomer()
+            });
+        }
     }
-    }
-    
-    public void textFieldStatus(boolean status){
-                
+
+    public void textFieldStatus(boolean status) {
         dateReceived.setEnabled(status);
         dateRelease.setEnabled(status);
         brand.setEnabled(status);
@@ -71,8 +70,8 @@ public class Logistics extends javax.swing.JPanel {
         model1.setEnabled(status);
         clearButton.setEnabled(status);
     }
-    
-    public void clear(){
+
+    public void clear() {
         addButoon.setEnabled(true);
         brand.setText("");
         clearButton.setEnabled(true);
@@ -97,24 +96,24 @@ public class Logistics extends javax.swing.JPanel {
 
     public Logistics() {
         initComponents();
-        
-        if(!session.getUserType().equals("Admin")){
-           homeIcon.setVisible(false);
-           salesInquiryIcon.setVisible(false);
-           userManagementIcon.setVisible(false);
+
+        if (!session.getUserType().equals("Admin")) {
+            homeIcon.setVisible(false);
+            salesInquiryIcon.setVisible(false);
+            userManagementIcon.setVisible(false);
         }
-         
+
         productId.setVisible(false);
         idOfUser.setVisible(false);
         updateButton.setEnabled(false);
         deleteButton.setEnabled(false);
-         
+
         if (session.getUserType().equals("Logistics")) {
             logisticUser.addItem("My Data");
-        }else{
+        } else {
             logisticUser.addItem("Select Logistic User");
         }
-        
+
         Server.Queries qry = new Server.Queries();
         List<UserData> data = qry.getUserData(0, userID, "Logistics");
 
@@ -124,8 +123,8 @@ public class Logistics extends javax.swing.JPanel {
             String last = item.getLast();
             logisticUser.addItem(id + " " + first + " " + last);
         }
-         
-         getLogistic(userID);
+
+        getLogistic(userID);
     }
 
     @SuppressWarnings("unchecked")
@@ -535,61 +534,62 @@ public class Logistics extends javax.swing.JPanel {
     }//GEN-LAST:event_homeIconMouseClicked
 
     private void addButoonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButoonActionPerformed
-        if(session.getUserType().equals("Admin")){
+        if (session.getUserType().equals("Admin")) {
             JOptionPane.showMessageDialog(null, "You can't add logistics.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            if(dateReceived.getDate()==null || dateRelease.getDate()==null||
-                brand.getText().equals("")||customer.getText().equals("")||
-                eu_po.getText().equals("")||
-                model1.getText().equals("")||po_ref.getText().equals("")||
-                supplier.getText().equals("")||productDescription.getText().equals("")||
-                productName.getText().equals("")|| productPrice.getText().equals("") ||
-                productType.getText().equals("") ||  quantity.getText().equals("") ||
-                warranty.getText().equals("")||  warrantyCustomer.getText().equals("")){
+            if (dateReceived.getDate() == null || dateRelease.getDate() == null
+                    || brand.getText().equals("") || customer.getText().equals("")
+                    || eu_po.getText().equals("")
+                    || model1.getText().equals("") || po_ref.getText().equals("")
+                    || supplier.getText().equals("") || productDescription.getText().equals("")
+                    || productName.getText().equals("") || productPrice.getText().equals("")
+                    || productType.getText().equals("") || quantity.getText().equals("")
+                    || warranty.getText().equals("") || warrantyCustomer.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Please fill out all the fields.", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
 
-                try{
+                try {
                     int quantityValue = Integer.parseInt(quantity.getText());
-                    
-                    try{
-                        double price= Double.parseDouble(productPrice.getText());
+
+                    try {
+                        double price = Double.parseDouble(productPrice.getText());
 
                         String receive = sdf.format(dateReceived.getDate());
                         String release = sdf.format(dateRelease.getDate());
 
                         boolean isAdded = qry.addLogistic(
-                        productName.getText(),
-                        productType.getText(),
-                        price,
-                        receive,
-                        release,
-                        eu_po.getText(),
-                        po_ref.getText(),
-                        brand.getText(),
-                        productDescription.getText(),
-                        model1.getText(),
-                        supplier.getText(),
-                        quantityValue,
-                        customer.getText(),
-                        warranty.getText(),
-                        warrantyCustomer.getText(),
-                        userID
+                                productName.getText(),
+                                productType.getText(),
+                                price,
+                                receive,
+                                release,
+                                eu_po.getText(),
+                                po_ref.getText(),
+                                brand.getText(),
+                                productDescription.getText(),
+                                model1.getText(),
+                                supplier.getText(),
+                                quantityValue,
+                                customer.getText(),
+                                warranty.getText(),
+                                warrantyCustomer.getText(),
+                                userID
                         );
-                        if(isAdded){
+                        
+                        if (isAdded) {
                             JOptionPane.showMessageDialog(new JFrame(), "Logistic added.", "Success", JOptionPane.INFORMATION_MESSAGE);
                             getLogistic(userID);
                             clear();
-                        }else{
-                            JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
                         }
-                       
 
-                    }catch(Exception error){
+                    } catch (Exception error) {
                         JOptionPane.showMessageDialog(null, "Prices must be a decimal or an integer.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
 
-                }catch(Exception error){
+                } catch (Exception error) {
                     JOptionPane.showMessageDialog(null, "The quantity must be an integer.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
@@ -603,27 +603,27 @@ public class Logistics extends javax.swing.JPanel {
 
     private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
         int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to logout?", "Confirmation", JOptionPane.YES_NO_OPTION);
-      
+
         if (decision == JOptionPane.YES_OPTION) {
             Frame frame = new Frame();
             frame.viewFrame("Client.LoginPage", "Inventory System");
             JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
             currentFrame.dispose();
         }
-        
+
     }//GEN-LAST:event_logoutButtonMouseClicked
 
     private void logisticUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logisticUserActionPerformed
-         String selectedItem = logisticUser.getSelectedItem().toString();
-         clear();
-         updateButton.setEnabled(false);
-         deleteButton.setEnabled(false);
+        String selectedItem = logisticUser.getSelectedItem().toString();
+        clear();
+        updateButton.setEnabled(false);
+        deleteButton.setEnabled(false);
         if (selectedItem.equals("My Data") || selectedItem.equals("Select Logistic User")) {
             getLogistic(userID);
             addButoon.setEnabled(true);
             clearButton.setEnabled(true);
             textFieldStatus(true);
-        }else {
+        } else {
             Pattern pattern = Pattern.compile("\\d+");
             Matcher matcher = pattern.matcher(selectedItem);
 
@@ -687,90 +687,90 @@ public class Logistics extends javax.swing.JPanel {
             } else {
                 updateButton.setEnabled(false);
                 clearButton.setEnabled(false);
-               textFieldStatus(false);
+                textFieldStatus(false);
             }
         }
     }//GEN-LAST:event_logisticsTableMouseClicked
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-      int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to delete?", "Confirmation", JOptionPane.YES_NO_OPTION);
-      
+        int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to delete?", "Confirmation", JOptionPane.YES_NO_OPTION);
+
         if (decision == JOptionPane.YES_OPTION) {
             int id = Integer.parseInt(productId.getText());
             boolean isDeleted = qry.deleteLogistic(id);
-            if(isDeleted){
+            if (isDeleted) {
                 JOptionPane.showMessageDialog(new JFrame(), "Logistic deleted.", "Success", JOptionPane.INFORMATION_MESSAGE);
                 int id1 = Integer.parseInt(idOfUser.getText());
                 getLogistic(id1);
                 clear();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-            
+
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        if(dateReceived.getDate()==null || dateRelease.getDate()==null||
-            brand.getText().equals("")||customer.getText().equals("")||
-            eu_po.getText().equals("")||
-            model1.getText().equals("")||po_ref.getText().equals("")||
-            supplier.getText().equals("")||productDescription.getText().equals("")||
-            productName.getText().equals("")|| productPrice.getText().equals("") ||
-            productType.getText().equals("") ||  quantity.getText().equals("") ||
-            warranty.getText().equals("")||  warrantyCustomer.getText().equals("")){
+        if (dateReceived.getDate() == null || dateRelease.getDate() == null
+                || brand.getText().equals("") || customer.getText().equals("")
+                || eu_po.getText().equals("")
+                || model1.getText().equals("") || po_ref.getText().equals("")
+                || supplier.getText().equals("") || productDescription.getText().equals("")
+                || productName.getText().equals("") || productPrice.getText().equals("")
+                || productType.getText().equals("") || quantity.getText().equals("")
+                || warranty.getText().equals("") || warrantyCustomer.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please fill out all the fields.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
 
-            try{
+            try {
                 int quantityValue = Integer.parseInt(quantity.getText());
 
-                try{
-                    double price= Double.parseDouble(productPrice.getText());
+                try {
+                    double price = Double.parseDouble(productPrice.getText());
 
                     String receive = sdf.format(dateReceived.getDate());
                     String release = sdf.format(dateRelease.getDate());
-                    int id = Integer.parseInt( productId.getText());
+                    int id = Integer.parseInt(productId.getText());
 
                     boolean isUpdated = qry.updateLogistic(
-                    id,
-                    productName.getText(),
-                    productType.getText(),
-                    price,
-                    receive,
-                    release,
-                    eu_po.getText(),
-                    po_ref.getText(),
-                    brand.getText(),
-                    productDescription.getText(),
-                    model1.getText(),
-                    supplier.getText(),
-                    quantityValue,
-                    customer.getText(),
-                    warranty.getText(),
-                    warrantyCustomer.getText()
+                            id,
+                            productName.getText(),
+                            productType.getText(),
+                            price,
+                            receive,
+                            release,
+                            eu_po.getText(),
+                            po_ref.getText(),
+                            brand.getText(),
+                            productDescription.getText(),
+                            model1.getText(),
+                            supplier.getText(),
+                            quantityValue,
+                            customer.getText(),
+                            warranty.getText(),
+                            warrantyCustomer.getText()
                     );
-                    if(isUpdated){
+                    
+                    if (isUpdated) {
                         JOptionPane.showMessageDialog(new JFrame(), "Logistic updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
                         int id1 = Integer.parseInt(idOfUser.getText());
 
-                        if(userType.equals("Admin")){
-                             getLogistic(id1);
-                        }else{
-                             getLogistic(userID);
+                        if (userType.equals("Admin")) {
+                            getLogistic(id1);
+                        } else {
+                            getLogistic(userID);
                         }
 
                         clear();
-                    }else{
+                    } else {
                         JOptionPane.showMessageDialog(null, "Server error.", "Error", JOptionPane.ERROR_MESSAGE);
-                    } 
-                    
+                    }
 
-                } catch(Exception error){
+                } catch (Exception error) {
                     JOptionPane.showMessageDialog(null, "Prices must be a decimal or an integer.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
-            } catch(Exception error){
+            } catch (Exception error) {
                 JOptionPane.showMessageDialog(null, "The quantity must be an integer.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }

@@ -28,7 +28,7 @@ public class LoginValidation {
             // check if a matching user is found and retrieve the user_id and user role
             if (resultSet.next()) {
                 userID = resultSet.getInt("user_id");
-                userType= resultSet.getString("user_type");
+                userType = resultSet.getString("user_type");
                 isValid = true;
             } else {
                 isValid = false;
@@ -39,7 +39,6 @@ public class LoginValidation {
             System.out.println(e);
             JOptionPane.showMessageDialog(null, "Error retrieving data from the database.", "Login Form", JOptionPane.ERROR_MESSAGE);
         }
-
         // return a new LoginResult object with isValid, userID, and userRole
         return new LoginResult(isValid, userID, userType);
     }

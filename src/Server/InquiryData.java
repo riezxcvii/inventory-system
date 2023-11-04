@@ -3,7 +3,8 @@ package Server;
 import java.util.Date;
 
 public class InquiryData {
-   private int salesId;
+
+    private int salesId;
     private Date iDate;
     private String iProject;
     private int iQuantity;
@@ -112,10 +113,12 @@ public class InquiryData {
     public void setIDeadline(Date iDeadline) {
         this.iDeadline = iDeadline;
     }
-    public int getUserID(){
+
+    public int getUserID() {
         return userID;
     }
-    public void setUserID(int userID){
+
+    public void setUserID(int userID) {
         this.userID = userID;
     }
 }
