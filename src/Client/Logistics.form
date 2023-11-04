@@ -782,9 +782,7 @@
     <Component class="javax.swing.JComboBox" name="logisticUser">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="1">
-            <StringItem index="0" value="Select Logistic User"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
@@ -807,6 +805,9 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="searchBoxKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="searchButton">
       <Properties>
