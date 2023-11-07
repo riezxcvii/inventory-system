@@ -96,12 +96,15 @@ public class Logistics extends javax.swing.JPanel {
 
     public Logistics() {
         initComponents();
+        
+        moduleTitle.setVisible(false);
 
         if (!session.getUserType().equals("Admin")) {
             dashboardIcon.setVisible(false);
             salesInquiryIcon.setVisible(false);
             userManagementIcon.setVisible(false);
             logisticIcon.setVisible(false);
+            moduleTitle.setVisible(true);
         }
 
         productId.setVisible(false);
@@ -139,6 +142,8 @@ public class Logistics extends javax.swing.JPanel {
         logisticIcon = new javax.swing.JLabel();
         salesInquiryIcon = new javax.swing.JLabel();
         userManagementIcon = new javax.swing.JLabel();
+        layerPanel = new javax.swing.JPanel();
+        moduleTitle = new javax.swing.JLabel();
         logisticsForm = new javax.swing.JPanel();
         productName = new javax.swing.JTextField();
         productType = new javax.swing.JTextField();
@@ -221,14 +226,36 @@ public class Logistics extends javax.swing.JPanel {
             }
         });
 
+        layerPanel.setBackground(new java.awt.Color(51, 102, 153));
+
+        moduleTitle.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
+        moduleTitle.setForeground(new java.awt.Color(255, 255, 255));
+        moduleTitle.setText("Logistics");
+
+        javax.swing.GroupLayout layerPanelLayout = new javax.swing.GroupLayout(layerPanel);
+        layerPanel.setLayout(layerPanelLayout);
+        layerPanelLayout.setHorizontalGroup(
+            layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layerPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(moduleTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(8, 8, 8))
+        );
+        layerPanelLayout.setVerticalGroup(
+            layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(moduleTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout navigationBarLayout = new javax.swing.GroupLayout(navigationBar);
         navigationBar.setLayout(navigationBarLayout);
         navigationBarLayout.setHorizontalGroup(
             navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(navigationBarLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, navigationBarLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(logo)
-                .addGap(290, 290, 290)
+                .addGap(9, 9, 9)
+                .addComponent(layerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(dashboardIcon)
                 .addGap(20, 20, 20)
                 .addComponent(userManagementIcon)
@@ -236,15 +263,12 @@ public class Logistics extends javax.swing.JPanel {
                 .addComponent(salesInquiryIcon)
                 .addGap(20, 20, 20)
                 .addComponent(logisticIcon)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(290, 290, 290)
                 .addComponent(logoutButton)
                 .addGap(21, 21, 21))
         );
         navigationBarLayout.setVerticalGroup(
             navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(navigationBarLayout.createSequentialGroup()
-                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(navigationBarLayout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addGroup(navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -254,6 +278,8 @@ public class Logistics extends javax.swing.JPanel {
                     .addComponent(dashboardIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(layerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         logisticsForm.setBackground(new java.awt.Color(255, 255, 255));
@@ -363,7 +389,7 @@ public class Logistics extends javax.swing.JPanel {
                 .addGroup(logisticsFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(productId)
                     .addComponent(idOfUser))
-                .addGap(31, 31, 31))
+                .addGap(29, 29, 29))
         );
 
         logisticsTable.setBackground(new java.awt.Color(238, 238, 238));
@@ -533,11 +559,11 @@ public class Logistics extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(clearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
+                        .addGap(26, 26, 26)
                         .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(addButoon, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
+                        .addGap(26, 26, 26)
                         .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(logisticsForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11))
@@ -824,6 +850,7 @@ public class Logistics extends javax.swing.JPanel {
     private javax.swing.JButton deleteButton;
     private javax.swing.JTextField eu_po;
     private javax.swing.JLabel idOfUser;
+    private javax.swing.JPanel layerPanel;
     private javax.swing.JLabel logisticIcon;
     private javax.swing.JComboBox<String> logisticUser;
     private javax.swing.JPanel logisticsForm;
@@ -832,6 +859,7 @@ public class Logistics extends javax.swing.JPanel {
     private javax.swing.JLabel logo;
     private javax.swing.JLabel logoutButton;
     private javax.swing.JTextField model1;
+    private javax.swing.JLabel moduleTitle;
     private javax.swing.JPanel navigationBar;
     private javax.swing.JTextField po_ref;
     private javax.swing.JTextField productDescription;

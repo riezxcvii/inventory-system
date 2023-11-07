@@ -99,12 +99,15 @@ public class SalesInquiry extends javax.swing.JPanel {
         deleteButton.setEnabled(false);
         salesId.setVisible(false);
         idOfUser.setVisible(false);
+        moduleTitle.setVisible(false);
+        layerPanel.setVisible(true);
 
         if (!session.getUserType().equals("Admin")) {
             dashboardIcon.setVisible(false);
             logisticIcon.setVisible(false);
             userManagementIcon.setVisible(false);
             salesInquiryIcon.setVisible(false);
+            moduleTitle.setVisible(true);
         }
 
         if (session.getUserType().equals("Sales")) {
@@ -139,6 +142,8 @@ public class SalesInquiry extends javax.swing.JPanel {
         logisticIcon = new javax.swing.JLabel();
         salesInquiryIcon = new javax.swing.JLabel();
         userManagementIcon = new javax.swing.JLabel();
+        layerPanel = new javax.swing.JPanel();
+        moduleTitle = new javax.swing.JLabel();
         salesInquiryForm = new javax.swing.JPanel();
         project = new javax.swing.JTextField();
         Quantity = new javax.swing.JTextField();
@@ -218,14 +223,36 @@ public class SalesInquiry extends javax.swing.JPanel {
             }
         });
 
+        layerPanel.setBackground(new java.awt.Color(51, 102, 153));
+
+        moduleTitle.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
+        moduleTitle.setForeground(new java.awt.Color(255, 255, 255));
+        moduleTitle.setText("Sales Inquiry");
+
+        javax.swing.GroupLayout layerPanelLayout = new javax.swing.GroupLayout(layerPanel);
+        layerPanel.setLayout(layerPanelLayout);
+        layerPanelLayout.setHorizontalGroup(
+            layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layerPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(moduleTitle)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layerPanelLayout.setVerticalGroup(
+            layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(moduleTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout navigationBarLayout = new javax.swing.GroupLayout(navigationBar);
         navigationBar.setLayout(navigationBarLayout);
         navigationBarLayout.setHorizontalGroup(
             navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, navigationBarLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+            .addGroup(navigationBarLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
                 .addComponent(logo)
-                .addGap(290, 290, 290)
+                .addGap(9, 9, 9)
+                .addComponent(layerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(282, 282, 282)
                 .addComponent(dashboardIcon)
                 .addGap(20, 20, 20)
                 .addComponent(userManagementIcon)
@@ -239,16 +266,18 @@ public class SalesInquiry extends javax.swing.JPanel {
         );
         navigationBarLayout.setVerticalGroup(
             navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-            .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, navigationBarLayout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addGroup(navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(userManagementIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(salesInquiryIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(logisticIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dashboardIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10))
+            .addGroup(navigationBarLayout.createSequentialGroup()
+                .addGroup(navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(userManagementIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(salesInquiryIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(logisticIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dashboardIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(layerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         salesInquiryForm.setBackground(new java.awt.Color(255, 255, 255));
@@ -491,7 +520,7 @@ public class SalesInquiry extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(navigationBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(navigationBar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(salesUser, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -755,19 +784,19 @@ public class SalesInquiry extends javax.swing.JPanel {
         currentFrame.dispose();
     }//GEN-LAST:event_dashboardIconMouseClicked
 
-    private void logisticIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logisticIconMouseClicked
-        Frame frame = new Frame();
-        frame.viewFrame("Client.Logistics", "Inventory System");
-        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        currentFrame.dispose();
-    }//GEN-LAST:event_logisticIconMouseClicked
-
     private void userManagementIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userManagementIconMouseClicked
         Frame frame = new Frame();
         frame.viewFrame("Client.UserManagement", "Inventory System");
         JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
         currentFrame.dispose();
     }//GEN-LAST:event_userManagementIconMouseClicked
+
+    private void logisticIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logisticIconMouseClicked
+        Frame frame = new Frame();
+        frame.viewFrame("Client.Logistics", "Inventory System");
+        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        currentFrame.dispose();
+    }//GEN-LAST:event_logisticIconMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Quantity;
@@ -781,9 +810,11 @@ public class SalesInquiry extends javax.swing.JPanel {
     private javax.swing.JTextField description;
     private javax.swing.JLabel idOfUser;
     private com.toedter.calendar.JDateChooser lastUpdate;
+    private javax.swing.JPanel layerPanel;
     private javax.swing.JLabel logisticIcon;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel logoutButton;
+    private javax.swing.JLabel moduleTitle;
     private javax.swing.JPanel navigationBar;
     private javax.swing.JTextField project;
     private javax.swing.JTextField remarks;

@@ -61,7 +61,7 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="navigationBar" min="-2" max="-2" attributes="0"/>
+              <Component id="navigationBar" min="-2" pref="60" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="salesUser" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
@@ -99,10 +99,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   <Component id="logo" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="290" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                  <Component id="layerPanel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="282" max="-2" attributes="0"/>
                   <Component id="dashboardIcon" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="userManagementIcon" min="-2" max="-2" attributes="0"/>
@@ -118,17 +120,21 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="logo" pref="60" max="32767" attributes="0"/>
-              <Component id="logoutButton" alignment="0" max="32767" attributes="0"/>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="userManagementIcon" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                      <Component id="salesInquiryIcon" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                      <Component id="logisticIcon" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                      <Component id="dashboardIcon" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="logo" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="logoutButton" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                              <Component id="userManagementIcon" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                              <Component id="salesInquiryIcon" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                              <Component id="logisticIcon" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                              <Component id="dashboardIcon" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Component id="layerPanel" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -230,6 +236,43 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="userManagementIconMouseClicked"/>
           </Events>
         </Component>
+        <Container class="javax.swing.JPanel" name="layerPanel">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="99" green="66" red="33" type="rgb"/>
+            </Property>
+          </Properties>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="moduleTitle" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="moduleTitle" alignment="1" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="moduleTitle">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="sansserif" size="20" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Sales Inquiry"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="salesInquiryForm">
