@@ -69,12 +69,12 @@ public class UserManagement extends javax.swing.JPanel {
     private void initComponents() {
 
         navigationBar = new javax.swing.JPanel();
-        navigationBarTitle = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
         logoutButton = new javax.swing.JLabel();
-        homeIcon = new javax.swing.JLabel();
+        dashboardIcon = new javax.swing.JLabel();
         logisticIcon = new javax.swing.JLabel();
         salesInquiryIcon = new javax.swing.JLabel();
+        userManagementIcon = new javax.swing.JLabel();
         userForm = new javax.swing.JPanel();
         firstName = new javax.swing.JTextField();
         userType = new javax.swing.JComboBox<>();
@@ -101,39 +101,53 @@ public class UserManagement extends javax.swing.JPanel {
 
         navigationBar.setBackground(new java.awt.Color(51, 102, 153));
 
-        navigationBarTitle.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        navigationBarTitle.setForeground(new java.awt.Color(255, 255, 255));
-        navigationBarTitle.setText("User Management");
-
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/inventory-system-logo.png"))); // NOI18N
 
+        logoutButton.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
+        logoutButton.setForeground(new java.awt.Color(255, 255, 255));
         logoutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/logout.png"))); // NOI18N
+        logoutButton.setText("LOGOUT");
         logoutButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logoutButtonMouseClicked(evt);
             }
         });
 
-        homeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/home.png"))); // NOI18N
-        homeIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+        dashboardIcon.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
+        dashboardIcon.setForeground(new java.awt.Color(255, 255, 255));
+        dashboardIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/dashboard.png"))); // NOI18N
+        dashboardIcon.setText("DASHBOARD");
+        dashboardIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                homeIconMouseClicked(evt);
+                dashboardIconMouseClicked(evt);
             }
         });
 
+        logisticIcon.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
+        logisticIcon.setForeground(new java.awt.Color(255, 255, 255));
         logisticIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/logistics.png"))); // NOI18N
+        logisticIcon.setText("LOGISTICS");
         logisticIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logisticIconMouseClicked(evt);
             }
         });
 
+        salesInquiryIcon.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
+        salesInquiryIcon.setForeground(new java.awt.Color(255, 255, 255));
         salesInquiryIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/sales-inquiry.png"))); // NOI18N
+        salesInquiryIcon.setText("SALES INQUIRY");
         salesInquiryIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 salesInquiryIconMouseClicked(evt);
             }
         });
+
+        userManagementIcon.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
+        userManagementIcon.setForeground(new java.awt.Color(255, 255, 255));
+        userManagementIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/user-management.png"))); // NOI18N
+        userManagementIcon.setText("USER MANAGEMENT");
+        userManagementIcon.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
 
         javax.swing.GroupLayout navigationBarLayout = new javax.swing.GroupLayout(navigationBar);
         navigationBar.setLayout(navigationBarLayout);
@@ -142,29 +156,30 @@ public class UserManagement extends javax.swing.JPanel {
             .addGroup(navigationBarLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(logo)
+                .addGap(290, 290, 290)
+                .addComponent(dashboardIcon)
                 .addGap(20, 20, 20)
-                .addComponent(navigationBarTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(userManagementIcon)
+                .addGap(20, 20, 20)
                 .addComponent(salesInquiryIcon)
                 .addGap(20, 20, 20)
                 .addComponent(logisticIcon)
-                .addGap(20, 20, 20)
-                .addComponent(homeIcon)
-                .addGap(20, 20, 20)
+                .addGap(290, 290, 290)
                 .addComponent(logoutButton)
                 .addGap(20, 20, 20))
         );
         navigationBarLayout.setVerticalGroup(
             navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
             .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, navigationBarLayout.createSequentialGroup()
-                .addGap(0, 3, Short.MAX_VALUE)
-                .addGroup(navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(salesInquiryIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(logisticIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(homeIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)))
-            .addComponent(navigationBarTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(11, 11, 11)
+                .addGroup(navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(userManagementIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(salesInquiryIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logisticIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dashboardIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10))
         );
 
         userForm.setBackground(new java.awt.Color(255, 255, 255));
@@ -519,12 +534,12 @@ public class UserManagement extends javax.swing.JPanel {
         currentFrame.dispose();
     }//GEN-LAST:event_logisticIconMouseClicked
 
-    private void homeIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeIconMouseClicked
+    private void dashboardIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardIconMouseClicked
         Frame frame = new Frame();
         frame.viewFrame("Client.Dashboard", "Inventory System");
         JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
         currentFrame.dispose();
-    }//GEN-LAST:event_homeIconMouseClicked
+    }//GEN-LAST:event_dashboardIconMouseClicked
 
     private void searchBoxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchBoxKeyReleased
         SearchInTable search = new SearchInTable();
@@ -537,17 +552,16 @@ public class UserManagement extends javax.swing.JPanel {
     private javax.swing.JButton addButoon;
     private javax.swing.JTextField address;
     private javax.swing.JButton clearButton;
+    private javax.swing.JLabel dashboardIcon;
     private javax.swing.JButton deleteButton;
     private javax.swing.JTextField emailAddress;
     private javax.swing.JTextField firstName;
-    private javax.swing.JLabel homeIcon;
     private javax.swing.JTextField lastName;
     private javax.swing.JLabel logisticIcon;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel logoutButton;
     private javax.swing.JTextField mobileNumber;
     private javax.swing.JPanel navigationBar;
-    private javax.swing.JLabel navigationBarTitle;
     private javax.swing.JPasswordField password;
     private javax.swing.JLabel salesInquiryIcon;
     private javax.swing.JTextField searchBox;
@@ -555,6 +569,7 @@ public class UserManagement extends javax.swing.JPanel {
     private javax.swing.JButton updateButton;
     private javax.swing.JPanel userForm;
     private javax.swing.JLabel userId;
+    private javax.swing.JLabel userManagementIcon;
     private javax.swing.JTable userTable;
     private javax.swing.JComboBox<String> userType;
     private javax.swing.JTextField username;
