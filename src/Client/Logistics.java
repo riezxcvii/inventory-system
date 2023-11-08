@@ -13,6 +13,8 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Server.SearchInTable;
+import java.awt.Color;
+import java.awt.Font;
 
 public class Logistics extends javax.swing.JPanel {
 
@@ -96,11 +98,21 @@ public class Logistics extends javax.swing.JPanel {
 
     public Logistics() {
         initComponents();
+        
+        moduleTitle.setVisible(false);
+        
+        logisticsTable.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 13));
+        logisticsTable.getTableHeader().setBackground(new Color(51,102,153));
+        logisticsTable.getTableHeader().setForeground(new Color(255,255,255));
+        logisticsTable.getTableHeader().setOpaque(false);
+        logisticsTable.setRowHeight(35);
 
         if (!session.getUserType().equals("Admin")) {
-            homeIcon.setVisible(false);
+            dashboardIcon.setVisible(false);
             salesInquiryIcon.setVisible(false);
             userManagementIcon.setVisible(false);
+            logisticIcon.setVisible(false);
+            moduleTitle.setVisible(true);
         }
 
         productId.setVisible(false);
@@ -134,10 +146,12 @@ public class Logistics extends javax.swing.JPanel {
         navigationBar = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
         logoutButton = new javax.swing.JLabel();
-        navigationBarTitle = new javax.swing.JLabel();
-        homeIcon = new javax.swing.JLabel();
-        userManagementIcon = new javax.swing.JLabel();
+        dashboardIcon = new javax.swing.JLabel();
+        logisticIcon = new javax.swing.JLabel();
         salesInquiryIcon = new javax.swing.JLabel();
+        userManagementIcon = new javax.swing.JLabel();
+        layerPanel = new javax.swing.JPanel();
+        moduleTitle = new javax.swing.JLabel();
         logisticsForm = new javax.swing.JPanel();
         productName = new javax.swing.JTextField();
         productType = new javax.swing.JTextField();
@@ -174,68 +188,106 @@ public class Logistics extends javax.swing.JPanel {
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/inventory-system-logo.png"))); // NOI18N
 
+        logoutButton.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
+        logoutButton.setForeground(new java.awt.Color(255, 255, 255));
         logoutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/logout.png"))); // NOI18N
+        logoutButton.setText("LOGOUT");
         logoutButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logoutButtonMouseClicked(evt);
             }
         });
 
-        navigationBarTitle.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        navigationBarTitle.setForeground(new java.awt.Color(255, 255, 255));
-        navigationBarTitle.setText("Logistics");
-
-        homeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/home.png"))); // NOI18N
-        homeIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+        dashboardIcon.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
+        dashboardIcon.setForeground(new java.awt.Color(255, 255, 255));
+        dashboardIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/dashboard.png"))); // NOI18N
+        dashboardIcon.setText("DASHBOARD");
+        dashboardIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                homeIconMouseClicked(evt);
+                dashboardIconMouseClicked(evt);
             }
         });
 
-        userManagementIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/user-management.png"))); // NOI18N
-        userManagementIcon.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                userManagementIconMouseClicked(evt);
-            }
-        });
+        logisticIcon.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
+        logisticIcon.setForeground(new java.awt.Color(255, 255, 255));
+        logisticIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/logistics.png"))); // NOI18N
+        logisticIcon.setText("LOGISTICS");
+        logisticIcon.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
 
+        salesInquiryIcon.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
+        salesInquiryIcon.setForeground(new java.awt.Color(255, 255, 255));
         salesInquiryIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/sales-inquiry.png"))); // NOI18N
+        salesInquiryIcon.setText("SALES INQUIRY");
         salesInquiryIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 salesInquiryIconMouseClicked(evt);
             }
         });
 
+        userManagementIcon.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
+        userManagementIcon.setForeground(new java.awt.Color(255, 255, 255));
+        userManagementIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/user-management.png"))); // NOI18N
+        userManagementIcon.setText("USER MANAGEMENT");
+        userManagementIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                userManagementIconMouseClicked(evt);
+            }
+        });
+
+        layerPanel.setBackground(new java.awt.Color(51, 102, 153));
+
+        moduleTitle.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
+        moduleTitle.setForeground(new java.awt.Color(255, 255, 255));
+        moduleTitle.setText("Logistics");
+
+        javax.swing.GroupLayout layerPanelLayout = new javax.swing.GroupLayout(layerPanel);
+        layerPanel.setLayout(layerPanelLayout);
+        layerPanelLayout.setHorizontalGroup(
+            layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layerPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(moduleTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(8, 8, 8))
+        );
+        layerPanelLayout.setVerticalGroup(
+            layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(moduleTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout navigationBarLayout = new javax.swing.GroupLayout(navigationBar);
         navigationBar.setLayout(navigationBarLayout);
         navigationBarLayout.setHorizontalGroup(
             navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(navigationBarLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, navigationBarLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(logo)
-                .addGap(20, 20, 20)
-                .addComponent(navigationBarTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
+                .addComponent(layerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(dashboardIcon)
+                .addGap(20, 20, 20)
                 .addComponent(userManagementIcon)
                 .addGap(20, 20, 20)
                 .addComponent(salesInquiryIcon)
                 .addGap(20, 20, 20)
-                .addComponent(homeIcon)
-                .addGap(20, 20, 20)
+                .addComponent(logisticIcon)
+                .addGap(290, 290, 290)
                 .addComponent(logoutButton)
-                .addGap(20, 20, 20))
+                .addGap(21, 21, 21))
         );
         navigationBarLayout.setVerticalGroup(
             navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-            .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(navigationBarTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, navigationBarLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(homeIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
-                    .addComponent(salesInquiryIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(userManagementIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(navigationBarLayout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addGroup(navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(userManagementIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(salesInquiryIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logisticIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dashboardIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(layerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         logisticsForm.setBackground(new java.awt.Color(255, 255, 255));
@@ -345,11 +397,9 @@ public class Logistics extends javax.swing.JPanel {
                 .addGroup(logisticsFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(productId)
                     .addComponent(idOfUser))
-                .addGap(31, 31, 31))
+                .addGap(28, 28, 28))
         );
 
-        logisticsTable.setBackground(new java.awt.Color(238, 238, 238));
-        logisticsTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray));
         logisticsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -366,6 +416,10 @@ public class Logistics extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        logisticsTable.setFocusable(false);
+        logisticsTable.setGridColor(new java.awt.Color(255, 255, 255));
+        logisticsTable.setRowHeight(35);
+        logisticsTable.setRowMargin(2);
         logisticsTable.getTableHeader().setReorderingAllowed(false);
         logisticsTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -400,7 +454,7 @@ public class Logistics extends javax.swing.JPanel {
             logisticsTable.getColumnModel().getColumn(14).setResizable(false);
             logisticsTable.getColumnModel().getColumn(14).setPreferredWidth(70);
             logisticsTable.getColumnModel().getColumn(15).setResizable(false);
-            logisticsTable.getColumnModel().getColumn(15).setPreferredWidth(90);
+            logisticsTable.getColumnModel().getColumn(15).setPreferredWidth(100);
         }
 
         addButoon.setBackground(new java.awt.Color(51, 102, 153));
@@ -515,23 +569,16 @@ public class Logistics extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(clearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
+                        .addGap(26, 26, 26)
                         .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
+                        .addGap(26, 26, 26)
                         .addComponent(addButoon, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
+                        .addGap(26, 26, 26)
                         .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(logisticsForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void homeIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeIconMouseClicked
-        Frame frame = new Frame();
-        frame.viewFrame("Client.Dashboard", "Inventory System");
-        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        currentFrame.dispose();
-    }//GEN-LAST:event_homeIconMouseClicked
 
     private void addButoonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButoonActionPerformed
         if (session.getUserType().equals("Admin")) {
@@ -575,7 +622,7 @@ public class Logistics extends javax.swing.JPanel {
                                 warrantyCustomer.getText(),
                                 userID
                         );
-                        
+
                         if (isAdded) {
                             JOptionPane.showMessageDialog(new JFrame(), "Logistic added.", "Success", JOptionPane.INFORMATION_MESSAGE);
                             getLogistic(userID);
@@ -600,18 +647,6 @@ public class Logistics extends javax.swing.JPanel {
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
         clear();
     }//GEN-LAST:event_clearButtonActionPerformed
-
-    private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
-        int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to logout?", "Confirmation", JOptionPane.YES_NO_OPTION);
-
-        if (decision == JOptionPane.YES_OPTION) {
-            Frame frame = new Frame();
-            frame.viewFrame("Client.LoginPage", "Inventory System");
-            JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-            currentFrame.dispose();
-        }
-
-    }//GEN-LAST:event_logoutButtonMouseClicked
 
     private void logisticUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logisticUserActionPerformed
         String selectedItem = logisticUser.getSelectedItem().toString();
@@ -750,7 +785,7 @@ public class Logistics extends javax.swing.JPanel {
                             warranty.getText(),
                             warrantyCustomer.getText()
                     );
-                    
+
                     if (isUpdated) {
                         JOptionPane.showMessageDialog(new JFrame(), "Logistic updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
                         int id1 = Integer.parseInt(idOfUser.getText());
@@ -776,6 +811,30 @@ public class Logistics extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_updateButtonActionPerformed
 
+    private void searchBoxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchBoxKeyReleased
+        SearchInTable search = new SearchInTable();
+        String searchText = searchBox.getText();
+        search.search(searchText, logisticsTable);
+    }//GEN-LAST:event_searchBoxKeyReleased
+
+    private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
+        int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to logout?", "Confirmation", JOptionPane.YES_NO_OPTION);
+
+        if (decision == JOptionPane.YES_OPTION) {
+            Frame frame = new Frame();
+            frame.viewFrame("Client.LoginPage", "Inventory System");
+            JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            currentFrame.dispose();
+        }
+    }//GEN-LAST:event_logoutButtonMouseClicked
+
+    private void dashboardIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardIconMouseClicked
+        Frame frame = new Frame();
+        frame.viewFrame("Client.Dashboard", "Inventory System");
+        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        currentFrame.dispose();
+    }//GEN-LAST:event_dashboardIconMouseClicked
+
     private void userManagementIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userManagementIconMouseClicked
         Frame frame = new Frame();
         frame.viewFrame("Client.UserManagement", "Inventory System");
@@ -790,23 +849,19 @@ public class Logistics extends javax.swing.JPanel {
         currentFrame.dispose();
     }//GEN-LAST:event_salesInquiryIconMouseClicked
 
-    private void searchBoxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchBoxKeyReleased
-        SearchInTable search = new SearchInTable();
-        String searchText = searchBox.getText();
-        search.search(searchText, logisticsTable);
-    }//GEN-LAST:event_searchBoxKeyReleased
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButoon;
     private javax.swing.JTextField brand;
     private javax.swing.JButton clearButton;
     private javax.swing.JTextField customer;
+    private javax.swing.JLabel dashboardIcon;
     private com.toedter.calendar.JDateChooser dateReceived;
     private com.toedter.calendar.JDateChooser dateRelease;
     private javax.swing.JButton deleteButton;
     private javax.swing.JTextField eu_po;
-    private javax.swing.JLabel homeIcon;
     private javax.swing.JLabel idOfUser;
+    private javax.swing.JPanel layerPanel;
+    private javax.swing.JLabel logisticIcon;
     private javax.swing.JComboBox<String> logisticUser;
     private javax.swing.JPanel logisticsForm;
     private javax.swing.JTable logisticsTable;
@@ -814,8 +869,8 @@ public class Logistics extends javax.swing.JPanel {
     private javax.swing.JLabel logo;
     private javax.swing.JLabel logoutButton;
     private javax.swing.JTextField model1;
+    private javax.swing.JLabel moduleTitle;
     private javax.swing.JPanel navigationBar;
-    private javax.swing.JLabel navigationBarTitle;
     private javax.swing.JTextField po_ref;
     private javax.swing.JTextField productDescription;
     private javax.swing.JLabel productId;

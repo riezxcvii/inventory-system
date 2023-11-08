@@ -15,6 +15,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import Server.SearchInTable;
+import java.awt.Color;
+import java.awt.Font;
 
 public class SalesInquiry extends javax.swing.JPanel {
 
@@ -94,16 +96,26 @@ public class SalesInquiry extends javax.swing.JPanel {
 
     public SalesInquiry() {
         initComponents();
-
+        
+        salesInquiryTable.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 13));
+        salesInquiryTable.getTableHeader().setBackground(new Color(51,102,153));
+        salesInquiryTable.getTableHeader().setForeground(new Color(255,255,255));
+        salesInquiryTable.getTableHeader().setOpaque(false);
+        salesInquiryTable.setRowHeight(35);
+        
         updateButton.setEnabled(false);
         deleteButton.setEnabled(false);
         salesId.setVisible(false);
         idOfUser.setVisible(false);
+        moduleTitle.setVisible(false);
+        layerPanel.setVisible(true);
 
         if (!session.getUserType().equals("Admin")) {
-            homeIcon.setVisible(false);
+            dashboardIcon.setVisible(false);
             logisticIcon.setVisible(false);
             userManagementIcon.setVisible(false);
+            salesInquiryIcon.setVisible(false);
+            moduleTitle.setVisible(true);
         }
 
         if (session.getUserType().equals("Sales")) {
@@ -132,12 +144,14 @@ public class SalesInquiry extends javax.swing.JPanel {
     private void initComponents() {
 
         navigationBar = new javax.swing.JPanel();
-        navigationBarTitle = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
         logoutButton = new javax.swing.JLabel();
-        homeIcon = new javax.swing.JLabel();
+        dashboardIcon = new javax.swing.JLabel();
         logisticIcon = new javax.swing.JLabel();
+        salesInquiryIcon = new javax.swing.JLabel();
         userManagementIcon = new javax.swing.JLabel();
+        layerPanel = new javax.swing.JPanel();
+        moduleTitle = new javax.swing.JLabel();
         salesInquiryForm = new javax.swing.JPanel();
         project = new javax.swing.JTextField();
         Quantity = new javax.swing.JTextField();
@@ -169,70 +183,112 @@ public class SalesInquiry extends javax.swing.JPanel {
 
         navigationBar.setBackground(new java.awt.Color(51, 102, 153));
 
-        navigationBarTitle.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        navigationBarTitle.setForeground(new java.awt.Color(255, 255, 255));
-        navigationBarTitle.setText("Sales Inquiry");
-
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/inventory-system-logo.png"))); // NOI18N
 
+        logoutButton.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
+        logoutButton.setForeground(new java.awt.Color(255, 255, 255));
         logoutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/logout.png"))); // NOI18N
+        logoutButton.setText("LOGOUT");
         logoutButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logoutButtonMouseClicked(evt);
             }
         });
 
-        homeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/home.png"))); // NOI18N
-        homeIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+        dashboardIcon.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
+        dashboardIcon.setForeground(new java.awt.Color(255, 255, 255));
+        dashboardIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/dashboard.png"))); // NOI18N
+        dashboardIcon.setText("DASHBOARD");
+        dashboardIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                homeIconMouseClicked(evt);
+                dashboardIconMouseClicked(evt);
             }
         });
 
+        logisticIcon.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
+        logisticIcon.setForeground(new java.awt.Color(255, 255, 255));
         logisticIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/logistics.png"))); // NOI18N
+        logisticIcon.setText("LOGISTICS");
         logisticIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logisticIconMouseClicked(evt);
             }
         });
 
+        salesInquiryIcon.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
+        salesInquiryIcon.setForeground(new java.awt.Color(255, 255, 255));
+        salesInquiryIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/sales-inquiry.png"))); // NOI18N
+        salesInquiryIcon.setText("SALES INQUIRY");
+        salesInquiryIcon.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+
+        userManagementIcon.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
+        userManagementIcon.setForeground(new java.awt.Color(255, 255, 255));
         userManagementIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/user-management.png"))); // NOI18N
+        userManagementIcon.setText("USER MANAGEMENT");
         userManagementIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 userManagementIconMouseClicked(evt);
             }
         });
 
+        layerPanel.setBackground(new java.awt.Color(51, 102, 153));
+
+        moduleTitle.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
+        moduleTitle.setForeground(new java.awt.Color(255, 255, 255));
+        moduleTitle.setText("Sales Inquiry");
+
+        javax.swing.GroupLayout layerPanelLayout = new javax.swing.GroupLayout(layerPanel);
+        layerPanel.setLayout(layerPanelLayout);
+        layerPanelLayout.setHorizontalGroup(
+            layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layerPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(moduleTitle)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layerPanelLayout.setVerticalGroup(
+            layerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(moduleTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout navigationBarLayout = new javax.swing.GroupLayout(navigationBar);
         navigationBar.setLayout(navigationBarLayout);
         navigationBarLayout.setHorizontalGroup(
             navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(navigationBarLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(19, 19, 19)
                 .addComponent(logo)
+                .addGap(9, 9, 9)
+                .addComponent(layerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(282, 282, 282)
+                .addComponent(dashboardIcon)
                 .addGap(20, 20, 20)
-                .addComponent(navigationBarTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(userManagementIcon)
                 .addGap(20, 20, 20)
+                .addComponent(salesInquiryIcon)
+                .addGap(20, 20, 20)
                 .addComponent(logisticIcon)
-                .addGap(20, 20, 20)
-                .addComponent(homeIcon)
-                .addGap(20, 20, 20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(logoutButton)
-                .addGap(20, 20, 20))
+                .addGap(21, 21, 21))
         );
         navigationBarLayout.setVerticalGroup(
             navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-            .addComponent(navigationBarTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, navigationBarLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(navigationBarLayout.createSequentialGroup()
+                .addGroup(navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(layerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(navigationBarLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
                 .addGroup(navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(userManagementIcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(logisticIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(homeIcon, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)))
+                    .addComponent(dashboardIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(userManagementIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(salesInquiryIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(logisticIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         salesInquiryForm.setBackground(new java.awt.Color(255, 255, 255));
@@ -330,7 +386,6 @@ public class SalesInquiry extends javax.swing.JPanel {
                         .addGap(32, 32, 32))))
         );
 
-        salesInquiryTable.setBackground(new java.awt.Color(238, 238, 238));
         salesInquiryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -347,6 +402,10 @@ public class SalesInquiry extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        salesInquiryTable.setFocusable(false);
+        salesInquiryTable.setGridColor(new java.awt.Color(255, 255, 255));
+        salesInquiryTable.setRowHeight(35);
+        salesInquiryTable.setRowMargin(2);
         salesInquiryTable.getTableHeader().setReorderingAllowed(false);
         salesInquiryTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -475,7 +534,7 @@ public class SalesInquiry extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(navigationBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(navigationBar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(salesUser, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -497,13 +556,6 @@ public class SalesInquiry extends javax.swing.JPanel {
                 .addGap(25, 25, 25))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void homeIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeIconMouseClicked
-        Frame frame = new Frame();
-        frame.viewFrame("Client.Dashboard", "Inventory System");
-        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        currentFrame.dispose();
-    }//GEN-LAST:event_homeIconMouseClicked
 
     private void salesUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salesUserActionPerformed
         String selectedItem = salesUser.getSelectedItem().toString();
@@ -722,6 +774,12 @@ public class SalesInquiry extends javax.swing.JPanel {
         textFieldStatus(true);
     }//GEN-LAST:event_clearButtonActionPerformed
 
+    private void searchBoxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchBoxKeyReleased
+        SearchInTable search = new SearchInTable();
+        String searchText = searchBox.getText();
+        search.search(searchText, salesInquiryTable);
+    }//GEN-LAST:event_searchBoxKeyReleased
+
     private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
         int decision = JOptionPane.showConfirmDialog(new JFrame(), "Are you sure you want to logout?", "Confirmation", JOptionPane.YES_NO_OPTION);
 
@@ -733,12 +791,12 @@ public class SalesInquiry extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_logoutButtonMouseClicked
 
-    private void logisticIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logisticIconMouseClicked
+    private void dashboardIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardIconMouseClicked
         Frame frame = new Frame();
-        frame.viewFrame("Client.Logistics", "Inventory System");
+        frame.viewFrame("Client.Dashboard", "Inventory System");
         JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
         currentFrame.dispose();
-    }//GEN-LAST:event_logisticIconMouseClicked
+    }//GEN-LAST:event_dashboardIconMouseClicked
 
     private void userManagementIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userManagementIconMouseClicked
         Frame frame = new Frame();
@@ -747,33 +805,36 @@ public class SalesInquiry extends javax.swing.JPanel {
         currentFrame.dispose();
     }//GEN-LAST:event_userManagementIconMouseClicked
 
-    private void searchBoxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchBoxKeyReleased
-        SearchInTable search = new SearchInTable();
-        String searchText = searchBox.getText();
-        search.search(searchText, salesInquiryTable);
-    }//GEN-LAST:event_searchBoxKeyReleased
+    private void logisticIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logisticIconMouseClicked
+        Frame frame = new Frame();
+        frame.viewFrame("Client.Logistics", "Inventory System");
+        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        currentFrame.dispose();
+    }//GEN-LAST:event_logisticIconMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Quantity;
     private javax.swing.JButton addButoon;
     private javax.swing.JButton clearButton;
+    private javax.swing.JLabel dashboardIcon;
     private com.toedter.calendar.JDateChooser date;
     private com.toedter.calendar.JDateChooser dateAccomplished;
     private com.toedter.calendar.JDateChooser deadline;
     private javax.swing.JButton deleteButton;
     private javax.swing.JTextField description;
-    private javax.swing.JLabel homeIcon;
     private javax.swing.JLabel idOfUser;
     private com.toedter.calendar.JDateChooser lastUpdate;
+    private javax.swing.JPanel layerPanel;
     private javax.swing.JLabel logisticIcon;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel logoutButton;
+    private javax.swing.JLabel moduleTitle;
     private javax.swing.JPanel navigationBar;
-    private javax.swing.JLabel navigationBarTitle;
     private javax.swing.JTextField project;
     private javax.swing.JTextField remarks;
     private javax.swing.JLabel salesId;
     private javax.swing.JPanel salesInquiryForm;
+    private javax.swing.JLabel salesInquiryIcon;
     private javax.swing.JTable salesInquiryTable;
     private javax.swing.JScrollPane salesInquiryTableScrollPanel;
     private javax.swing.JComboBox<String> salesUser;

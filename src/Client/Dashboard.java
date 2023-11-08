@@ -40,11 +40,14 @@ public class Dashboard extends javax.swing.JPanel {
 
         navigationBarTitle.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         navigationBarTitle.setForeground(new java.awt.Color(255, 255, 255));
-        navigationBarTitle.setText("Dashboard");
+        navigationBarTitle.setText("Inventory System");
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/inventory-system-logo.png"))); // NOI18N
 
+        logoutButton.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
+        logoutButton.setForeground(new java.awt.Color(255, 255, 255));
         logoutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Navigation Bar/logout.png"))); // NOI18N
+        logoutButton.setText("LOGOUT");
         logoutButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logoutButtonMouseClicked(evt);
