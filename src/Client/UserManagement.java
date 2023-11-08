@@ -65,16 +65,12 @@ public class UserManagement extends javax.swing.JPanel {
         userId.setVisible(false);
         updateButton.setEnabled(false);
         deleteButton.setEnabled(false);
-<<<<<<< HEAD
-       
-=======
         
         userTable.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 13));
         userTable.getTableHeader().setBackground(new Color(51,102,153));
         userTable.getTableHeader().setForeground(new Color(255,255,255));
         userTable.getTableHeader().setOpaque(false);
         userTable.setRowHeight(35);
->>>>>>> d5d1c7a4b7901d969a11013f06af8b8ae096494b
     }
 
     @SuppressWarnings("unchecked")
