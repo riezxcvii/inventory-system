@@ -62,6 +62,7 @@ public class UserManagement extends javax.swing.JPanel {
         userId.setVisible(false);
         updateButton.setEnabled(false);
         deleteButton.setEnabled(false);
+       
     }
 
     @SuppressWarnings("unchecked")
@@ -178,6 +179,11 @@ public class UserManagement extends javax.swing.JPanel {
         lastName.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Last Name", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
         mobileNumber.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Mobile Number", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
+        mobileNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                mobileNumberKeyPressed(evt);
+            }
+        });
 
         address.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 153), 2, true), "Address", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
@@ -531,6 +537,10 @@ public class UserManagement extends javax.swing.JPanel {
         String searchText = searchBox.getText();
         search.search(searchText, userTable);
     }//GEN-LAST:event_searchBoxKeyReleased
+
+    private void mobileNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mobileNumberKeyPressed
+
+    }//GEN-LAST:event_mobileNumberKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane UserTableScrollPanel;
