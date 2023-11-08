@@ -15,6 +15,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import Server.SearchInTable;
+import java.awt.Color;
+import java.awt.Font;
 
 public class SalesInquiry extends javax.swing.JPanel {
 
@@ -94,7 +96,13 @@ public class SalesInquiry extends javax.swing.JPanel {
 
     public SalesInquiry() {
         initComponents();
-
+        
+        salesInquiryTable.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 13));
+        salesInquiryTable.getTableHeader().setBackground(new Color(51,102,153));
+        salesInquiryTable.getTableHeader().setForeground(new Color(255,255,255));
+        salesInquiryTable.getTableHeader().setOpaque(false);
+        salesInquiryTable.setRowHeight(35);
+        
         updateButton.setEnabled(false);
         deleteButton.setEnabled(false);
         salesId.setVisible(false);
@@ -269,14 +277,17 @@ public class SalesInquiry extends javax.swing.JPanel {
             .addGroup(navigationBarLayout.createSequentialGroup()
                 .addGroup(navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(userManagementIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(salesInquiryIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(logisticIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dashboardIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(layerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(navigationBarLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(dashboardIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(userManagementIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(salesInquiryIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(logisticIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -375,7 +386,6 @@ public class SalesInquiry extends javax.swing.JPanel {
                         .addGap(32, 32, 32))))
         );
 
-        salesInquiryTable.setBackground(new java.awt.Color(238, 238, 238));
         salesInquiryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -392,6 +402,10 @@ public class SalesInquiry extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        salesInquiryTable.setFocusable(false);
+        salesInquiryTable.setGridColor(new java.awt.Color(255, 255, 255));
+        salesInquiryTable.setRowHeight(35);
+        salesInquiryTable.setRowMargin(2);
         salesInquiryTable.getTableHeader().setReorderingAllowed(false);
         salesInquiryTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

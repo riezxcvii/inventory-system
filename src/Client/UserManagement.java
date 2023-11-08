@@ -10,6 +10,8 @@ import Server.UserData;
 import java.util.List;
 import Server.SearchInTable;
 import Server.UserSession;
+import java.awt.Color;
+import java.awt.Font;
 
 public class UserManagement extends javax.swing.JPanel {
 
@@ -58,10 +60,17 @@ public class UserManagement extends javax.swing.JPanel {
 
     public UserManagement() {
         initComponents();
+        
         getData(0);
         userId.setVisible(false);
         updateButton.setEnabled(false);
         deleteButton.setEnabled(false);
+        
+        userTable.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 13));
+        userTable.getTableHeader().setBackground(new Color(51,102,153));
+        userTable.getTableHeader().setForeground(new Color(255,255,255));
+        userTable.getTableHeader().setOpaque(false);
+        userTable.setRowHeight(35);
     }
 
     @SuppressWarnings("unchecked")
@@ -246,7 +255,6 @@ public class UserManagement extends javax.swing.JPanel {
                 .addGap(30, 30, 30))
         );
 
-        userTable.setBackground(new java.awt.Color(238, 238, 238));
         userTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -263,6 +271,11 @@ public class UserManagement extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        userTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        userTable.setFocusable(false);
+        userTable.setGridColor(new java.awt.Color(255, 255, 255));
+        userTable.setRowHeight(35);
+        userTable.setRowMargin(2);
         userTable.getTableHeader().setReorderingAllowed(false);
         userTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

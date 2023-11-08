@@ -13,6 +13,8 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Server.SearchInTable;
+import java.awt.Color;
+import java.awt.Font;
 
 public class Logistics extends javax.swing.JPanel {
 
@@ -98,6 +100,12 @@ public class Logistics extends javax.swing.JPanel {
         initComponents();
         
         moduleTitle.setVisible(false);
+        
+        logisticsTable.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 13));
+        logisticsTable.getTableHeader().setBackground(new Color(51,102,153));
+        logisticsTable.getTableHeader().setForeground(new Color(255,255,255));
+        logisticsTable.getTableHeader().setOpaque(false);
+        logisticsTable.setRowHeight(35);
 
         if (!session.getUserType().equals("Admin")) {
             dashboardIcon.setVisible(false);
@@ -389,11 +397,9 @@ public class Logistics extends javax.swing.JPanel {
                 .addGroup(logisticsFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(productId)
                     .addComponent(idOfUser))
-                .addGap(29, 29, 29))
+                .addGap(28, 28, 28))
         );
 
-        logisticsTable.setBackground(new java.awt.Color(238, 238, 238));
-        logisticsTable.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray));
         logisticsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -410,6 +416,10 @@ public class Logistics extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        logisticsTable.setFocusable(false);
+        logisticsTable.setGridColor(new java.awt.Color(255, 255, 255));
+        logisticsTable.setRowHeight(35);
+        logisticsTable.setRowMargin(2);
         logisticsTable.getTableHeader().setReorderingAllowed(false);
         logisticsTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -444,7 +454,7 @@ public class Logistics extends javax.swing.JPanel {
             logisticsTable.getColumnModel().getColumn(14).setResizable(false);
             logisticsTable.getColumnModel().getColumn(14).setPreferredWidth(70);
             logisticsTable.getColumnModel().getColumn(15).setResizable(false);
-            logisticsTable.getColumnModel().getColumn(15).setPreferredWidth(90);
+            logisticsTable.getColumnModel().getColumn(15).setPreferredWidth(100);
         }
 
         addButoon.setBackground(new java.awt.Color(51, 102, 153));
@@ -561,7 +571,7 @@ public class Logistics extends javax.swing.JPanel {
                         .addComponent(clearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
                         .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
+                        .addGap(26, 26, 26)
                         .addComponent(addButoon, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
                         .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
