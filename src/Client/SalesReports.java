@@ -1,14 +1,61 @@
 package Client;
 
 import Server.Frame;
+import Server.InquiryData;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.JOptionPane;
 import java.awt.Color;
 import java.awt.Font;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 public class SalesReports extends javax.swing.JPanel {
+    
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
+    public void getReportData(String date1, String date2){
+        Server.Queries qry = new Server.Queries();
+        List<InquiryData> data = qry.getReportData(date1, date2);
+        
+        TableColumnModel columnModel = salesInquiryTable.getColumnModel();
+        TableColumn columnToHide = columnModel.getColumn(0);
+
+        columnToHide.setMinWidth(0);
+        columnToHide.setMaxWidth(0);
+        columnToHide.setPreferredWidth(0);
+        
+        TableColumn columnToHide1 = columnModel.getColumn(2);
+
+        columnToHide1.setMinWidth(0);
+        columnToHide1.setMaxWidth(0);
+        columnToHide1.setPreferredWidth(0);
+        
+        DefaultTableModel model = (DefaultTableModel) salesInquiryTable.getModel();
+        model.setRowCount(0);
+        for (InquiryData item : data) {
+            model.addRow(new Object[]{
+                item.getUserID(),
+                item.getFirstName() +" " + item.getlastName(),
+                item.getSalesId(),
+                item.getIDate(),
+                item.getIProject(),
+                item.getIQuantity(),
+                item.getIDescription(),
+                item.getISupplier(),
+                item.getISupplierPrice(),
+                item.getISrp(),
+                item.getIRemarks(),
+                item.getIDateAccomplished(),
+                item.getILastUpdate(),
+                item.getIDeadline(),
+            });
+        }
+    }
+    
     public SalesReports() {
         initComponents();
 
@@ -17,6 +64,8 @@ public class SalesReports extends javax.swing.JPanel {
         salesInquiryTable.getTableHeader().setForeground(new Color(255, 255, 255));
         salesInquiryTable.getTableHeader().setOpaque(false);
         salesInquiryTable.setRowHeight(35);
+        
+        getReportData("","");
     }
 
     @SuppressWarnings("unchecked")
@@ -175,8 +224,11 @@ public class SalesReports extends javax.swing.JPanel {
         });
 
         filterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Reports/filter-check.png"))); // NOI18N
-
-        toDate.setBorder(null);
+        filterButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                filterButtonMouseClicked(evt);
+            }
+        });
 
         toDateLabel.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         toDateLabel.setText("To");
@@ -254,6 +306,21 @@ public class SalesReports extends javax.swing.JPanel {
         JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
         currentFrame.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void filterButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filterButtonMouseClicked
+    String startDate, endDate;
+    if(fromDate.getDate() == null && toDate.getDate()==null){
+        startDate ="";
+        endDate="";
+        getReportData(startDate,endDate);
+    }else if(fromDate.getDate()==null || toDate.getDate()==null){
+        JOptionPane.showMessageDialog(null, "Please select specific date range.", "Error", JOptionPane.ERROR_MESSAGE);
+    }else{
+        startDate = sdf.format(fromDate.getDate());
+        endDate =sdf.format(toDate.getDate());
+        getReportData(startDate,endDate);
+    }
+    }//GEN-LAST:event_filterButtonMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;

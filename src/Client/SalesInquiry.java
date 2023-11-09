@@ -32,7 +32,7 @@ public class SalesInquiry extends javax.swing.JPanel {
         List<InquiryData> data = qry.getInquiryData(id, "user");
 
         TableColumnModel columnModel = salesInquiryTable.getColumnModel();
-        TableColumn columnToHide = columnModel.getColumn(12);
+        TableColumn columnToHide = columnModel.getColumn(0);
 
         columnToHide.setMinWidth(0);
         columnToHide.setMaxWidth(0);
@@ -42,6 +42,7 @@ public class SalesInquiry extends javax.swing.JPanel {
         model.setRowCount(0);
         for (InquiryData item : data) {
             model.addRow(new Object[]{
+                item.getUserID(),
                 item.getSalesId(),
                 item.getIDate(),
                 item.getIProject(),

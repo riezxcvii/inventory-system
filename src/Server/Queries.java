@@ -5,14 +5,18 @@ import java.sql.Connection;
 import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Queries {
 
     DatabaseConnect dbConn = new DatabaseConnect();
     Connection con = dbConn.checkConnection();
-
+    LocalDate currentDate = LocalDate.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     //===================================================================================================
     //CRUD of user
     
@@ -308,6 +312,62 @@ public class Queries {
             JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
+        
+    }
+    
+    public List<InquiryData> getReportData(String date1, String date2){
+        List<InquiryData> reportDataList = new ArrayList();
+        try{
+            String query;
+            PreparedStatement statement = null;
+            String formattedDate = currentDate.format(formatter);
+            if(date1.equals("") && date2.equals("")){
+                    query = "SELECT sale.*, user.first_name, user.last_name " +
+                        "FROM sale " +
+                        "INNER JOIN user ON sale.user_id = user.user_id " +
+                        "WHERE sale.date_added = ?";
+                    statement = con.prepareStatement(query);
+                    statement.setString(1, formattedDate);
+
+            }else{
+                    query = "SELECT sale.*, user.first_name, user.last_name " +
+                        "FROM sale " +
+                        "INNER JOIN user ON sale.user_id = user.user_id " +
+                        "WHERE sale.date_added between ? and ?";
+                    statement = con.prepareStatement(query);
+                    statement.setString(1, date1);
+                    statement.setString(2,date2);
+            }
+            ResultSet result = statement.executeQuery();
+            
+            while(result.next()){
+                InquiryData data = new InquiryData();
+
+                data.setSalesId(result.getInt(1));
+                data.setIDate(result.getDate(2));
+                data.setIProject(result.getString(3));
+                data.setIQuantity(result.getInt(4));
+                data.setIDescription(result.getString(5));
+                data.setISupplier(result.getString(6));
+                data.setISupplierPrice(result.getDouble(7));
+                data.setISrp(result.getDouble(8));
+                data.setIRemarks(result.getString(9));
+                data.setIDateAccomplished(result.getDate(10));
+                data.setILastUpdate(result.getDate(11));
+                data.setIDeadline(result.getDate(12));
+                data.setUserID(result.getInt(13));
+                data.setLastName(result.getString("last_name"));
+                data.setFirstName(result.getString("first_name"));
+
+              reportDataList.add(data);
+            }
+            
+        }catch(Exception error){
+            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+       
+        
+        return reportDataList;
     }
     
     //=======================================================================================

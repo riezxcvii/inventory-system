@@ -17,6 +17,8 @@ public class InquiryData {
     private Date iLastUpdate;
     private Date iDeadline;
     private int userID;
+    private String firstName;
+    private String lastName;
 
     public int getSalesId() {
         return salesId;
@@ -120,5 +122,21 @@ public class InquiryData {
 
     public void setUserID(int userID) {
         this.userID = userID;
+    }
+    
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    
+    public String getlastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }
