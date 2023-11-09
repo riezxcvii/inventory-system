@@ -116,6 +116,7 @@ public class SalesInquiry extends javax.swing.JPanel {
             userManagementIcon.setVisible(false);
             salesInquiryIcon.setVisible(false);
             moduleTitle.setVisible(true);
+            reportsButton.setVisible(false);
         }
 
         if (session.getUserType().equals("Sales")) {
@@ -175,6 +176,7 @@ public class SalesInquiry extends javax.swing.JPanel {
         salesUser = new javax.swing.JComboBox<>();
         searchBox = new javax.swing.JTextField();
         searchButton = new javax.swing.JLabel();
+        reportsButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(236, 242, 255));
         setMaximumSize(new java.awt.Dimension(0, 0));
@@ -284,10 +286,9 @@ public class SalesInquiry extends javax.swing.JPanel {
                 .addGap(12, 12, 12)
                 .addGroup(navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(dashboardIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(navigationBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(userManagementIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(salesInquiryIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(logisticIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(userManagementIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(salesInquiryIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(logisticIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -391,11 +392,11 @@ public class SalesInquiry extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Sales ID", "Date", "Project / End User", "Quantity", "Description", "Supplier", "Price", "SRP", "Remarks", "Date Accomplished", "Last Update", "Deadline", "User ID"
+                "Sales User ID", "Sales ID", "Date", "Project / End User", "Quantity", "Description", "Supplier", "Price", "SRP", "Remarks", "Date Accomplished", "Last Update", "Deadline"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -415,26 +416,27 @@ public class SalesInquiry extends javax.swing.JPanel {
         salesInquiryTableScrollPanel.setViewportView(salesInquiryTable);
         if (salesInquiryTable.getColumnModel().getColumnCount() > 0) {
             salesInquiryTable.getColumnModel().getColumn(0).setResizable(false);
-            salesInquiryTable.getColumnModel().getColumn(0).setPreferredWidth(60);
             salesInquiryTable.getColumnModel().getColumn(1).setResizable(false);
+            salesInquiryTable.getColumnModel().getColumn(1).setPreferredWidth(60);
             salesInquiryTable.getColumnModel().getColumn(2).setResizable(false);
-            salesInquiryTable.getColumnModel().getColumn(2).setPreferredWidth(100);
             salesInquiryTable.getColumnModel().getColumn(3).setResizable(false);
-            salesInquiryTable.getColumnModel().getColumn(3).setPreferredWidth(60);
+            salesInquiryTable.getColumnModel().getColumn(3).setPreferredWidth(110);
             salesInquiryTable.getColumnModel().getColumn(4).setResizable(false);
-            salesInquiryTable.getColumnModel().getColumn(4).setPreferredWidth(100);
+            salesInquiryTable.getColumnModel().getColumn(4).setPreferredWidth(60);
             salesInquiryTable.getColumnModel().getColumn(5).setResizable(false);
             salesInquiryTable.getColumnModel().getColumn(5).setPreferredWidth(100);
             salesInquiryTable.getColumnModel().getColumn(6).setResizable(false);
-            salesInquiryTable.getColumnModel().getColumn(6).setPreferredWidth(40);
+            salesInquiryTable.getColumnModel().getColumn(6).setPreferredWidth(100);
             salesInquiryTable.getColumnModel().getColumn(7).setResizable(false);
             salesInquiryTable.getColumnModel().getColumn(7).setPreferredWidth(40);
             salesInquiryTable.getColumnModel().getColumn(8).setResizable(false);
-            salesInquiryTable.getColumnModel().getColumn(8).setPreferredWidth(100);
+            salesInquiryTable.getColumnModel().getColumn(8).setPreferredWidth(40);
             salesInquiryTable.getColumnModel().getColumn(9).setResizable(false);
             salesInquiryTable.getColumnModel().getColumn(9).setPreferredWidth(100);
             salesInquiryTable.getColumnModel().getColumn(10).setResizable(false);
+            salesInquiryTable.getColumnModel().getColumn(10).setPreferredWidth(120);
             salesInquiryTable.getColumnModel().getColumn(11).setResizable(false);
+            salesInquiryTable.getColumnModel().getColumn(12).setResizable(false);
         }
 
         clearButton.setBackground(new java.awt.Color(51, 102, 153));
@@ -505,6 +507,18 @@ public class SalesInquiry extends javax.swing.JPanel {
 
         searchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Search Bar/search.png"))); // NOI18N
 
+        reportsButton.setBackground(new java.awt.Color(51, 102, 153));
+        reportsButton.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        reportsButton.setForeground(new java.awt.Color(255, 255, 255));
+        reportsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Buttons/reports.png"))); // NOI18N
+        reportsButton.setText("Sales Reports");
+        reportsButton.setFocusable(false);
+        reportsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reportsButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -522,8 +536,9 @@ public class SalesInquiry extends javax.swing.JPanel {
                             .addComponent(addButoon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(updateButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(salesUser, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(reportsButton)
                         .addGap(20, 20, 20)
                         .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
@@ -539,7 +554,8 @@ public class SalesInquiry extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(salesUser, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(reportsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addComponent(salesInquiryTableScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
@@ -812,6 +828,13 @@ public class SalesInquiry extends javax.swing.JPanel {
         currentFrame.dispose();
     }//GEN-LAST:event_logisticIconMouseClicked
 
+    private void reportsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportsButtonActionPerformed
+        Frame frame = new Frame();
+        frame.viewFrame("Client.SalesReports", "Inventory System");
+        JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        currentFrame.dispose();
+    }//GEN-LAST:event_reportsButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Quantity;
     private javax.swing.JButton addButoon;
@@ -832,6 +855,7 @@ public class SalesInquiry extends javax.swing.JPanel {
     private javax.swing.JPanel navigationBar;
     private javax.swing.JTextField project;
     private javax.swing.JTextField remarks;
+    private javax.swing.JButton reportsButton;
     private javax.swing.JLabel salesId;
     private javax.swing.JPanel salesInquiryForm;
     private javax.swing.JLabel salesInquiryIcon;
