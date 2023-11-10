@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Queries {
@@ -525,6 +524,63 @@ public class Queries {
             JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
+    }
+    
+    public List<LogisticData> getLogisticReportData(String date1, String date2) {
+        List<LogisticData> logisticData = new ArrayList<>();
+        
+        try {
+            String query;
+            PreparedStatement statement = null;
+            String formattedDate = currentDate.format(formatter);
+            if(date1.equals("") && date2.equals("")){
+                    query = "SELECT logistic.*, user.first_name, user.last_name " +
+                        "FROM logistic " +
+                        "INNER JOIN user ON logistic.user_id = user.user_id " +
+                        "WHERE logistic.date_added = ?";
+                    statement = con.prepareStatement(query);
+                    statement.setString(1, formattedDate);
+
+            }else{
+                    query = "SELECT logistic.*, user.first_name, user.last_name " +
+                        "FROM logistic " +
+                        "INNER JOIN user ON logistic.user_id = user.user_id " +
+                        "WHERE logistic.date_added between ? and ?";
+                    statement = con.prepareStatement(query);
+                    statement.setString(1, date1);
+                    statement.setString(2,date2);
+            }
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+                LogisticData data = new LogisticData();
+                data.setProductId(result.getInt(1));
+                data.setName(result.getString(2));
+                data.setType(result.getString(3));
+                data.setPrice(result.getDouble(4));
+                data.setDateReceived(result.getDate(5));
+                data.setDateRelease(result.getDate(6));
+                data.setEuPoNumber(result.getString(7));
+                data.setPoRefNumber(result.getString(8));
+                data.setBrand(result.getString(9));
+                data.setPDesc(result.getString(10));
+                data.setModel(result.getString(11));
+                data.setSupplier(result.getString(12));
+                data.setQuantity(result.getInt(13));
+                data.setCustomer(result.getString(14));
+                data.setWarranty(result.getString(15));
+                data.setWarrantyCustomer(result.getString(16));
+                data.setUserId(result.getInt(17));
+                data.setLastName(result.getString("last_name"));
+                data.setFirstName(result.getString("first_name"));
+                
+
+                logisticData.add(data);
+            }
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return logisticData;
     }
     
     //end of logistics

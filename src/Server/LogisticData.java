@@ -21,6 +21,8 @@ public class LogisticData {
     private String warrantyCustomer;
     private int productId;
     private int userId;
+    private String firstName;
+    private String lastName;
 
     public int getProductId() {
         return productId;
@@ -156,5 +158,21 @@ public class LogisticData {
 
     public void setWarrantyCustomer(String warrantyCustomer) {
         this.warrantyCustomer = warrantyCustomer;
+    }
+    
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    
+    public String getlastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }

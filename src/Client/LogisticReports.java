@@ -1,14 +1,59 @@
 package Client;
 
 import Server.Frame;
+import Server.LogisticData;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.JOptionPane;
 import java.awt.Color;
 import java.awt.Font;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 public class LogisticReports extends javax.swing.JPanel {
+    
+     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
+    public void getLogisticReportData(String date1, String date2) {
+        Server.Queries qry = new Server.Queries();
+        List<LogisticData> data = qry.getLogisticReportData(date1, date2);
+        
+        TableColumnModel columnModel = logisticsTable.getColumnModel();
+        TableColumn columnToHide = columnModel.getColumn(0);
+
+        columnToHide.setMinWidth(0);
+        columnToHide.setMaxWidth(0);
+        columnToHide.setPreferredWidth(0);
+
+        DefaultTableModel model = (DefaultTableModel) logisticsTable.getModel();
+        model.setRowCount(0);
+        for (LogisticData item : data) {
+            model.addRow(new Object[]{
+                item.getProductId(),
+                item.getFirstName() + " " + item.getlastName(),
+                item.getName(),
+                item.getType(),
+                item.getPrice(),
+                item.getDateReceived(),
+                item.getDateRelease(),
+                item.getEuPoNumber(),
+                item.getPoRefNumber(),
+                item.getBrand(),
+                item.getPDesc(),
+                item.getModel(),
+                item.getSupplier(),
+                item.getQuantity(),
+                item.getCustomer(),
+                item.getWarranty(),
+                item.getWarrantyCustomer()
+            });
+        }
+    }
+
+    
     public LogisticReports() {
         initComponents();
 
@@ -17,6 +62,8 @@ public class LogisticReports extends javax.swing.JPanel {
         logisticsTable.getTableHeader().setForeground(new Color(255, 255, 255));
         logisticsTable.getTableHeader().setOpaque(false);
         logisticsTable.setRowHeight(35);
+        
+        getLogisticReportData("", "");
     }
 
     @SuppressWarnings("unchecked")
@@ -167,8 +214,11 @@ public class LogisticReports extends javax.swing.JPanel {
         });
 
         filterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Reports/filter-check.png"))); // NOI18N
-
-        toDate.setBorder(null);
+        filterButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                filterButtonMouseClicked(evt);
+            }
+        });
 
         toDateLabel.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         toDateLabel.setText("To");
@@ -260,6 +310,21 @@ public class LogisticReports extends javax.swing.JPanel {
         JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
         currentFrame.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void filterButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filterButtonMouseClicked
+        String startDate, endDate;
+    if(fromDate.getDate() == null && toDate.getDate()==null){
+        startDate ="";
+        endDate="";
+        getLogisticReportData(startDate,endDate);
+    }else if(fromDate.getDate()==null || toDate.getDate()==null){
+        JOptionPane.showMessageDialog(null, "Please select specific date range.", "Error", JOptionPane.ERROR_MESSAGE);
+    }else{
+        startDate = sdf.format(fromDate.getDate());
+        endDate =sdf.format(toDate.getDate());
+        getLogisticReportData(startDate,endDate);
+    }
+    }//GEN-LAST:event_filterButtonMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
