@@ -7,8 +7,14 @@ import javax.swing.SwingUtilities;
 import javax.swing.JOptionPane;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.print.PrinterException;
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
@@ -290,7 +296,40 @@ public class LogisticReports extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy");
+        if(logisticsTable.getRowCount() == 0){
+            JOptionPane.showMessageDialog(null, "Nothing to print.", "Error", JOptionPane.ERROR_MESSAGE);
+        }else if(fromDate.getDate()==null || toDate.getDate() == null){
+            JOptionPane.showMessageDialog(null, "Please select specific date range.", "Error", JOptionPane.ERROR_MESSAGE);
 
+        }
+        else{
+            int decision = JOptionPane.showConfirmDialog(new JFrame(), "The current data in table will be printed.\nAre you sure you want to print this data?", "Confirmation", JOptionPane.YES_NO_OPTION);
+
+            if (decision == JOptionPane.YES_OPTION) {
+                try {
+                    Date from = fromDate.getDate();
+                    Date to = toDate.getDate();
+                    LocalDate dateFrom = from.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
+                    LocalDate dateTo = to.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
+                    String formattedDateFrom = dateFrom.format(formatter);
+                    String formattedDateTo = dateTo.format(formatter);
+                        String headerText = "Logistic from "+ formattedDateFrom + " to " + formattedDateTo;
+                        MessageFormat header = new MessageFormat(headerText);         
+                        MessageFormat footer=new MessageFormat("Page {0,number,integer}");
+
+                        boolean complete = logisticsTable.print(JTable.PrintMode.FIT_WIDTH, header, footer, true, null, true, null);
+                        if (complete) {
+                            JOptionPane.showMessageDialog(null, "Printed successfully");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Printing cancelled");
+                        }
+                } catch (PrinterException pe) {
+                    JOptionPane.showMessageDialog(null, "Printing failed: " + pe.getMessage());
+                }
+            }
+        }
+       
     }//GEN-LAST:event_printButtonActionPerformed
 
     private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
