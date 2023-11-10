@@ -369,6 +369,38 @@ public class Queries {
         return reportDataList;
     }
     
+    public int getTotalInquiry(){
+        int totalSaleCount = 0;
+        try{
+            String query = "SELECT COUNT(*) AS total_sale_count FROM sale";
+            PreparedStatement statement = con.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery(); 
+            if (resultSet.next()) {
+             
+                totalSaleCount = resultSet.getInt("total_sale_count");
+            }   
+        }catch(Exception error){
+            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+         return totalSaleCount;
+    }
+    
+    public double getTotalAmount(){
+        double totalSaleAmount = 0;
+        try{
+            String query = "SELECT SUM(supplier_price) AS total_sale_amount FROM sale";
+            PreparedStatement statement = con.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery(); 
+            if (resultSet.next()) {
+             
+                totalSaleAmount = resultSet.getInt("total_sale_amount");
+            }   
+        }catch(Exception error){
+            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+         return totalSaleAmount;
+    }
+    
     //=======================================================================================
     //End of Inquiry
     
@@ -583,6 +615,37 @@ public class Queries {
         return logisticData;
     }
     
+    public int getTotalStocks(){
+        int totalStocks = 0;
+        try{
+            String query = "SELECT SUM(quantity) AS total_logistic_stocks FROM logistic";
+            PreparedStatement statement = con.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery(); 
+            if (resultSet.next()) {
+             
+                totalStocks = resultSet.getInt("total_logistic_stocks");
+            }   
+        }catch(Exception error){
+            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+         return totalStocks;
+    }
+    
+    public double getTotallogisticAmount(){
+        double totalPrice = 0;
+        try{
+            String query = "SELECT SUM(product_price) AS total_price FROM logistic";
+            PreparedStatement statement = con.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery(); 
+            if (resultSet.next()) {
+             
+                totalPrice = resultSet.getInt("total_price");
+            }   
+        }catch(Exception error){
+            JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+         return totalPrice;
+    }
     //end of logistics
     //=====================================================================================================  
 }

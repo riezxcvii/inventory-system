@@ -3,12 +3,13 @@ package Client;
 import Server.Frame;
 import java.awt.Color;
 import java.awt.Font;
+import java.text.NumberFormat;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.JOptionPane;
 
 public class Dashboard extends javax.swing.JPanel {
-
+        Server.Queries query = new Server.Queries();
     public Dashboard() {
         initComponents();
         
@@ -23,6 +24,19 @@ public class Dashboard extends javax.swing.JPanel {
         logisticTable.getTableHeader().setForeground(new Color(255,255,255));
         logisticTable.getTableHeader().setOpaque(false);
         logisticTable.setRowHeight(50);
+        
+        int totalCount = query.getTotalInquiry();
+        double totalSaleAmount = query.getTotalAmount();
+        int totalStocksValue = query.getTotalStocks();
+        double totalPriceValue = query.getTotallogisticAmount();
+        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
+        String formattedTotalSaleAmount = currencyFormat.format(totalSaleAmount);
+        String formattedTotalPrice  = currencyFormat.format(totalPriceValue);
+        totalInquiry.setText(String.valueOf(totalCount));
+        totalSales.setText(String.valueOf( formattedTotalSaleAmount));
+        totalStocks.setText(String.valueOf(totalStocksValue));
+        totalPrice.setText(String.valueOf( formattedTotalPrice));
+        
     }
 
     @SuppressWarnings("unchecked")
