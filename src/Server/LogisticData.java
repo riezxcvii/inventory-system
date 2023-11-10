@@ -23,6 +23,7 @@ public class LogisticData {
     private int userId;
     private String firstName;
     private String lastName;
+    private double totalPrice;
 
     public int getProductId() {
         return productId;
@@ -174,5 +175,12 @@ public class LogisticData {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

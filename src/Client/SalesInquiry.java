@@ -608,7 +608,7 @@ public class SalesInquiry extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) salesInquiryTable.getModel();
         int selectedRows = salesInquiryTable.getSelectedRow();
 
-        salesId.setText(model.getValueAt(selectedRows, 0).toString());
+        salesId.setText(model.getValueAt(selectedRows, 1).toString());
         int id = Integer.parseInt(salesId.getText());
 
         addButoon.setEnabled(false);

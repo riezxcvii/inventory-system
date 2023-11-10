@@ -1,15 +1,50 @@
 package Client;
 
 import Server.Frame;
+import Server.InquiryData;
+import Server.LogisticData;
 import java.awt.Color;
 import java.awt.Font;
 import java.text.NumberFormat;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class Dashboard extends javax.swing.JPanel {
         Server.Queries query = new Server.Queries();
+        
+        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
+        
+    public void getTotalSalesByuser(){
+        List<InquiryData> data = query.getInquiryByUser();
+        DefaultTableModel model = (DefaultTableModel) salesTable.getModel();
+        model.setRowCount(0);
+        for (InquiryData item : data) {
+            double tSaleAmount = item.getTotalAmount();
+            String formattedSaleAmount = currencyFormat.format(tSaleAmount);
+            model.addRow(new Object[]{
+                item.getFirstName(),
+                 formattedSaleAmount
+            });
+        }
+    }
+    
+    public void getTotalLogisticByuser(){
+        List<LogisticData> data = query.getLogisticByUser();
+        DefaultTableModel model = (DefaultTableModel) logisticTable.getModel();
+        model.setRowCount(0);
+        for (LogisticData item : data) {
+            double tPrice = item.getTotalPrice();
+            String formattedTPrice = currencyFormat.format(tPrice);
+            model.addRow(new Object[]{
+                item.getFirstName(),
+                item.getQuantity(),
+                formattedTPrice
+            });
+        }
+    }
     public Dashboard() {
         initComponents();
         
@@ -25,11 +60,13 @@ public class Dashboard extends javax.swing.JPanel {
         logisticTable.getTableHeader().setOpaque(false);
         logisticTable.setRowHeight(50);
         
+        getTotalSalesByuser();
+        getTotalLogisticByuser();
+        
         int totalCount = query.getTotalInquiry();
         double totalSaleAmount = query.getTotalAmount();
         int totalStocksValue = query.getTotalStocks();
         double totalPriceValue = query.getTotallogisticAmount();
-        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
         String formattedTotalSaleAmount = currencyFormat.format(totalSaleAmount);
         String formattedTotalPrice  = currencyFormat.format(totalPriceValue);
         totalInquiry.setText(String.valueOf(totalCount));
@@ -159,7 +196,7 @@ public class Dashboard extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Logistic User", "Number of Stock Handled", "Total Price"
+                "Top 5 Logistic User", "Number of Stock Handled", "Total Price"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -312,7 +349,7 @@ public class Dashboard extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Sales User", "Total Sales"
+                "Top 5 Sales User", "Total Sales"
             }
         ) {
             boolean[] canEdit = new boolean [] {

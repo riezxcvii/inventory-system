@@ -388,7 +388,7 @@ public class Queries {
     public double getTotalAmount(){
         double totalSaleAmount = 0;
         try{
-            String query = "SELECT SUM(supplier_price) AS total_sale_amount FROM sale";
+            String query = "SELECT SUM(supplier_price * quantity) AS total_sale_amount FROM sale";
             PreparedStatement statement = con.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery(); 
             if (resultSet.next()) {
@@ -399,6 +399,29 @@ public class Queries {
             JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
         }
          return totalSaleAmount;
+    }
+    
+    public List<InquiryData> getInquiryByUser(){
+        List<InquiryData> salesUserSales = new ArrayList();
+        try{
+            String query = "SELECT CONCAT(user.first_name, ' ', user.last_name) AS full_name, SUM(sale.supplier_price * sale.quantity) AS total_sales " +
+             "FROM sale " +
+             "JOIN user ON sale.user_id = user.user_id " +
+             "GROUP BY full_name ORDER BY total_sales DESC limit 5";
+            PreparedStatement statement = con.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+                InquiryData data = new InquiryData();
+                
+                data.setFirstName(result.getString("full_name"));
+                data.setTotalAmount(result.getDouble("total_sales"));
+                salesUserSales.add(data);
+            }
+        }catch(Exception error){
+                JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        return salesUserSales;
     }
     
     //=======================================================================================
@@ -634,7 +657,7 @@ public class Queries {
     public double getTotallogisticAmount(){
         double totalPrice = 0;
         try{
-            String query = "SELECT SUM(product_price) AS total_price FROM logistic";
+            String query = "SELECT SUM(product_price * quantity) AS total_price FROM logistic";
             PreparedStatement statement = con.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery(); 
             if (resultSet.next()) {
@@ -646,6 +669,31 @@ public class Queries {
         }
          return totalPrice;
     }
+    
+    public List<LogisticData> getLogisticByUser(){
+        List<LogisticData> logisticUserRecord = new ArrayList();
+        try{
+            String query = "SELECT CONCAT(user.first_name, ' ', user.last_name) AS full_name, SUM(logistic.product_price * logistic.quantity) AS total_price, SUM(logistic.quantity) AS total_quantity " +
+             "FROM logistic " +
+             "JOIN user ON logistic.user_id = user.user_id " +
+             "GROUP BY full_name ORDER BY total_price DESC limit 5";
+            PreparedStatement statement = con.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+                LogisticData data = new LogisticData();
+                
+                data.setFirstName(result.getString("full_name"));
+                data.setQuantity(result.getInt("total_quantity"));
+                data.setTotalPrice(result.getDouble("total_price"));
+                logisticUserRecord.add(data);
+            }
+        }catch(Exception error){
+                JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        return logisticUserRecord;
+    }
+    
     //end of logistics
     //=====================================================================================================  
 }

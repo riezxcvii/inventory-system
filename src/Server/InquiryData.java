@@ -19,6 +19,7 @@ public class InquiryData {
     private int userID;
     private String firstName;
     private String lastName;
+    private double totalAmount;
 
     public int getSalesId() {
         return salesId;
@@ -138,5 +139,12 @@ public class InquiryData {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+    
+    public double getTotalAmount(){
+        return totalAmount;
+    }
+    public void setTotalAmount(double totalAmount){
+        this.totalAmount = totalAmount;
     }
 }
