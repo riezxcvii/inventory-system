@@ -12,6 +12,7 @@ import Server.SearchInTable;
 import Server.UserSession;
 import java.awt.Color;
 import java.awt.Font;
+import java.util.regex.Pattern;
 
 public class UserManagement extends javax.swing.JPanel {
 
@@ -483,7 +484,11 @@ public class UserManagement extends javax.swing.JPanel {
             if (data.getPresent()) {
                 System.out.println(data.getPresent());
                 JOptionPane.showMessageDialog(null, "Username already exist. Try another username.", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
+            } else if (!(Pattern.matches("^[a-zA-Z0-9]+[@]{1}+[a-zA-Z0-9]+[.]{1}+[a-zA-Z0-9]+$", emailAddress.getText()))) 
+{
+            JOptionPane.showMessageDialog(null, "Please enter a valid email", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            else {
                 System.out.println(data.getPresent());
                 boolean isAdded = query.addUser(username.getText(), password.getText(), selectedItem, address.getText(), emailAddress.getText(), mobileNumber.getText(), firstName.getText(), lastName.getText());
                 if (isAdded) {
@@ -510,6 +515,9 @@ public class UserManagement extends javax.swing.JPanel {
             if (data.getPresent()) {
                 System.out.println(data.getPresent());
                 JOptionPane.showMessageDialog(null, "Username already exist. Try another username.", "Error", JOptionPane.ERROR_MESSAGE);
+            } else if (!(Pattern.matches("^[a-zA-Z0-9]+[@]{1}+[a-zA-Z0-9]+[.]{1}+[a-zA-Z0-9]+$", emailAddress.getText()))) 
+{
+            JOptionPane.showMessageDialog(null, "Please enter a valid email", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 boolean isUpdated = query.updateUser(id, username.getText(), password.getText(), selectedItem, address.getText(), emailAddress.getText(), mobileNumber.getText(), firstName.getText(), lastName.getText());
                 if (isUpdated) {
