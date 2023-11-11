@@ -601,7 +601,7 @@ public class Logistics extends javax.swing.JPanel {
         if (session.getUserType().equals("Admin")) {
             JOptionPane.showMessageDialog(null, "You can't add logistics.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            if (dateReceived.getDate() == null || dateRelease.getDate() == null
+            if (dateReceived.getDate() == null
                     || brand.getText().equals("") || customer.getText().equals("")
                     || eu_po.getText().equals("")
                     || model1.getText().equals("") || po_ref.getText().equals("")
@@ -619,7 +619,7 @@ public class Logistics extends javax.swing.JPanel {
                         double price = Double.parseDouble(productPrice.getText());
 
                         String receive = sdf.format(dateReceived.getDate());
-                        String release = sdf.format(dateRelease.getDate());
+                        String release = dateRelease.getDate() != null ? sdf.format(dateRelease.getDate()) : null;
 
                         boolean isAdded = qry.addLogistic(
                                 productName.getText(),
@@ -763,7 +763,7 @@ public class Logistics extends javax.swing.JPanel {
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        if (dateReceived.getDate() == null || dateRelease.getDate() == null
+        if (dateReceived.getDate() == null
                 || brand.getText().equals("") || customer.getText().equals("")
                 || eu_po.getText().equals("")
                 || model1.getText().equals("") || po_ref.getText().equals("")
@@ -781,7 +781,7 @@ public class Logistics extends javax.swing.JPanel {
                     double price = Double.parseDouble(productPrice.getText());
 
                     String receive = sdf.format(dateReceived.getDate());
-                    String release = sdf.format(dateRelease.getDate());
+                    String release = dateRelease.getDate() != null ? sdf.format(dateRelease.getDate()) : null;
                     int id = Integer.parseInt(productId.getText());
 
                     boolean isUpdated = qry.updateLogistic(

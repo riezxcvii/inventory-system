@@ -684,7 +684,7 @@ public class SalesInquiry extends javax.swing.JPanel {
         if (session.getUserType().equals("Admin")) {
             JOptionPane.showMessageDialog(null, "You can't add a sales inquiry.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            if (date.getDate() == null || dateAccomplished.getDate() == null || deadline.getDate() == null || lastUpdate.getDate() == null
+            if (date.getDate() == null || deadline.getDate() == null || lastUpdate.getDate() == null
                     || Quantity.getText().equals("") || description.getText().equals("") || project.getText().equals("")
                     || remarks.getText().equals("") || srp.getText().equals("") || supplier.getText().equals("") || supplierPrice.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Please fill out all the fields.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -698,7 +698,7 @@ public class SalesInquiry extends javax.swing.JPanel {
                         double supplierpriceValue = Double.parseDouble(supplierPrice.getText());
 
                         String fdate = sdf.format(date.getDate());
-                        String fdateAccom = sdf.format(dateAccomplished.getDate());
+                        String fdateAccom = dateAccomplished.getDate() != null ? sdf.format(dateAccomplished.getDate()) : null;
                         String fdeadline = sdf.format(deadline.getDate());
                         String flastUpdate = sdf.format(lastUpdate.getDate());
 
@@ -736,9 +736,10 @@ public class SalesInquiry extends javax.swing.JPanel {
     }//GEN-LAST:event_addButoonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        if (date.getDate() == null || dateAccomplished.getDate() == null || deadline.getDate() == null || lastUpdate.getDate() == null
+        if (date.getDate() == null || deadline.getDate() == null || lastUpdate.getDate() == null
                 || Quantity.getText().equals("") || description.getText().equals("") || project.getText().equals("")
                 || remarks.getText().equals("") || srp.getText().equals("") || supplier.getText().equals("") || supplierPrice.getText().equals("")) {
+            
             JOptionPane.showMessageDialog(null, "Please fill out all the fields.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
 
@@ -751,7 +752,7 @@ public class SalesInquiry extends javax.swing.JPanel {
                     double supplierpriceValue = Double.parseDouble(supplierPrice.getText());
 
                     String fdate = sdf.format(date.getDate());
-                    String fdateAccom = sdf.format(dateAccomplished.getDate());
+                    String fdateAccom = dateAccomplished.getDate() != null ? sdf.format(dateAccomplished.getDate()) : null;
                     String fdeadline = sdf.format(deadline.getDate());
                     String flastUpdate = sdf.format(lastUpdate.getDate());
 
