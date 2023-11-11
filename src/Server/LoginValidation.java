@@ -19,7 +19,7 @@ public class LoginValidation {
             Database.DatabaseConnect dbConn = new Database.DatabaseConnect();
             Connection con = dbConn.checkConnection();
 
-            String sql = "SELECT user_id, user_type FROM user WHERE username = ? AND password = ?";
+            String sql = "SELECT user_id, user_type FROM user WHERE BINARY username = ? AND BINARY password = ?";
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setString(1, username);
             statement.setString(2, password);
