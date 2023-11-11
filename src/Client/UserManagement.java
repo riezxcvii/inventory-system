@@ -12,6 +12,7 @@ import Server.SearchInTable;
 import Server.UserSession;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.KeyEvent;
 import java.util.regex.Pattern;
 
 public class UserManagement extends javax.swing.JPanel {
@@ -515,8 +516,7 @@ public class UserManagement extends javax.swing.JPanel {
             if (data.getPresent()) {
                 System.out.println(data.getPresent());
                 JOptionPane.showMessageDialog(null, "Username already exist. Try another username.", "Error", JOptionPane.ERROR_MESSAGE);
-            } else if (!(Pattern.matches("^[a-zA-Z0-9!@#$%^&*()_+]+[@]{1}+[a-zA-Z0-9]+[.]{1}+[a-zA-Z0-9]+$", emailAddress.getText()))) 
-{
+            } else if (!(Pattern.matches("^[a-zA-Z0-9!@#$%^&*()_+]+[@]{1}+[a-zA-Z0-9]+[.]{1}+[a-zA-Z0-9]+$", emailAddress.getText()))) {
             JOptionPane.showMessageDialog(null, "Please enter a valid email", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 boolean isUpdated = query.updateUser(id, username.getText(), password.getText(), selectedItem, address.getText(), emailAddress.getText(), mobileNumber.getText(), firstName.getText(), lastName.getText());
@@ -574,7 +574,24 @@ public class UserManagement extends javax.swing.JPanel {
     }//GEN-LAST:event_searchBoxKeyReleased
 
     private void mobileNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mobileNumberKeyPressed
-
+        String phoneNumber = mobileNumber.getText();
+        int numberLength = phoneNumber.length();
+        
+        char c = evt.getKeyChar();
+        
+        if(evt.getKeyChar()>='0' && evt.getKeyChar() <='9'){
+            if(numberLength < 11){
+                mobileNumber.setEditable(true);
+            }else{
+                mobileNumber.setEditable(false);
+            }
+        }else{
+            if(evt.getExtendedKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode() == KeyEvent.VK_DELETE){
+                mobileNumber.setEditable(true);
+            }else{
+                mobileNumber.setEditable(false);
+            }
+        }
     }//GEN-LAST:event_mobileNumberKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
