@@ -372,7 +372,7 @@ public class Queries {
     public int getTotalInquiry(){
         int totalSaleCount = 0;
         try{
-            String query = "SELECT COUNT(*) AS total_sale_count FROM sale";
+            String query = "SELECT COUNT(*) AS total_sale_count FROM sale WHERE date_accomplished IS NOT NULL";
             PreparedStatement statement = con.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery(); 
             if (resultSet.next()) {
@@ -388,7 +388,7 @@ public class Queries {
     public double getTotalAmount(){
         double totalSaleAmount = 0;
         try{
-            String query = "SELECT SUM(supplier_price * quantity) AS total_sale_amount FROM sale";
+            String query = "SELECT SUM(supplier_price * quantity) AS total_sale_amount FROM sale WHERE date_accomplished IS NOT NULL";
             PreparedStatement statement = con.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery(); 
             if (resultSet.next()) {
@@ -406,7 +406,7 @@ public class Queries {
         try{
             String query = "SELECT CONCAT(user.first_name, ' ', user.last_name) AS full_name, SUM(sale.supplier_price * sale.quantity) AS total_sales " +
              "FROM sale " +
-             "JOIN user ON sale.user_id = user.user_id " +
+             "JOIN user ON sale.user_id = user.user_id WHERE date_accomplished IS NOT NULL " +
              "GROUP BY full_name ORDER BY total_sales DESC limit 5";
             PreparedStatement statement = con.prepareStatement(query);
             ResultSet result = statement.executeQuery();
@@ -641,7 +641,7 @@ public class Queries {
     public int getTotalStocks(){
         int totalStocks = 0;
         try{
-            String query = "SELECT SUM(quantity) AS total_logistic_stocks FROM logistic";
+            String query = "SELECT SUM(quantity) AS total_logistic_stocks FROM logistic WHERE date_release IS NOT NULL";
             PreparedStatement statement = con.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery(); 
             if (resultSet.next()) {
@@ -657,7 +657,7 @@ public class Queries {
     public double getTotallogisticAmount(){
         double totalPrice = 0;
         try{
-            String query = "SELECT SUM(product_price * quantity) AS total_price FROM logistic";
+            String query = "SELECT SUM(product_price * quantity) AS total_price FROM logistic WHERE date_release IS NOT NULL";
             PreparedStatement statement = con.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery(); 
             if (resultSet.next()) {
@@ -675,7 +675,7 @@ public class Queries {
         try{
             String query = "SELECT CONCAT(user.first_name, ' ', user.last_name) AS full_name, SUM(logistic.product_price * logistic.quantity) AS total_price, SUM(logistic.quantity) AS total_quantity " +
              "FROM logistic " +
-             "JOIN user ON logistic.user_id = user.user_id " +
+             "JOIN user ON logistic.user_id = user.user_id WHERE date_release IS NOT NULL " +
              "GROUP BY full_name ORDER BY total_price DESC limit 5";
             PreparedStatement statement = con.prepareStatement(query);
             ResultSet result = statement.executeQuery();
