@@ -15,12 +15,14 @@ import javax.swing.table.DefaultTableModel;
 import Server.SearchInTable;
 import java.awt.Color;
 import java.awt.Font;
+import java.text.NumberFormat;
 
 public class Logistics extends javax.swing.JPanel {
 
     Server.Queries qry = new Server.Queries();
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
 
     UserSession session = UserSession.getInstance();
     int userID = session.getUserID();
@@ -33,11 +35,12 @@ public class Logistics extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) logisticsTable.getModel();
         model.setRowCount(0);
         for (LogisticData item : data) {
+            String price = currencyFormat.format( item.getPrice());
             model.addRow(new Object[]{
                 item.getProductId(),
                 item.getName(),
                 item.getType(),
-                item.getPrice(),
+                price,
                 item.getDateReceived(),
                 item.getDateRelease(),
                 item.getEuPoNumber(),

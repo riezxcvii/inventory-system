@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.print.PrinterException;
 import java.text.MessageFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -22,6 +23,7 @@ import javax.swing.table.TableColumnModel;
 public class SalesReports extends javax.swing.JPanel {
     
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
 
     public void getReportData(String date1, String date2){
         Server.Queries qry = new Server.Queries();
@@ -43,6 +45,8 @@ public class SalesReports extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) salesInquiryTable.getModel();
         model.setRowCount(0);
         for (InquiryData item : data) {
+            String sPrice = currencyFormat.format(item.getISupplierPrice());
+            String srp = currencyFormat.format(item.getISrp());
             model.addRow(new Object[]{
                 item.getUserID(),
                 item.getFirstName() +" " + item.getlastName(),
@@ -52,8 +56,8 @@ public class SalesReports extends javax.swing.JPanel {
                 item.getIQuantity(),
                 item.getIDescription(),
                 item.getISupplier(),
-                item.getISupplierPrice(),
-                item.getISrp(),
+                sPrice,
+                srp,
                 item.getIRemarks(),
                 item.getIDateAccomplished(),
                 item.getILastUpdate(),

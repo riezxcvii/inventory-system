@@ -17,12 +17,14 @@ import javax.swing.table.TableColumnModel;
 import Server.SearchInTable;
 import java.awt.Color;
 import java.awt.Font;
+import java.text.NumberFormat;
 
 public class SalesInquiry extends javax.swing.JPanel {
 
     Server.Queries qry = new Server.Queries();
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
 
     UserSession session = UserSession.getInstance();
     int userID = session.getUserID();
@@ -41,6 +43,8 @@ public class SalesInquiry extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) salesInquiryTable.getModel();
         model.setRowCount(0);
         for (InquiryData item : data) {
+            String sPrice = currencyFormat.format(item.getISupplierPrice());
+            String srp = currencyFormat.format(item.getISrp());
             model.addRow(new Object[]{
                 item.getUserID(),
                 item.getSalesId(),
@@ -49,8 +53,8 @@ public class SalesInquiry extends javax.swing.JPanel {
                 item.getIQuantity(),
                 item.getIDescription(),
                 item.getISupplier(),
-                item.getISupplierPrice(),
-                item.getISrp(),
+                sPrice,
+                srp,
                 item.getIRemarks(),
                 item.getIDateAccomplished(),
                 item.getILastUpdate(),
