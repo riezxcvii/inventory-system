@@ -17,14 +17,14 @@ import javax.swing.table.TableColumnModel;
 import Server.SearchInTable;
 import java.awt.Color;
 import java.awt.Font;
-import java.text.NumberFormat;
+import java.text.DecimalFormat;
 
 public class SalesInquiry extends javax.swing.JPanel {
 
     Server.Queries qry = new Server.Queries();
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
+    DecimalFormat currencyFormat = new DecimalFormat("#,##0.00");
 
     UserSession session = UserSession.getInstance();
     int userID = session.getUserID();
@@ -53,8 +53,8 @@ public class SalesInquiry extends javax.swing.JPanel {
                 item.getIQuantity(),
                 item.getIDescription(),
                 item.getISupplier(),
-                sPrice,
-                srp,
+                "₱"+sPrice,
+                "₱"+srp,
                 item.getIRemarks(),
                 item.getIDateAccomplished(),
                 item.getILastUpdate(),

@@ -5,7 +5,7 @@ import Server.InquiryData;
 import Server.LogisticData;
 import java.awt.Color;
 import java.awt.Font;
-import java.text.NumberFormat;
+import java.text.DecimalFormat;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 public class Dashboard extends javax.swing.JPanel {
         Server.Queries query = new Server.Queries();
         
-        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
+        DecimalFormat currencyFormat = new DecimalFormat("#,##0.00");
         
     public void getTotalSalesByuser(){
         List<InquiryData> data = query.getInquiryByUser();
@@ -26,7 +26,7 @@ public class Dashboard extends javax.swing.JPanel {
             String formattedSaleAmount = currencyFormat.format(tSaleAmount);
             model.addRow(new Object[]{
                 item.getFirstName(),
-                 formattedSaleAmount
+                "₱"+formattedSaleAmount
             });
         }
     }
@@ -41,7 +41,7 @@ public class Dashboard extends javax.swing.JPanel {
             model.addRow(new Object[]{
                 item.getFirstName(),
                 item.getQuantity(),
-                formattedTPrice
+                "₱"+formattedTPrice
             });
         }
     }
@@ -70,10 +70,10 @@ public class Dashboard extends javax.swing.JPanel {
         String formattedTotalSaleAmount = currencyFormat.format(totalSaleAmount);
         String formattedTotalPrice  = currencyFormat.format(totalPriceValue);
         totalInquiry.setText(String.valueOf(totalCount));
-        totalSales.setText(String.valueOf( formattedTotalSaleAmount));
+        totalSales.setText(String.valueOf( "₱"+formattedTotalSaleAmount));
         totalStocks.setText(String.valueOf(totalStocksValue));
-        totalPrice.setText(String.valueOf( formattedTotalPrice));
-        
+        totalPrice.setText(String.valueOf( "₱"+formattedTotalPrice));
+        System.out.println(totalSaleAmount);
     }
 
     @SuppressWarnings("unchecked")

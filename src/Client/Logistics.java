@@ -15,14 +15,14 @@ import javax.swing.table.DefaultTableModel;
 import Server.SearchInTable;
 import java.awt.Color;
 import java.awt.Font;
-import java.text.NumberFormat;
+import java.text.DecimalFormat;
 
 public class Logistics extends javax.swing.JPanel {
 
     Server.Queries qry = new Server.Queries();
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
+    DecimalFormat currencyFormat = new DecimalFormat("#,##0.00");
 
     UserSession session = UserSession.getInstance();
     int userID = session.getUserID();
@@ -40,7 +40,7 @@ public class Logistics extends javax.swing.JPanel {
                 item.getProductId(),
                 item.getName(),
                 item.getType(),
-                price,
+                "₱"+price,
                 item.getDateReceived(),
                 item.getDateRelease(),
                 item.getEuPoNumber(),

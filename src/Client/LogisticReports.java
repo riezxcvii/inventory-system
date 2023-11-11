@@ -8,8 +8,8 @@ import javax.swing.JOptionPane;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.print.PrinterException;
+import java.text.DecimalFormat;
 import java.text.MessageFormat;
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -23,7 +23,7 @@ import javax.swing.table.TableColumnModel;
 public class LogisticReports extends javax.swing.JPanel {
     
      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-     NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
+     DecimalFormat currencyFormat = new DecimalFormat("#,##0.00");
 
     public void getLogisticReportData(String date1, String date2) {
         Server.Queries qry = new Server.Queries();
@@ -45,7 +45,7 @@ public class LogisticReports extends javax.swing.JPanel {
                 item.getFirstName() + " " + item.getlastName(),
                 item.getName(),
                 item.getType(),
-                price,
+                "₱"+price,
                 item.getDateReceived(),
                 item.getDateRelease(),
                 item.getEuPoNumber(),
