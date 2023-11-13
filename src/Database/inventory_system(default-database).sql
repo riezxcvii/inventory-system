@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2023 at 03:41 AM
+-- Generation Time: Nov 13, 2023 at 04:22 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.3.33
 
@@ -33,7 +33,7 @@ CREATE TABLE `logistic` (
   `product_type` varchar(30) NOT NULL,
   `product_price` decimal(10,2) NOT NULL,
   `date_received` date NOT NULL,
-  `date_release` date NOT NULL,
+  `date_release` date DEFAULT NULL,
   `eu_po_number` varchar(30) NOT NULL,
   `po_ref_number` varchar(30) NOT NULL,
   `brand` varchar(50) NOT NULL,
@@ -44,7 +44,8 @@ CREATE TABLE `logistic` (
   `customer` varchar(50) NOT NULL,
   `warranty` varchar(30) NOT NULL,
   `warranty_customer` varchar(50) NOT NULL,
-  `user_id` int(11) NOT NULL
+  `user_id` int(11) NOT NULL,
+  `date_added` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -63,10 +64,11 @@ CREATE TABLE `sale` (
   `supplier_price` decimal(10,2) NOT NULL,
   `srp` decimal(10,2) NOT NULL,
   `remarks` varchar(255) NOT NULL,
-  `date_accomplished` date NOT NULL,
+  `date_accomplished` date DEFAULT NULL,
   `last_update` date NOT NULL,
   `deadline` date NOT NULL,
-  `user_id` int(10) NOT NULL
+  `user_id` int(10) NOT NULL,
+  `date_added` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -92,7 +94,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `user_type`, `last_name`, `first_name`, `address`, `mobile_number`, `email_address`, `username`, `password`) VALUES
-(1, 'Admin', 'Admin', 'Default', 'Philippines', '099999999999', 'your.email@gmail.com', 'admin', 'admin123');
+(1, 'Admin', 'Admin', 'Main', 'Malabon City', '09351688531', 'main.admin@gmail.com', 'admin', 'admin123');
 
 --
 -- Indexes for dumped tables
@@ -102,13 +104,15 @@ INSERT INTO `user` (`user_id`, `user_type`, `last_name`, `first_name`, `address`
 -- Indexes for table `logistic`
 --
 ALTER TABLE `logistic`
-  ADD PRIMARY KEY (`product_id`);
+  ADD PRIMARY KEY (`product_id`),
+  ADD KEY `logistic` (`user_id`);
 
 --
 -- Indexes for table `sale`
 --
 ALTER TABLE `sale`
-  ADD PRIMARY KEY (`sale_id`);
+  ADD PRIMARY KEY (`sale_id`),
+  ADD KEY `userId` (`user_id`);
 
 --
 -- Indexes for table `user`
@@ -137,6 +141,22 @@ ALTER TABLE `sale`
 --
 ALTER TABLE `user`
   MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `logistic`
+--
+ALTER TABLE `logistic`
+  ADD CONSTRAINT `logistic` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `sale`
+--
+ALTER TABLE `sale`
+  ADD CONSTRAINT `userId` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

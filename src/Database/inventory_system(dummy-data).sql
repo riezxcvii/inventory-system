@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2023 at 04:43 AM
+-- Generation Time: Nov 13, 2023 at 04:16 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.3.33
 
@@ -33,7 +33,7 @@ CREATE TABLE `logistic` (
   `product_type` varchar(30) NOT NULL,
   `product_price` decimal(10,2) NOT NULL,
   `date_received` date NOT NULL,
-  `date_release` date NOT NULL,
+  `date_release` date DEFAULT NULL,
   `eu_po_number` varchar(30) NOT NULL,
   `po_ref_number` varchar(30) NOT NULL,
   `brand` varchar(50) NOT NULL,
@@ -44,16 +44,19 @@ CREATE TABLE `logistic` (
   `customer` varchar(50) NOT NULL,
   `warranty` varchar(30) NOT NULL,
   `warranty_customer` varchar(50) NOT NULL,
-  `user_id` int(11) NOT NULL
+  `user_id` int(11) NOT NULL,
+  `date_added` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `logistic`
 --
 
-INSERT INTO `logistic` (`product_id`, `product_name`, `product_type`, `product_price`, `date_received`, `date_release`, `eu_po_number`, `po_ref_number`, `brand`, `description`, `model`, `supplier`, `quantity`, `customer`, `warranty`, `warranty_customer`, `user_id`) VALUES
-(1, 'Printer', 'Office Equipment', '30000.00', '2023-10-17', '2023-10-20', 'EU175893', 'PO839429', 'Epson', 'Brand New', 'Epson EcoTankL14150', 'Lee\'s Computer Hardware', 20, 'Virtual Assistant Experts PH', '1 Year', 'Virtual Assistant Experts PH', 3),
-(2, 'Desktop Computer', 'Computer Hardware', '65000.00', '2023-10-31', '2023-11-04', 'EU198725', 'PO567499', 'Acer', 'Brand New', 'Aspire TC 1770 13th Gen', 'Tech Savy Inc.', 100, 'MJ Computer Hub', '1 Year', 'MJ Computer Hub', 3);
+INSERT INTO `logistic` (`product_id`, `product_name`, `product_type`, `product_price`, `date_received`, `date_release`, `eu_po_number`, `po_ref_number`, `brand`, `description`, `model`, `supplier`, `quantity`, `customer`, `warranty`, `warranty_customer`, `user_id`, `date_added`) VALUES
+(1, 'Inventory System', 'Software', '60000.00', '2023-10-23', NULL, 'EU111523', 'PO102323', 'N/A', 'Offline system using Java', 'N/A', 'TESDA Trainees - Antique (Group 3)', 1, 'Intellyx IT Solutions', '3 Months', 'Intellyx IT Solutions', 3, '2023-11-11'),
+(2, 'Point of Sales', 'Software', '120000.00', '2023-11-06', '2023-11-13', 'EU111323', 'PO110623', 'N/A', 'Web-based online system', 'N/A', 'Intellyx IT Solutions', 1, 'Le Art Cafe', '6 Months', 'Le Art Cafe', 3, '2023-11-13'),
+(3, 'Blog Website', 'Software', '150000.00', '2023-10-30', '2023-11-07', 'EU110723', 'PO103023', 'N/A', 'Web-based online system using Next.js', 'N/A', 'Intellyx IT Solutions', 1, 'Vulb Media', '6 Months', 'Vulb Media', 3, '2023-11-13'),
+(4, 'Appointment System', 'Software', '130000.00', '2023-11-04', '2023-11-13', 'EU111323', 'PO110423', 'N/A', 'Online Application', 'N/A', 'Intellyx IT Solutions', 1, 'King Hotel', '6 Months', 'King Hotel', 5, '2023-11-13');
 
 -- --------------------------------------------------------
 
@@ -71,19 +74,22 @@ CREATE TABLE `sale` (
   `supplier_price` decimal(10,2) NOT NULL,
   `srp` decimal(10,2) NOT NULL,
   `remarks` varchar(255) NOT NULL,
-  `date_accomplished` date NOT NULL,
+  `date_accomplished` date DEFAULT NULL,
   `last_update` date NOT NULL,
   `deadline` date NOT NULL,
-  `user_id` int(10) NOT NULL
+  `user_id` int(10) NOT NULL,
+  `date_added` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `sale`
 --
 
-INSERT INTO `sale` (`sale_id`, `date`, `project_or_end_user`, `quantity`, `description`, `supplier`, `supplier_price`, `srp`, `remarks`, `date_accomplished`, `last_update`, `deadline`, `user_id`) VALUES
-(1, '2023-10-17', 'Printer', 20, 'Brand New', 'Lee\'s Computer Hardware', '30000.00', '27495.00', 'Check for defects', '2023-10-20', '2023-10-19', '2023-10-21', 2),
-(2, '2023-10-31', 'Desktop Computer', 100, 'Brand New', 'Tech Savy Inc.', '65000.00', '63649.00', 'Complete Set', '2023-11-03', '2023-11-04', '2023-11-06', 2);
+INSERT INTO `sale` (`sale_id`, `date`, `project_or_end_user`, `quantity`, `description`, `supplier`, `supplier_price`, `srp`, `remarks`, `date_accomplished`, `last_update`, `deadline`, `user_id`, `date_added`) VALUES
+(1, '2023-10-23', 'Inventory System', 1, 'Java Standalone Application', 'TESDA Trainees - Antique (Group 3)', '60000.00', '60000.00', 'Offline', NULL, '2023-10-23', '2023-11-15', 2, '2023-11-11'),
+(2, '2023-11-06', 'Point of Sales', 1, 'Web-based System', 'Intellyx IT Solutions', '120000.00', '100000.00', 'Online', '2023-11-13', '2023-11-13', '2023-11-13', 2, '2023-11-11'),
+(3, '2023-10-30', 'Blog Website', 1, 'Built with Next.js', 'Intellyx IT Solutions', '150000.00', '130000.00', 'Online', '2023-11-07', '2023-10-07', '2023-11-08', 4, '2023-11-13'),
+(4, '2023-11-04', 'Appointment System', 1, 'Java Standalone Application', 'Intellyx IT Solutions', '130000.00', '100000.00', 'Online', '2023-11-13', '2023-11-13', '2023-11-14', 4, '2023-11-13');
 
 -- --------------------------------------------------------
 
@@ -108,9 +114,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `user_type`, `last_name`, `first_name`, `address`, `mobile_number`, `email_address`, `username`, `password`) VALUES
-(1, 'Admin', 'Banquillo', 'Rieza', 'San Jose, Antique', '09539858289', 'rieza.banquillo@gmail.com', 'rieza', 'banquillo'),
-(2, 'Sales', 'Virgo', 'Sunny', 'Tobias Fornier, Antique', '09759375104', 'sunny.virgo@gmail.com', 'sunny', 'virgo'),
-(3, 'Logistics', 'Miguel', 'Edvenson', 'San Jose, Antique', '09746588718', 'edvenson.miguel@gmail.com', 'edvenson', 'miguel');
+(1, 'Admin', 'Admin', 'Main', 'Malabon City', '09351688531', 'main.admin@gmail.com', 'admin', 'admin123'),
+(2, 'Sales', '1', 'Sales', 'Tobias Fornier', '09658312243', 'sales1@gmail.com', 'sales1', 'sales123'),
+(3, 'Logistics', '1', 'Logistic', 'San Jose', '09852416729', 'logistic1@gmail.com', 'logistic1', 'logistic123'),
+(4, 'Sales', '2', 'Sales', 'Valderrama', '09719475332', 'sales2@gmail.com', 'sales2', 'sales123'),
+(5, 'Logistics', '2', 'Logistic', 'Sibalom', '09947559305', 'logistic2@gmail.com', 'logistic2', 'logistic123');
 
 --
 -- Indexes for dumped tables
@@ -120,13 +128,15 @@ INSERT INTO `user` (`user_id`, `user_type`, `last_name`, `first_name`, `address`
 -- Indexes for table `logistic`
 --
 ALTER TABLE `logistic`
-  ADD PRIMARY KEY (`product_id`);
+  ADD PRIMARY KEY (`product_id`),
+  ADD KEY `logistic` (`user_id`);
 
 --
 -- Indexes for table `sale`
 --
 ALTER TABLE `sale`
-  ADD PRIMARY KEY (`sale_id`);
+  ADD PRIMARY KEY (`sale_id`),
+  ADD KEY `userId` (`user_id`);
 
 --
 -- Indexes for table `user`
@@ -142,19 +152,35 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `logistic`
 --
 ALTER TABLE `logistic`
-  MODIFY `product_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `product_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `sale`
 --
 ALTER TABLE `sale`
-  MODIFY `sale_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sale_id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `logistic`
+--
+ALTER TABLE `logistic`
+  ADD CONSTRAINT `logistic` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `sale`
+--
+ALTER TABLE `sale`
+  ADD CONSTRAINT `userId` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
