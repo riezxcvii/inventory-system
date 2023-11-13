@@ -300,33 +300,33 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="productName" pref="195" max="32767" attributes="0"/>
-                      <Component id="eu_po" alignment="1" max="32767" attributes="0"/>
-                      <Component id="supplier" alignment="1" max="32767" attributes="0"/>
+                      <Component id="productName" min="-2" pref="195" max="-2" attributes="0"/>
+                      <Component id="eu_po" alignment="1" min="-2" pref="195" max="-2" attributes="0"/>
+                      <Component id="supplier" alignment="1" min="-2" pref="195" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="productType" pref="195" max="32767" attributes="0"/>
-                      <Component id="po_ref" max="32767" attributes="0"/>
-                      <Component id="quantity" max="32767" attributes="0"/>
+                      <Component id="productType" min="-2" pref="195" max="-2" attributes="0"/>
+                      <Component id="po_ref" min="-2" pref="195" max="-2" attributes="0"/>
+                      <Component id="quantity" min="-2" pref="195" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="customer" max="32767" attributes="0"/>
-                      <Component id="productPrice" pref="195" max="32767" attributes="0"/>
-                      <Component id="brand" max="32767" attributes="0"/>
+                      <Component id="customer" min="-2" pref="195" max="-2" attributes="0"/>
+                      <Component id="productPrice" min="-2" pref="195" max="-2" attributes="0"/>
+                      <Component id="brand" min="-2" pref="195" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="warranty" max="32767" attributes="0"/>
-                      <Component id="dateReceived" pref="195" max="32767" attributes="0"/>
-                      <Component id="productDescription" max="32767" attributes="0"/>
+                      <Component id="warranty" min="-2" pref="195" max="-2" attributes="0"/>
+                      <Component id="dateReceived" min="-2" pref="195" max="-2" attributes="0"/>
+                      <Component id="productDescription" min="-2" pref="195" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="dateRelease" alignment="1" pref="195" max="32767" attributes="0"/>
-                      <Component id="model1" alignment="1" max="32767" attributes="0"/>
-                      <Component id="warrantyCustomer" alignment="0" max="32767" attributes="0"/>
+                      <Component id="dateRelease" alignment="1" min="-2" pref="195" max="-2" attributes="0"/>
+                      <Component id="model1" alignment="1" min="-2" pref="195" max="-2" attributes="0"/>
+                      <Component id="warrantyCustomer" alignment="0" min="-2" pref="195" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               </Group>

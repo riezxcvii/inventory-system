@@ -211,6 +211,7 @@ public class Dashboard extends javax.swing.JPanel {
         logisticTable.setGridColor(new java.awt.Color(255, 255, 255));
         logisticTable.setRowHeight(35);
         logisticTable.setRowMargin(2);
+        logisticTable.setSelectionBackground(new java.awt.Color(255, 255, 255));
         logisticTable.getTableHeader().setReorderingAllowed(false);
         logisticTableScrollPanel.setViewportView(logisticTable);
         if (logisticTable.getColumnModel().getColumnCount() > 0) {
@@ -226,7 +227,7 @@ public class Dashboard extends javax.swing.JPanel {
         totalStocksLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         totalStocksLabel.setText("TOTAL STOCKS");
 
-        totalStocks.setFont(new java.awt.Font("sansserif", 1, 40)); // NOI18N
+        totalStocks.setFont(new java.awt.Font("sansserif", 1, 30)); // NOI18N
         totalStocks.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         totalStocks.setText("138");
 
@@ -257,7 +258,7 @@ public class Dashboard extends javax.swing.JPanel {
         totalPriceLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         totalPriceLabel.setText("TOTAL PRICE");
 
-        totalPrice.setFont(new java.awt.Font("sansserif", 1, 40)); // NOI18N
+        totalPrice.setFont(new java.awt.Font("sansserif", 1, 30)); // NOI18N
         totalPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         totalPrice.setText("10894.55");
 
@@ -288,7 +289,7 @@ public class Dashboard extends javax.swing.JPanel {
         totalInquiryLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         totalInquiryLabel.setText("TOTAL INQUIRY");
 
-        totalInquiry.setFont(new java.awt.Font("sansserif", 1, 40)); // NOI18N
+        totalInquiry.setFont(new java.awt.Font("sansserif", 1, 30)); // NOI18N
         totalInquiry.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         totalInquiry.setText("138");
 
@@ -319,7 +320,7 @@ public class Dashboard extends javax.swing.JPanel {
         totalSalesLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         totalSalesLabel.setText("TOTAL SALES");
 
-        totalSales.setFont(new java.awt.Font("sansserif", 1, 40)); // NOI18N
+        totalSales.setFont(new java.awt.Font("sansserif", 1, 30)); // NOI18N
         totalSales.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         totalSales.setText("10894.55");
 
@@ -364,6 +365,7 @@ public class Dashboard extends javax.swing.JPanel {
         salesTable.setGridColor(new java.awt.Color(255, 255, 255));
         salesTable.setRowHeight(35);
         salesTable.setRowMargin(2);
+        salesTable.setSelectionBackground(new java.awt.Color(255, 255, 255));
         salesTable.getTableHeader().setReorderingAllowed(false);
         salesTableScrollPanel.setViewportView(salesTable);
         if (salesTable.getColumnModel().getColumnCount() > 0) {

@@ -306,21 +306,21 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="supplier" alignment="0" max="32767" attributes="0"/>
-                      <Component id="date" alignment="0" pref="250" max="32767" attributes="0"/>
-                      <Component id="dateAccomplished" max="32767" attributes="0"/>
+                      <Component id="supplier" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
+                      <Component id="date" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
+                      <Component id="dateAccomplished" min="-2" pref="250" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="project" max="32767" attributes="0"/>
-                      <Component id="supplierPrice" max="32767" attributes="0"/>
-                      <Component id="lastUpdate" pref="250" max="32767" attributes="0"/>
+                      <Component id="project" min="-2" pref="250" max="-2" attributes="0"/>
+                      <Component id="supplierPrice" min="-2" pref="250" max="-2" attributes="0"/>
+                      <Component id="lastUpdate" min="-2" pref="250" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="Quantity" max="32767" attributes="0"/>
-                      <Component id="srp" max="32767" attributes="0"/>
-                      <Component id="deadline" pref="250" max="32767" attributes="0"/>
+                      <Component id="Quantity" min="-2" pref="250" max="-2" attributes="0"/>
+                      <Component id="srp" min="-2" pref="250" max="-2" attributes="0"/>
+                      <Component id="deadline" min="-2" pref="250" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -329,8 +329,8 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="idOfUser" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="description" pref="250" max="32767" attributes="0"/>
-                      <Component id="remarks" alignment="0" max="32767" attributes="0"/>
+                      <Component id="description" min="-2" pref="250" max="-2" attributes="0"/>
+                      <Component id="remarks" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="30" max="32767" attributes="0"/>
               </Group>
@@ -359,9 +359,9 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="dateAccomplished" alignment="3" pref="45" max="32767" attributes="0"/>
-                              <Component id="lastUpdate" alignment="3" pref="45" max="32767" attributes="0"/>
-                              <Component id="deadline" alignment="3" pref="45" max="32767" attributes="0"/>
+                              <Component id="dateAccomplished" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                              <Component id="lastUpdate" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                              <Component id="deadline" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
