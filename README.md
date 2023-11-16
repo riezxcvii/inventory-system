@@ -1,6 +1,6 @@
 <h2>
     📁Inventory System
-    <img width="13%" style="vertical-align:middle" src="https://badgen.net/badge/status/ongoing/red" />
+    <img width="13%" style="vertical-align:middle" src="https://badgen.net/badge/status/finished/blue" />
 </h2>
 
 📝 The Java-based Inventory Management System is a versatile software solution that streamlines inventory management for businesses. It offers user management with role-based access, sales inquiry tools, and logistics optimization, all built with Java. This system facilitates efficient inventory tracking, sales transactions, and logistics operations, enhancing productivity and reducing operational costs.
@@ -10,6 +10,7 @@
 <p align="left">
     <img width="5.6%" align="center" src="https://www.svgrepo.com/show/303388/java-4-logo.svg">
     <img width="6.8%" align="center" src="https://www.qfs.de/fileadmin/_processed_/8/0/csm_java-swing_c77435cfa9.png">
+    <img width="4.6%" align="center" src="https://www.sitesbay.com/awt/files/sublogo.png">
     <img width="6.4%" align="center" src="https://pbs.twimg.com/media/FkApeNZWAAAdE8l.png">
     <img width="7.8%" align="center" src="https://www.svgrepo.com/show/303251/mysql-logo.svg">
     <img width="3.5%" align="center" src="https://seeklogo.com/images/N/netbeans-logo-335EBA952E-seeklogo.com.png">
@@ -44,7 +45,7 @@
 - Run the project.
   > - Open the XAMPP Control Panel.
   > - Start Apache and MySQL.
-  >   Navigate to the 'App.java' file inside the 'src' folder and run the code.
+  > - Click the 'Inventory System' inside the 'inventory-system' folder to run the system.
 
 ## 👥 Credits
 
