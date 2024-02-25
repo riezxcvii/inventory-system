@@ -17,7 +17,7 @@ public class Frame {
 
             if (loginPanel instanceof JPanel) {
                 JPanel panel = (JPanel) loginPanel;
-                panel.setPreferredSize(new Dimension(1320, 650));
+                panel.setPreferredSize(new Dimension(1200, 600));
 
                 frame.getContentPane().add(panel);
                 frame.pack();
